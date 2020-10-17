@@ -222,6 +222,37 @@ namespace PuertsStaticWrap
         }
         
         
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void G_JsOnUpdate(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as JsManager;
+                var result = obj.JsOnUpdate;
+                Puerts.ResultHelper.Set((int)data, isolate, info, result);
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void S_JsOnUpdate(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as JsManager;
+                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                obj.JsOnUpdate = argHelper.Get<System.Action>(false);
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        
         
         
         public static Puerts.TypeRegisterInfo GetRegisterInfo()
@@ -242,6 +273,7 @@ namespace PuertsStaticWrap
                     {"jscache", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_jscache, Setter = S_jscache} },
                     {"JsOnApplicationQuit", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_JsOnApplicationQuit, Setter = S_JsOnApplicationQuit} },
                     {"JsOnDispose", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_JsOnDispose, Setter = S_JsOnDispose} },
+                    {"JsOnUpdate", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_JsOnUpdate, Setter = S_JsOnUpdate} },
                     
                 }
             };

@@ -100,37 +100,6 @@ namespace PuertsStaticWrap
         
         
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_JsUpdate(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
-        {
-            try
-            {
-                var obj = Puerts.Utils.GetSelf((int)data, self) as JsBehaviour;
-                var result = obj.JsUpdate;
-                Puerts.ResultHelper.Set((int)data, isolate, info, result);
-            }
-            catch (Exception e)
-            {
-                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
-            }
-        }
-        
-        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_JsUpdate(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
-        {
-            try
-            {
-                var obj = Puerts.Utils.GetSelf((int)data, self) as JsBehaviour;
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.JsUpdate = argHelper.Get<System.Action>(false);
-            }
-            catch (Exception e)
-            {
-                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
-            }
-        }
-        
-        
-        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void G_JsOnDestroy(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
@@ -177,7 +146,6 @@ namespace PuertsStaticWrap
                 {
                     {"ModuleName", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_ModuleName, Setter = S_ModuleName} },
                     {"JsStart", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_JsStart, Setter = S_JsStart} },
-                    {"JsUpdate", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_JsUpdate, Setter = S_JsUpdate} },
                     {"JsOnDestroy", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_JsOnDestroy, Setter = S_JsOnDestroy} },
                     
                 }

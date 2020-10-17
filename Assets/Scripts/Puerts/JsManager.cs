@@ -12,6 +12,7 @@ public class JsManager : MonoSingleton<JsManager>
 
     public Action JsOnApplicationQuit;
     public Action JsOnDispose;
+    public Action JsOnUpdate;
 
     public async Task<JsEnv> GetJsEnv()
     {
@@ -52,6 +53,7 @@ public class JsManager : MonoSingleton<JsManager>
         {
             jsEnv.Tick();
         }
+        JsOnUpdate?.Invoke();
     }
 
     async Task StartGame()

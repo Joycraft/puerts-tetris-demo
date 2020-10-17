@@ -10,7 +10,6 @@ public class JsBehaviour : MonoBehaviour
     public string ModuleName;//可配置加载的js模块
 
     public Action JsStart;
-    public Action JsUpdate;
     public Action JsOnDestroy;
 
     async void Awake()
@@ -25,16 +24,10 @@ public class JsBehaviour : MonoBehaviour
         if (JsStart != null) JsStart();
     }
 
-    void Update()
-    {
-        if (JsUpdate != null) JsUpdate();
-    }
-
     void OnDestroy()
     {
         if (JsOnDestroy != null) JsOnDestroy();
         JsStart = null;
-        JsUpdate = null;
         JsOnDestroy = null;
     }
 }

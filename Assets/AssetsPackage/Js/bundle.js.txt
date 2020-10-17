@@ -137,6 +137,9 @@ class GameMain {
     constructor() {
         csharp__WEBPACK_IMPORTED_MODULE_0__["JsManager"].Instance.JsOnApplicationQuit = () => this.onApplicationQuit();
         csharp__WEBPACK_IMPORTED_MODULE_0__["JsManager"].Instance.JsOnDispose = () => this.onDispose();
+        csharp__WEBPACK_IMPORTED_MODULE_0__["JsManager"].Instance.JsOnUpdate = () => this.onUpdate();
+    }
+    onUpdate() {
     }
     onApplicationQuit() {
         console.log("Game onApplicationQuit in JS....");
@@ -235,7 +238,6 @@ class jsBehaviour {
         this.mono = null;
         this.mono = mono;
         this.mono.JsStart = () => this.Start();
-        this.mono.JsUpdate = () => this.Update();
         this.mono.JsOnDestroy = () => this.OnDestory();
     }
     Start() {

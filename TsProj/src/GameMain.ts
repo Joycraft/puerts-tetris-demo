@@ -6,13 +6,17 @@ class GameMain {
     constructor() {
         JsManager.Instance.JsOnApplicationQuit = () => this.onApplicationQuit();
         JsManager.Instance.JsOnDispose = () => this.onDispose();
+        JsManager.Instance.JsOnUpdate = () => this.onUpdate();
     }
 
-    public onApplicationQuit(): void {
+    public onUpdate() {
+    }
+
+    public onApplicationQuit() {
         console.log("Game onApplicationQuit in JS....");
     }
 
-    public onDispose(): void {
+    public onDispose() {
         console.log("Game onDispose in JS....");
     }
 }

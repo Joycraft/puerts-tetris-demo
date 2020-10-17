@@ -1276,6 +1276,7 @@ declare module 'csharp' {
             public jscache: System.Collections.Generic.Dictionary$2<string, string>;
             public JsOnApplicationQuit: System.Action;
             public JsOnDispose: System.Action;
+            public JsOnUpdate: System.Action;
             public constructor();
             public GetJsEnv():System.Threading.Tasks.Task$1<Puerts.JsEnv>;
             public static PreloadJS(jsLabel: string):System.Threading.Tasks.Task$1<boolean>;
@@ -1289,7 +1290,6 @@ declare module 'csharp' {
         class JsBehaviour extends UnityEngine.MonoBehaviour {
             public ModuleName: string;
             public JsStart: System.Action;
-            public JsUpdate: System.Action;
             public JsOnDestroy: System.Action;
             public constructor();
             
