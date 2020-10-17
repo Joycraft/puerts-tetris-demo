@@ -130,6 +130,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var csharp__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(csharp__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _game_rotate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game/rotate */ "./src/game/rotate.ts");
 /* harmony import */ var _game_tetris__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./game/tetris */ "./src/game/tetris.ts");
+/* harmony import */ var _puerts_updateTick__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./puerts/updateTick */ "./src/puerts/updateTick.ts");
+
 
 
 
@@ -140,6 +142,7 @@ class GameMain {
         csharp__WEBPACK_IMPORTED_MODULE_0__["JsManager"].Instance.JsOnUpdate = () => this.onUpdate();
     }
     onUpdate() {
+        _puerts_updateTick__WEBPACK_IMPORTED_MODULE_3__["updateTick"].Tick();
     }
     onApplicationQuit() {
         console.log("Game onApplicationQuit in JS....");
@@ -245,6 +248,24 @@ class jsBehaviour {
     Update() {
     }
     OnDestory() {
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/puerts/updateTick.ts":
+/*!**********************************!*\
+  !*** ./src/puerts/updateTick.ts ***!
+  \**********************************/
+/*! exports provided: updateTick */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTick", function() { return updateTick; });
+class updateTick {
+    static Tick() {
     }
 }
 

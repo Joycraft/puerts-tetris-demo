@@ -1,6 +1,7 @@
 import { JsManager } from 'csharp';
 import { rotate } from './game/rotate';
 import { tetris } from './game/tetris';
+import { updateTick } from './puerts/updateTick';
 
 class GameMain {
     constructor() {
@@ -10,6 +11,7 @@ class GameMain {
     }
 
     public onUpdate() {
+        updateTick.Tick();
     }
 
     public onApplicationQuit() {
