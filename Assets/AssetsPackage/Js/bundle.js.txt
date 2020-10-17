@@ -1,0 +1,263 @@
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/GameMain.ts");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./node_modules/webpack/buildin/global.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ "./src/GameMain.ts":
+/*!*************************!*\
+  !*** ./src/GameMain.ts ***!
+  \*************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var csharp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! csharp */ "csharp");
+/* harmony import */ var csharp__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(csharp__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _game_rotate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game/rotate */ "./src/game/rotate.ts");
+/* harmony import */ var _game_tetris__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./game/tetris */ "./src/game/tetris.ts");
+
+
+
+class GameMain {
+    constructor() {
+        csharp__WEBPACK_IMPORTED_MODULE_0__["JsManager"].Instance.JsOnApplicationQuit = () => this.onApplicationQuit();
+        csharp__WEBPACK_IMPORTED_MODULE_0__["JsManager"].Instance.JsOnDispose = () => this.onDispose();
+    }
+    onApplicationQuit() {
+        console.log("Game onApplicationQuit in JS....");
+    }
+    onDispose() {
+        console.log("Game onDispose in JS....");
+    }
+}
+global['tetris'] = _game_tetris__WEBPACK_IMPORTED_MODULE_2__["tetris"];
+global['rotate'] = _game_rotate__WEBPACK_IMPORTED_MODULE_1__["rotate"];
+global['GameMain'] = new GameMain();
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./src/game/rotate.ts":
+/*!****************************!*\
+  !*** ./src/game/rotate.ts ***!
+  \****************************/
+/*! exports provided: rotate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rotate", function() { return rotate; });
+/* harmony import */ var csharp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! csharp */ "csharp");
+/* harmony import */ var csharp__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(csharp__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../puerts/jsBehaviour */ "./src/puerts/jsBehaviour.ts");
+
+
+const speed = 10;
+class rotate extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_1__["jsBehaviour"] {
+    static create(mono) {
+        new rotate(mono);
+    }
+    constructor(mono) {
+        super(mono);
+    }
+    Start() {
+    }
+    Update() {
+        let r = csharp__WEBPACK_IMPORTED_MODULE_0__["UnityEngine"].Vector3.op_Multiply(csharp__WEBPACK_IMPORTED_MODULE_0__["UnityEngine"].Vector3.up, csharp__WEBPACK_IMPORTED_MODULE_0__["UnityEngine"].Time.deltaTime * speed);
+        this.mono.transform.Rotate(r);
+    }
+    OnDestory() {
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/game/tetris.ts":
+/*!****************************!*\
+  !*** ./src/game/tetris.ts ***!
+  \****************************/
+/*! exports provided: tetris */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tetris", function() { return tetris; });
+/* harmony import */ var _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../puerts/jsBehaviour */ "./src/puerts/jsBehaviour.ts");
+
+class tetris extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__["jsBehaviour"] {
+    static create(mono) {
+        new tetris(mono);
+    }
+    constructor(mono) {
+        super(mono);
+    }
+    Start() {
+        console.log('tetris gameLogic start.');
+    }
+    Update() {
+    }
+    OnDestory() {
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/puerts/jsBehaviour.ts":
+/*!***********************************!*\
+  !*** ./src/puerts/jsBehaviour.ts ***!
+  \***********************************/
+/*! exports provided: jsBehaviour */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "jsBehaviour", function() { return jsBehaviour; });
+class jsBehaviour {
+    constructor(mono) {
+        this.mono = null;
+        this.mono = mono;
+        this.mono.JsStart = () => this.Start();
+        this.mono.JsUpdate = () => this.Update();
+        this.mono.JsOnDestroy = () => this.OnDestory();
+    }
+    Start() {
+    }
+    Update() {
+    }
+    OnDestory() {
+    }
+}
+
+
+/***/ }),
+
+/***/ "csharp":
+/*!*************************!*\
+  !*** external "csharp" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("csharp");
+
+/***/ })
+
+/******/ });

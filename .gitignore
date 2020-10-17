@@ -1,0 +1,10 @@
+*.meta
+Library
+Logs
+Temp
+node_modules
+ProjectSettings
+Packages
+obj/Debug
+*.csproj
+*.sln
