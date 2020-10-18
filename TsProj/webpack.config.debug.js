@@ -33,7 +33,6 @@ let local = {
 
 let unity = {
 	entry: './src/GameMain.ts',
-	devtool: 'inline-source-map',
 	mode: 'development',
 	module: {
 		rules: [
@@ -49,7 +48,7 @@ let unity = {
 		extensions: ['.tsx', '.ts', '.js', '.txt'],
 	},
 	output: {
-		filename: 'bundle.js',
+		filename: 'bundle.js.txt',
 		path: path.resolve(__dirname, '../Assets/Js/Resources')
 	},
 
