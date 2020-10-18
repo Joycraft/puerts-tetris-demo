@@ -66,7 +66,6 @@ public class JsManager : MonoSingleton<JsManager>
 
     private void OnApplicationQuit()
     {
-        Dispose();
         if (jsEnv != null)
         {
             JsOnApplicationQuit?.Invoke();
