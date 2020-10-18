@@ -19,6 +19,7 @@ export class rotate extends jsBehaviour {
 
     Update() {
         super.Update();
+        if (!this.isValid()) return;
         if (!this.canUpdate()) return;
         let r = UnityEngine.Vector3.op_Multiply(UnityEngine.Vector3.up, UnityEngine.Time.deltaTime * speed);
         this.mono.transform.Rotate(r);

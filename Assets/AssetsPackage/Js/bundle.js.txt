@@ -675,6 +675,8 @@ class rotate extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_1__["jsBehavio
     }
     Update() {
         super.Update();
+        if (!this.isValid())
+            return;
         if (!this.canUpdate())
             return;
         let r = csharp__WEBPACK_IMPORTED_MODULE_0__["UnityEngine"].Vector3.op_Multiply(csharp__WEBPACK_IMPORTED_MODULE_0__["UnityEngine"].Vector3.up, csharp__WEBPACK_IMPORTED_MODULE_0__["UnityEngine"].Time.deltaTime * speed);
