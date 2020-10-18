@@ -61,7 +61,6 @@ public class JsManager : MonoSingleton<JsManager>
         Dispose();
         await PreloadJS(AddressableConfig.JSLable);
         jsEnv = new JsEnv(new JsLoader(), 8080);
-        jsEnv.WaitDebugger();
         jsEnv.Eval(@"require('bundle')");
     }
 
