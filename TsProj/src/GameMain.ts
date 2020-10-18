@@ -1,7 +1,7 @@
 import { JsManager } from 'csharp';
 import { rotate } from './game/rotate';
 import { tetris } from './game/tetris';
-import { updateTick } from './puerts/updateTick';
+import { EVT, globalEvent } from './puerts/globalEvent';
 
 class GameMain {
     constructor() {
@@ -11,7 +11,7 @@ class GameMain {
     }
 
     public onUpdate() {
-        updateTick.Tick();
+        globalEvent.ins.emitter.emit(EVT.UPDATE_TICK);
     }
 
     public onApplicationQuit() {

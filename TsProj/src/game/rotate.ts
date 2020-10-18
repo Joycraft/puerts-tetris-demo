@@ -16,6 +16,8 @@ export class rotate extends jsBehaviour {
     }
 
     Update() {
+        if (this.mono == null) return;
+        if (this.mono.gameObject.activeInHierarchy == false) return;
         let r = UnityEngine.Vector3.op_Multiply(UnityEngine.Vector3.up, UnityEngine.Time.deltaTime * speed);
         this.mono.transform.Rotate(r);
     }
