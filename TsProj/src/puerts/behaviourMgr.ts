@@ -1,4 +1,3 @@
-import { JsBehaviour } from "csharp";
 import { jsBehaviour } from "./jsBehaviour";
 
 export class behaviourMgr {
