@@ -188,7 +188,7 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nex
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = csharp;\n\n//# sourceURL=webpack:///external_%22csharp%22?");
+eval("module.exports = require(\"csharp\");\n\n//# sourceURL=webpack:///external_%22csharp%22?");
 
 /***/ })
 
