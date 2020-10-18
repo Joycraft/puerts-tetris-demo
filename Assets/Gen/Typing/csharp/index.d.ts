@@ -14,7 +14,7 @@ declare module 'csharp' {
         }
     }
     
-    type $Task<T> = System.Threading.Tasks.Task$1<T>
+    interface $Task<T> {}
     
     namespace UnityEngine {
         class Debug extends System.Object {
@@ -546,8 +546,8 @@ declare module 'csharp' {
             public JsOnDispose: System.Action;
             public JsOnUpdate: System.Action;
             public constructor();
-            public GetJsEnv():System.Threading.Tasks.Task$1<Puerts.JsEnv>;
-            public static PreloadJS(jsLabel: string):System.Threading.Tasks.Task$1<boolean>;
+            public GetJsEnv():Puerts.JsEnv;
+            public StartGame():void;
             public Dispose():void;
             
         }
@@ -566,15 +566,6 @@ declare module 'csharp' {
     
     namespace Puerts {
         class JsEnv extends System.Object {
-            
-        }
-        
-    }
-    namespace System.Threading.Tasks {
-        class Task$1<TResult> extends System.Threading.Tasks.Task {
-            
-        }
-        class Task extends System.Object {
             
         }
         

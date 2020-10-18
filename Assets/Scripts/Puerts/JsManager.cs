@@ -1,9 +1,7 @@
 using Puerts;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 public class JsManager : MonoSingleton<JsManager>
 {
@@ -19,28 +17,9 @@ public class JsManager : MonoSingleton<JsManager>
         return jsEnv;
     }
 
-    public static async Task<bool> PreloadJS(string jsLabel)
+    void Awake()
     {
-        var list = await Addressables.LoadAssetsAsync<TextAsset>(jsLabel, null).Task;
-        if (list != null)
-        {
-            JsManager.Instance.jscache.Clear();
-            foreach (var txt in list)
-            {
-                JsManager.Instance.jscache.Add(txt.name, txt.text);
-            }
-            return true;
-        }
-        else
-        {
-            Debug.Log("加载JS失败......");
-            return false;
-        }
-    }
-
-    async void Awake()
-    {
-        await StartGame();
+        StartGame();
     }
 
     private void Update()
@@ -52,12 +31,12 @@ public class JsManager : MonoSingleton<JsManager>
         JsOnUpdate?.Invoke();
     }
 
-    public async Task StartGame()
+    public void StartGame()
     {
         Dispose();
-        await PreloadJS(AddressableConfig.JSLable);
-        jsEnv = new JsEnv(new JsLoader(), 5858);
-        jsEnv.Eval(@"require('bundle')");
+        jsEnv = new JsEnv(new DefaultLoader("E:/source/puerts_unity_demo/Assets/AssetsPackage/Js"), 9229);
+        //jsEnv.WaitDebugger();
+        jsEnv.Eval("require('bundle')");
     }
 
     private void OnApplicationQuit()

@@ -66,25 +66,23 @@ namespace PuertsStaticWrap
         }
         
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_PreloadJS(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        private static void M_StartGame(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
-                
+                var obj = Puerts.Utils.GetSelf((int)data, self) as JsManager;
                 
                 
                 {
                     
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
                     
                     
                     
                     {
                         
-                        var Arg0 = argHelper0.GetString(false);
-                        var result = JsManager.PreloadJS(Arg0);
+                        obj.StartGame();
                         
-                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
                         
                     }
                 }
@@ -264,7 +262,7 @@ namespace PuertsStaticWrap
                 Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
                 {
                     { new Puerts.MethodKey {Name = "GetJsEnv", IsStatic = false},  M_GetJsEnv },
-                    { new Puerts.MethodKey {Name = "PreloadJS", IsStatic = true},  F_PreloadJS },
+                    { new Puerts.MethodKey {Name = "StartGame", IsStatic = false},  M_StartGame },
                     { new Puerts.MethodKey {Name = "Dispose", IsStatic = false},  M_Dispose },
                     
                 },

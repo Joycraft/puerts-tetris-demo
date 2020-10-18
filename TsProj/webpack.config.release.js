@@ -22,8 +22,8 @@ module.exports = {
 		extensions: ['.tsx', '.ts', '.js']
 	},
 	output: {
-		filename: 'bundle.js.txt',
-		path: path.resolve(__dirname, '../Assets/AssetsPackage/Js')
+		filename: 'bundle.js',
+		path: path.resolve(__dirname, './output')
 	},
 	externals
 };
