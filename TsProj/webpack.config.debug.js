@@ -6,7 +6,7 @@ const externals = {
 	puerts: 'commonjs2 puerts',
 };
 
-module.exports = {
+let local = {
 	entry: './src/GameMain.ts',
 	devtool: 'source-map',
 	mode: 'development',
@@ -22,7 +22,6 @@ module.exports = {
 
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js'],
-
 	},
 	output: {
 		filename: 'bundle.js',
@@ -30,3 +29,28 @@ module.exports = {
 	},
 	externals
 };
+
+let unity = {
+	entry: './src/GameMain.ts',
+	mode: 'development',
+	module: {
+		rules: [
+			{
+				test: /\.tsx?$/,
+				use: 'ts-loader',
+				exclude: /node_modules/
+			}
+		]
+	},
+
+	resolve: {
+		extensions: ['.tsx', '.ts', '.js'],
+	},
+	output: {
+		filename: 'bundle.js.txt',
+		path: path.resolve(__dirname, '../Assets/Js/Resources')
+	},
+	externals
+}
+
+module.exports = [local, unity];

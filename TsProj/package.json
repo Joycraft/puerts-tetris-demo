@@ -1,7 +1,8 @@
 {
 	"scripts": {
 		"bundle:dev": "webpack --config webpack.config.debug.js --watch",
-		"bundle:publish": "webpack --config webpack.config.release.js"
+		"bundle:publish": "webpack --config webpack.config.release.js",
+		"postbuild": "node copyJsFile.js output ../Assets/Js/Resources"
 	},
 	"devDependencies": {
 		"flatbuffers": "^1.12.0",
