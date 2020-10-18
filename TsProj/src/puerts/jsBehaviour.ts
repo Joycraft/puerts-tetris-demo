@@ -46,7 +46,7 @@ export class jsBehaviour {
 
     OnDestory() {
         globalEvent.ins.emitter.off(EVT.UPDATE_TICK, this.updateListener);
-        behaviourMgr.ins.del(this.gameObject.GetHashCode());
+        behaviourMgr.ins.del(this.gameObject.GetHashCode(), this);
         this.mono = null;
         this.updateListener = null;
     }
