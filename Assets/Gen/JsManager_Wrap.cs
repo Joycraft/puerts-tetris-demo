@@ -128,13 +128,13 @@ namespace PuertsStaticWrap
         
         
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_jscache(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        private static void G_DebuggerRoot(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as JsManager;
-                var result = obj.jscache;
-                Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                var result = obj.DebuggerRoot;
+                Puerts.PuertsDLL.ReturnString(isolate, info, result);
             }
             catch (Exception e)
             {
@@ -143,13 +143,13 @@ namespace PuertsStaticWrap
         }
         
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_jscache(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        private static void S_DebuggerRoot(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as JsManager;
                 var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.jscache = argHelper.Get<System.Collections.Generic.Dictionary<string, string>>(false);
+                obj.DebuggerRoot = argHelper.GetString(false);
             }
             catch (Exception e)
             {
@@ -268,7 +268,7 @@ namespace PuertsStaticWrap
                 },
                 Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
                 {
-                    {"jscache", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_jscache, Setter = S_jscache} },
+                    {"DebuggerRoot", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_DebuggerRoot, Setter = S_DebuggerRoot} },
                     {"JsOnApplicationQuit", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_JsOnApplicationQuit, Setter = S_JsOnApplicationQuit} },
                     {"JsOnDispose", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_JsOnDispose, Setter = S_JsOnDispose} },
                     {"JsOnUpdate", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_JsOnUpdate, Setter = S_JsOnUpdate} },

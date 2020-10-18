@@ -1,43 +1,36 @@
 using Puerts;
 using System.IO;
-using UnityEngine;
 
 public class JsLoader : ILoader
 {
-    private string root = "";
+    public string debugRoot { get; private set; }
 
-    public JsLoader() { }
-
-    public JsLoader(string root)
+    public JsLoader(string debugRoot)
     {
-        this.root = root;
+        this.debugRoot = debugRoot;
     }
 
     public bool FileExists(string filepath)
     {
-        return true;
+        if (filepath.StartsWith("puerts/")) return true;
+#if UNITY_EDITOR
+        return System.IO.File.Exists(System.IO.Path.Combine(debugRoot, filepath));
+#else
+			return true;
+#endif
     }
 
     public string ReadFile(string filepath, out string debugpath)
     {
-#if UNITY_EDITOR
-        var scriptDir = Path.Combine(Application.dataPath, "AssetsPackage/Js");
-        debugpath = Path.Combine(scriptDir, filepath);
-#endif
-#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
-        debugpath = debugpath.Replace("/", "\\");
-#endif
-        var jscache = JsManager.Instance.jscache;
-        string jsName = filepath.Replace("puerts/", "");
-        string text;
-        jscache.TryGetValue(jsName, out text);
-
-        if (text == null)
+        debugpath = System.IO.Path.Combine(debugRoot, filepath);
+        if (filepath.StartsWith("puerts/"))
         {
-            UnityEngine.TextAsset file = (UnityEngine.TextAsset)UnityEngine.Resources.Load(filepath);
-            text = file == null ? null : file.text;
+            var asset = UnityEngine.Resources.Load<UnityEngine.TextAsset>(filepath);
+            return asset.text;
         }
-        return text;
+        return File.ReadAllText(Path.Combine(debugRoot, filepath));
     }
+
+    public void Close() { }
 
 }

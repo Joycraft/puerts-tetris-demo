@@ -513,9 +513,6 @@ declare module 'csharp' {
         class List$1<T> extends System.Object {
             
         }
-        class Dictionary$2<TKey,TValue> extends System.Object {
-            
-        }
         
     }
     namespace UnityEngine.SceneManagement {
@@ -541,7 +538,7 @@ declare module 'csharp' {
     }
     
         class JsManager extends MonoSingleton$1<JsManager> {
-            public jscache: System.Collections.Generic.Dictionary$2<string, string>;
+            public DebuggerRoot: string;
             public JsOnApplicationQuit: System.Action;
             public JsOnDispose: System.Action;
             public JsOnUpdate: System.Action;
