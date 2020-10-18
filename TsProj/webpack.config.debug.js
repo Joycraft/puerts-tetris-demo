@@ -20,6 +20,10 @@ let local = {
 		]
 	},
 
+	optimization: {    // 1. 这个配置必须
+		minimize: false
+	},
+
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js'],
 	},
@@ -32,6 +36,7 @@ let local = {
 
 let unity = {
 	entry: './src/GameMain.ts',
+	devtool: 'source-map',
 	mode: 'development',
 	module: {
 		rules: [
@@ -41,6 +46,10 @@ let unity = {
 				exclude: /node_modules/
 			}
 		]
+	},
+
+	optimization: {    // 1. 这个配置必须
+		minimize: false
 	},
 
 	resolve: {

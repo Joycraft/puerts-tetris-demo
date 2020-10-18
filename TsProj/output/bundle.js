@@ -609,28 +609,24 @@ module.exports = g;
 /*!*************************!*\
   !*** ./src/GameMain.ts ***!
   \*************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var csharp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! csharp */ "csharp");
-/* harmony import */ var csharp__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(csharp__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _puerts_globalEvent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./puerts/globalEvent */ "./src/puerts/globalEvent.ts");
-/* harmony import */ var _game_rotate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./game/rotate */ "./src/game/rotate.ts");
-/* harmony import */ var _game_tetris__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./game/tetris */ "./src/game/tetris.ts");
-
-
-
-
+/* WEBPACK VAR INJECTION */(function(global) {
+Object.defineProperty(exports, "__esModule", { value: true });
+const csharp_1 = __webpack_require__(/*! csharp */ "csharp");
+const globalEvent_1 = __webpack_require__(/*! ./puerts/globalEvent */ "./src/puerts/globalEvent.ts");
+const rotate_1 = __webpack_require__(/*! ./game/rotate */ "./src/game/rotate.ts");
+const tetris_1 = __webpack_require__(/*! ./game/tetris */ "./src/game/tetris.ts");
 class GameMain {
     constructor() {
-        csharp__WEBPACK_IMPORTED_MODULE_0__["JsManager"].Instance.JsOnApplicationQuit = () => this.onApplicationQuit();
-        csharp__WEBPACK_IMPORTED_MODULE_0__["JsManager"].Instance.JsOnDispose = () => this.onDispose();
-        csharp__WEBPACK_IMPORTED_MODULE_0__["JsManager"].Instance.JsOnUpdate = () => this.onUpdate();
+        csharp_1.JsManager.Instance.JsOnApplicationQuit = () => this.onApplicationQuit();
+        csharp_1.JsManager.Instance.JsOnDispose = () => this.onDispose();
+        csharp_1.JsManager.Instance.JsOnUpdate = () => this.onUpdate();
     }
     onUpdate() {
-        _puerts_globalEvent__WEBPACK_IMPORTED_MODULE_1__["globalEvent"].ins.emitter.emit(_puerts_globalEvent__WEBPACK_IMPORTED_MODULE_1__["EVT"].UPDATE_TICK);
+        globalEvent_1.globalEvent.ins.emitter.emit(globalEvent_1.EVT.UPDATE_TICK);
     }
     onApplicationQuit() {
         console.log("Game onApplicationQuit in JS....");
@@ -640,8 +636,8 @@ class GameMain {
     }
 }
 global['GameMain'] = new GameMain();
-global['rotate'] = _game_rotate__WEBPACK_IMPORTED_MODULE_2__["rotate"];
-global['tetris'] = _game_tetris__WEBPACK_IMPORTED_MODULE_3__["tetris"];
+global['rotate'] = rotate_1.rotate;
+global['tetris'] = tetris_1.tetris;
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
@@ -651,19 +647,17 @@ global['tetris'] = _game_tetris__WEBPACK_IMPORTED_MODULE_3__["tetris"];
 /*!****************************!*\
   !*** ./src/game/rotate.ts ***!
   \****************************/
-/*! exports provided: rotate */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rotate", function() { return rotate; });
-/* harmony import */ var _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../puerts/jsBehaviour */ "./src/puerts/jsBehaviour.ts");
-/* harmony import */ var csharp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! csharp */ "csharp");
-/* harmony import */ var csharp__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(csharp__WEBPACK_IMPORTED_MODULE_1__);
 
-
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.rotate = void 0;
+const jsBehaviour_1 = __webpack_require__(/*! ../puerts/jsBehaviour */ "./src/puerts/jsBehaviour.ts");
+const csharp_1 = __webpack_require__(/*! csharp */ "csharp");
 const speed = 10;
-class rotate extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__["jsBehaviour"] {
+class rotate extends jsBehaviour_1.jsBehaviour {
     constructor(mono) {
         super(mono);
     }
@@ -676,13 +670,14 @@ class rotate extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__["jsBehavio
             return;
         if (!this.canUpdate())
             return;
-        let r = csharp__WEBPACK_IMPORTED_MODULE_1__["UnityEngine"].Vector3.op_Multiply(csharp__WEBPACK_IMPORTED_MODULE_1__["UnityEngine"].Vector3.up, csharp__WEBPACK_IMPORTED_MODULE_1__["UnityEngine"].Time.deltaTime * speed);
+        let r = csharp_1.UnityEngine.Vector3.op_Multiply(csharp_1.UnityEngine.Vector3.up, csharp_1.UnityEngine.Time.deltaTime * speed);
         this.mono.transform.Rotate(r);
     }
     OnDestory() {
         super.OnDestory();
     }
 }
+exports.rotate = rotate;
 
 
 /***/ }),
@@ -691,15 +686,15 @@ class rotate extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__["jsBehavio
 /*!****************************!*\
   !*** ./src/game/tetris.ts ***!
   \****************************/
-/*! exports provided: tetris */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tetris", function() { return tetris; });
-/* harmony import */ var _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../puerts/jsBehaviour */ "./src/puerts/jsBehaviour.ts");
 
-class tetris extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__["jsBehaviour"] {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.tetris = void 0;
+const jsBehaviour_1 = __webpack_require__(/*! ../puerts/jsBehaviour */ "./src/puerts/jsBehaviour.ts");
+class tetris extends jsBehaviour_1.jsBehaviour {
     constructor(mono) {
         super(mono);
     }
@@ -718,6 +713,7 @@ class tetris extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__["jsBehavio
         super.OnDestory();
     }
 }
+exports.tetris = tetris;
 
 
 /***/ }),
@@ -726,12 +722,13 @@ class tetris extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__["jsBehavio
 /*!************************************!*\
   !*** ./src/puerts/behaviourMgr.ts ***!
   \************************************/
-/*! exports provided: behaviourMgr */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "behaviourMgr", function() { return behaviourMgr; });
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.behaviourMgr = void 0;
 class behaviourMgr {
     constructor() {
         this.map = {};
@@ -744,6 +741,7 @@ class behaviourMgr {
         this.map[hashCode] = null;
     }
 }
+exports.behaviourMgr = behaviourMgr;
 behaviourMgr.ins = new behaviourMgr();
 
 
@@ -753,26 +751,25 @@ behaviourMgr.ins = new behaviourMgr();
 /*!***********************************!*\
   !*** ./src/puerts/globalEvent.ts ***!
   \***********************************/
-/*! exports provided: EVT, globalEvent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EVT", function() { return EVT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "globalEvent", function() { return globalEvent; });
-/* harmony import */ var events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! events */ "./node_modules/events/events.js");
-/* harmony import */ var events__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(events__WEBPACK_IMPORTED_MODULE_0__);
 
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.globalEvent = exports.EVT = void 0;
+const events = __webpack_require__(/*! events */ "./node_modules/events/events.js");
 var EVT;
 (function (EVT) {
     EVT["UPDATE_TICK"] = "updateTick";
-})(EVT || (EVT = {}));
+})(EVT = exports.EVT || (exports.EVT = {}));
 class globalEvent {
     constructor() {
         this.emitter = null;
-        this.emitter = new events__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.emitter = new events.EventEmitter();
     }
 }
+exports.globalEvent = globalEvent;
 globalEvent.ins = new globalEvent();
 
 
@@ -782,16 +779,15 @@ globalEvent.ins = new globalEvent();
 /*!***********************************!*\
   !*** ./src/puerts/jsBehaviour.ts ***!
   \***********************************/
-/*! exports provided: jsBehaviour */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "jsBehaviour", function() { return jsBehaviour; });
-/* harmony import */ var _behaviourMgr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./behaviourMgr */ "./src/puerts/behaviourMgr.ts");
-/* harmony import */ var _globalEvent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./globalEvent */ "./src/puerts/globalEvent.ts");
 
-
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.jsBehaviour = void 0;
+const behaviourMgr_1 = __webpack_require__(/*! ./behaviourMgr */ "./src/puerts/behaviourMgr.ts");
+const globalEvent_1 = __webpack_require__(/*! ./globalEvent */ "./src/puerts/globalEvent.ts");
 class jsBehaviour {
     constructor(mono) {
         this.mono = null;
@@ -800,11 +796,11 @@ class jsBehaviour {
         this.mono.JsStart = () => this.Start();
         this.mono.JsOnDestroy = () => this.OnDestory();
         this.updateListener = this.Update.bind(this);
-        _globalEvent__WEBPACK_IMPORTED_MODULE_1__["globalEvent"].ins.emitter.on(_globalEvent__WEBPACK_IMPORTED_MODULE_1__["EVT"].UPDATE_TICK, this.updateListener);
-        _behaviourMgr__WEBPACK_IMPORTED_MODULE_0__["behaviourMgr"].ins.add(mono.GetHashCode(), this);
+        globalEvent_1.globalEvent.ins.emitter.on(globalEvent_1.EVT.UPDATE_TICK, this.updateListener);
+        behaviourMgr_1.behaviourMgr.ins.add(mono.GetHashCode(), this);
     }
     static create(mono) {
-        Object.create(this.prototype)(mono);
+        new this(mono);
     }
     isValid() {
         return this.mono != null;
@@ -821,11 +817,12 @@ class jsBehaviour {
             return;
     }
     OnDestory() {
-        _globalEvent__WEBPACK_IMPORTED_MODULE_1__["globalEvent"].ins.emitter.off(_globalEvent__WEBPACK_IMPORTED_MODULE_1__["EVT"].UPDATE_TICK, this.updateListener);
+        globalEvent_1.globalEvent.ins.emitter.off(globalEvent_1.EVT.UPDATE_TICK, this.updateListener);
         this.mono = null;
         this.updateListener = null;
     }
 }
+exports.jsBehaviour = jsBehaviour;
 
 
 /***/ }),

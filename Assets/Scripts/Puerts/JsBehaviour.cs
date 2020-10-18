@@ -14,7 +14,7 @@ public class JsBehaviour : MonoBehaviour
 
     void Awake()
     {
-        var init = JsManager.Instance.GetJsEnv().Eval<ModuleInit>(ModuleName + ".create");
+        var init = JsManager.Instance.GetJsEnv().Eval<ModuleInit>(ModuleName + ".create.bind(" + ModuleName + ")");
         if (init != null) init(this);
     }
 

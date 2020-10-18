@@ -35,7 +35,7 @@ public class JsManager : MonoSingleton<JsManager>
     {
         Dispose();
         jsEnv = new JsEnv(new DefaultLoader("E:/source/puerts_unity_demo/TsProj/output"), 9229);
-        //jsEnv.WaitDebugger();
+        jsEnv.WaitDebugger();
         jsEnv.Eval("require('bundle')");
     }
 

@@ -4,7 +4,7 @@ import { EVT, globalEvent } from "./globalEvent";
 
 export class jsBehaviour {
     static create(mono: JsBehaviour) {
-        Object.create(this.prototype)(mono);
+        new this(mono);
     }
 
     mono: JsBehaviour = null;
