@@ -14,10 +14,10 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
                 {
                     GameObject go = new GameObject(typeof(T).Name);
                     mInstance = go.AddComponent<T>();
-                    GameObject parent = GameObject.Find("Boot");
+                    GameObject parent = GameObject.Find("monoSingletonRoot");
                     if (parent == null)
                     {
-                        parent = new GameObject("Boot");
+                        parent = new GameObject("monoSingletonRoot");
                         GameObject.DontDestroyOnLoad(parent);
                     }
                     if (parent != null)
