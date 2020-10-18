@@ -60,7 +60,7 @@ public class JsManager : MonoSingleton<JsManager>
     {
         Dispose();
         await PreloadJS(AddressableConfig.JSLable);
-        jsEnv = new JsEnv(new JsLoader(), 8888);
+        jsEnv = new JsEnv(new JsLoader("E:/source/puerts_unity_demo/Assets/AssetsPackage/Js"), 8888);
         jsEnv.Eval(@"require('bundle')");
     }
 

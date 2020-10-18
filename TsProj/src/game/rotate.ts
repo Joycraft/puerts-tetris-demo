@@ -1,6 +1,6 @@
+import { jsBehaviour } from "../puerts/jsBehaviour";
 import { JsBehaviour, UnityEngine } from "csharp";
 import { common } from "../common/common";
-import { jsBehaviour } from "../puerts/jsBehaviour";
 
 const speed = 10;
 

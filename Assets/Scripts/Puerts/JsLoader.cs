@@ -15,7 +15,6 @@ public class JsLoader : ILoader
 
     public bool FileExists(string filepath)
     {
-
         return true;
     }
 

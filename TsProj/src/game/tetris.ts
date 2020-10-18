@@ -1,5 +1,5 @@
-import { JsBehaviour } from "csharp";
 import { jsBehaviour } from "../puerts/jsBehaviour";
+import { JsBehaviour } from "csharp";
 
 export class tetris extends jsBehaviour {
     static create(mono: JsBehaviour) {
