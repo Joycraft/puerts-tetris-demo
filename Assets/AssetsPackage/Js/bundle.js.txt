@@ -660,12 +660,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../puerts/jsBehaviour */ "./src/puerts/jsBehaviour.ts");
 /* harmony import */ var csharp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! csharp */ "csharp");
 /* harmony import */ var csharp__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(csharp__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _puerts_behaviourMgr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../puerts/behaviourMgr */ "./src/puerts/behaviourMgr.ts");
+
 
 
 const speed = 10;
 class rotate extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__["jsBehaviour"] {
     static create(mono) {
-        new rotate(mono);
+        _puerts_behaviourMgr__WEBPACK_IMPORTED_MODULE_2__["behaviourMgr"].ins.add(mono.GetHashCode(), new rotate(mono));
     }
     constructor(mono) {
         super(mono);
@@ -701,10 +703,12 @@ class rotate extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__["jsBehavio
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tetris", function() { return tetris; });
 /* harmony import */ var _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../puerts/jsBehaviour */ "./src/puerts/jsBehaviour.ts");
+/* harmony import */ var _puerts_behaviourMgr__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../puerts/behaviourMgr */ "./src/puerts/behaviourMgr.ts");
+
 
 class tetris extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__["jsBehaviour"] {
     static create(mono) {
-        new tetris(mono);
+        _puerts_behaviourMgr__WEBPACK_IMPORTED_MODULE_1__["behaviourMgr"].ins.add(mono.GetHashCode(), new tetris(mono));
     }
     constructor(mono) {
         super(mono);
@@ -724,6 +728,33 @@ class tetris extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__["jsBehavio
         super.OnDestory();
     }
 }
+
+
+/***/ }),
+
+/***/ "./src/puerts/behaviourMgr.ts":
+/*!************************************!*\
+  !*** ./src/puerts/behaviourMgr.ts ***!
+  \************************************/
+/*! exports provided: behaviourMgr */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "behaviourMgr", function() { return behaviourMgr; });
+class behaviourMgr {
+    constructor() {
+        this.map = {};
+    }
+    add(hashCode, ts) {
+        this.map[hashCode] = ts;
+    }
+    del(hashCode) {
+        delete this.map[hashCode];
+        this.map[hashCode] = null;
+    }
+}
+behaviourMgr.ins = new behaviourMgr();
 
 
 /***/ }),
