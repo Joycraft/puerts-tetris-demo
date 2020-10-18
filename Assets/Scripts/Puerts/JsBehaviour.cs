@@ -12,10 +12,9 @@ public class JsBehaviour : MonoBehaviour
     public Action JsStart;
     public Action JsOnDestroy;
 
-    async void Awake()
+    void Awake()
     {
-        var jsEnv = await JsManager.Instance.GetJsEnv();
-        var init = jsEnv.Eval<ModuleInit>(ModuleName + ".create");
+        var init = JsManager.Instance.GetJsEnv().Eval<ModuleInit>(ModuleName + ".create");
         if (init != null) init(this);
     }
 

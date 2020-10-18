@@ -5,7 +5,7 @@ public class gameInit : MonoBehaviour
 {
     async void Awake()
     {
-        await JsManager.Instance.GetJsEnv();
+        await JsManager.Instance.StartGame();
         SceneManager.LoadScene("tetris");
     }
 }

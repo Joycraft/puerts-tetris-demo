@@ -55,7 +55,7 @@
             "request": "attach",
             "name": "Launch",
             "protocol": "inspector",
-            "port": 8888
+            "port": 5858
         }
     ]
 }

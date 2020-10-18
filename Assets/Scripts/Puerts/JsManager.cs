@@ -14,12 +14,8 @@ public class JsManager : MonoSingleton<JsManager>
     public Action JsOnDispose;
     public Action JsOnUpdate;
 
-    public async Task<JsEnv> GetJsEnv()
+    public JsEnv GetJsEnv()
     {
-        if (jsEnv == null)
-        {
-            await StartGame();
-        }
         return jsEnv;
     }
 
@@ -56,11 +52,11 @@ public class JsManager : MonoSingleton<JsManager>
         JsOnUpdate?.Invoke();
     }
 
-    async Task StartGame()
+    public async Task StartGame()
     {
         Dispose();
         await PreloadJS(AddressableConfig.JSLable);
-        jsEnv = new JsEnv(new JsLoader("E:/source/puerts_unity_demo/Assets/AssetsPackage/Js"), 8888);
+        jsEnv = new JsEnv(new JsLoader(), 5858);
         jsEnv.Eval(@"require('bundle')");
     }
 

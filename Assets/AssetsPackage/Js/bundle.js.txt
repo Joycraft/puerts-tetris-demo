@@ -664,9 +664,6 @@ __webpack_require__.r(__webpack_exports__);
 
 const speed = 10;
 class rotate extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__["jsBehaviour"] {
-    static create(mono) {
-        new rotate(mono);
-    }
     constructor(mono) {
         super(mono);
     }
@@ -703,9 +700,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../puerts/jsBehaviour */ "./src/puerts/jsBehaviour.ts");
 
 class tetris extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__["jsBehaviour"] {
-    static create(mono) {
-        new tetris(mono);
-    }
     constructor(mono) {
         super(mono);
     }
@@ -808,6 +802,9 @@ class jsBehaviour {
         this.updateListener = this.Update.bind(this);
         _globalEvent__WEBPACK_IMPORTED_MODULE_1__["globalEvent"].ins.emitter.on(_globalEvent__WEBPACK_IMPORTED_MODULE_1__["EVT"].UPDATE_TICK, this.updateListener);
         _behaviourMgr__WEBPACK_IMPORTED_MODULE_0__["behaviourMgr"].ins.add(mono.GetHashCode(), this);
+    }
+    static create(mono) {
+        Object.create(this.prototype)(mono);
     }
     isValid() {
         return this.mono != null;

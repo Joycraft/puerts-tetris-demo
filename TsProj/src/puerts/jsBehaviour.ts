@@ -3,6 +3,10 @@ import { behaviourMgr } from "./behaviourMgr";
 import { EVT, globalEvent } from "./globalEvent";
 
 export class jsBehaviour {
+    static create(mono: JsBehaviour) {
+        Object.create(this.prototype)(mono);
+    }
+
     mono: JsBehaviour = null;
     updateListener = null;
     constructor(mono: JsBehaviour) {
