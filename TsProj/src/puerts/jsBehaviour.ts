@@ -7,6 +7,10 @@ export class jsBehaviour {
         new this(mono);
     }
 
+    get gameObject() {
+        return this.mono == null ? null : this.mono.gameObject;
+    }
+
     mono: JsBehaviour = null;
     updateListener = null;
     constructor(mono: JsBehaviour) {
@@ -19,15 +23,15 @@ export class jsBehaviour {
             this.Update();
         };
         globalEvent.ins.emitter.on(EVT.UPDATE_TICK, this.updateListener);
-        behaviourMgr.ins.add(mono.gameObject.GetHashCode(), this);
+        behaviourMgr.ins.add(this.gameObject.GetHashCode(), this);
     }
 
     isValid() {
-        return this.mono != null;
+        return this.gameObject != null;
     }
 
     canUpdate() {
-        return this.mono.gameObject.activeInHierarchy == true;
+        return this.gameObject.activeInHierarchy == true;
     }
 
     Start() {
@@ -38,6 +42,7 @@ export class jsBehaviour {
 
     OnDestory() {
         globalEvent.ins.emitter.off(EVT.UPDATE_TICK, this.updateListener);
+        behaviourMgr.ins.del(this.gameObject.GetHashCode());
         this.mono = null;
         this.updateListener = null;
     }
