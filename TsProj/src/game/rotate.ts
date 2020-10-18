@@ -15,8 +15,6 @@ export class rotate extends jsBehaviour {
 
     async Start() {
         super.Start();
-        await common.timePromise(5000);
-        UnityEngine.Object.Destroy(this.mono.gameObject);
     }
 
     Update() {

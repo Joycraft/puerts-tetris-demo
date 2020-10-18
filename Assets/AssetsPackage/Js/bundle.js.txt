@@ -647,29 +647,6 @@ global['tetris'] = _game_tetris__WEBPACK_IMPORTED_MODULE_3__["tetris"];
 
 /***/ }),
 
-/***/ "./src/common/common.ts":
-/*!******************************!*\
-  !*** ./src/common/common.ts ***!
-  \******************************/
-/*! exports provided: common */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "common", function() { return common; });
-class common {
-    static timePromise(time) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve();
-            }, time);
-        });
-    }
-}
-
-
-/***/ }),
-
 /***/ "./src/game/rotate.ts":
 /*!****************************!*\
   !*** ./src/game/rotate.ts ***!
@@ -682,13 +659,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rotate", function() { return rotate; });
 /* harmony import */ var csharp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! csharp */ "csharp");
 /* harmony import */ var csharp__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(csharp__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _common_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/common */ "./src/common/common.ts");
-/* harmony import */ var _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../puerts/jsBehaviour */ "./src/puerts/jsBehaviour.ts");
-
+/* harmony import */ var _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../puerts/jsBehaviour */ "./src/puerts/jsBehaviour.ts");
 
 
 const speed = 10;
-class rotate extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_2__["jsBehaviour"] {
+class rotate extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_1__["jsBehaviour"] {
     static create(mono) {
         new rotate(mono);
     }
@@ -697,8 +672,6 @@ class rotate extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_2__["jsBehavio
     }
     async Start() {
         super.Start();
-        await _common_common__WEBPACK_IMPORTED_MODULE_1__["common"].timePromise(5000);
-        csharp__WEBPACK_IMPORTED_MODULE_0__["UnityEngine"].Object.Destroy(this.mono.gameObject);
     }
     Update() {
         super.Update();
