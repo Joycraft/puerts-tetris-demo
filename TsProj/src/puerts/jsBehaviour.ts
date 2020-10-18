@@ -13,7 +13,11 @@ export class jsBehaviour {
         this.mono = mono;
         this.mono.JsStart = () => this.Start();
         this.mono.JsOnDestroy = () => this.OnDestory();
-        this.updateListener = this.Update.bind(this);
+        this.updateListener = () => {
+            if (!this.isValid()) return;
+            if (!this.canUpdate()) return;
+            this.Update();
+        };
         globalEvent.ins.emitter.on(EVT.UPDATE_TICK, this.updateListener);
         behaviourMgr.ins.add(mono.GetHashCode(), this);
     }
@@ -30,8 +34,6 @@ export class jsBehaviour {
     }
 
     Update() {
-        if (!this.isValid()) return;
-        if (!this.canUpdate()) return;
     }
 
     OnDestory() {
