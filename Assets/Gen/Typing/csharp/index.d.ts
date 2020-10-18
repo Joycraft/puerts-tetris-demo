@@ -136,6 +136,33 @@ declare module 'csharp' {
             
         }
         class Object extends System.Object {
+            public name: string;
+            public hideFlags: UnityEngine.HideFlags;
+            public constructor();
+            public GetInstanceID():number;
+            public GetHashCode():number;
+            public Equals(other: any):boolean;
+            public static op_Implicit(exists: UnityEngine.Object):boolean;
+            public static Instantiate(original: UnityEngine.Object, position: UnityEngine.Vector3, rotation: UnityEngine.Quaternion):UnityEngine.Object;
+            public static Instantiate(original: UnityEngine.Object, position: UnityEngine.Vector3, rotation: UnityEngine.Quaternion, parent: UnityEngine.Transform):UnityEngine.Object;
+            public static Instantiate(original: UnityEngine.Object):UnityEngine.Object;
+            public static Instantiate(original: UnityEngine.Object, parent: UnityEngine.Transform):UnityEngine.Object;
+            public static Instantiate(original: UnityEngine.Object, parent: UnityEngine.Transform, instantiateInWorldSpace: boolean):UnityEngine.Object;
+            public static Instantiate(original: UnityEngine.Object):UnityEngine.Object;
+            public static Instantiate(original: UnityEngine.Object, position: UnityEngine.Vector3, rotation: UnityEngine.Quaternion):UnityEngine.Object;
+            public static Instantiate(original: UnityEngine.Object, position: UnityEngine.Vector3, rotation: UnityEngine.Quaternion, parent: UnityEngine.Transform):UnityEngine.Object;
+            public static Instantiate(original: UnityEngine.Object, parent: UnityEngine.Transform):UnityEngine.Object;
+            public static Instantiate(original: UnityEngine.Object, parent: UnityEngine.Transform, worldPositionStays: boolean):UnityEngine.Object;
+            public static Destroy(obj: UnityEngine.Object, t: number):void;
+            public static Destroy(obj: UnityEngine.Object):void;
+            public static DestroyImmediate(obj: UnityEngine.Object, allowDestroyingAssets: boolean):void;
+            public static DestroyImmediate(obj: UnityEngine.Object):void;
+            public static FindObjectsOfType(type: System.Type):System.Array$1<UnityEngine.Object>;
+            public static DontDestroyOnLoad(target: UnityEngine.Object):void;
+            public static FindObjectOfType(type: System.Type):UnityEngine.Object;
+            public ToString():string;
+            public static op_Equality(x: UnityEngine.Object, y: UnityEngine.Object):boolean;
+            public static op_Inequality(x: UnityEngine.Object, y: UnityEngine.Object):boolean;
             
         }
         enum LogType { Error = 0, Assert = 1, Warning = 2, Log = 3, Exception = 4 }
@@ -394,6 +421,7 @@ declare module 'csharp' {
             public constructor();
             
         }
+        enum HideFlags { None = 0, HideInHierarchy = 1, HideInInspector = 2, DontSaveInEditor = 4, NotEditable = 8, DontSaveInBuild = 16, DontUnloadUnusedAsset = 32, DontSave = 52, HideAndDontSave = 61 }
         
     }
     namespace System {

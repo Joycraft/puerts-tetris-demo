@@ -11,12 +11,16 @@ export class tetris extends jsBehaviour {
     }
 
     Start() {
+        super.Start();
         console.log('tetris gameLogic start.');
     }
 
     Update() {
+        super.Update();
+        if (!this.canUpdate()) return;
     }
 
     OnDestory() {
+        super.OnDestory();
     }
 }

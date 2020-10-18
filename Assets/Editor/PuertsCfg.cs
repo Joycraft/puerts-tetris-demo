@@ -32,6 +32,7 @@ public class PuertsCfg
                 typeof(Delegate),
                 typeof(Event),
                 typeof(Time),
+                typeof(UnityEngine.Object),
 
                 typeof(MonoSingleton<JsManager>),
                 typeof(JsManager),
