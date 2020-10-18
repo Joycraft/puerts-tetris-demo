@@ -19,7 +19,7 @@ export class jsBehaviour {
             this.Update();
         };
         globalEvent.ins.emitter.on(EVT.UPDATE_TICK, this.updateListener);
-        behaviourMgr.ins.add(mono.GetHashCode(), this);
+        behaviourMgr.ins.add(mono.gameObject.GetHashCode(), this);
     }
 
     isValid() {
