@@ -6,4 +6,10 @@ export class common {
             }, time);
         })
     }
+
+    static get globalObject() {
+        return function (target: any) {
+            global[target.prototype.constructor.name] = target;
+        }
+    }
 }

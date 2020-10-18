@@ -1,7 +1,7 @@
 import { JsManager } from 'csharp';
 import { EVT, globalEvent } from './puerts/globalEvent';
-import { rotate } from './game/rotate';
-import { tetris } from './game/tetris';
+require('./game/rotate');
+require('./game/tetris');
 
 class GameMain {
     constructor() {
@@ -24,5 +24,3 @@ class GameMain {
 }
 
 global['GameMain'] = new GameMain();
-global['rotate'] = rotate;
-global['tetris'] = tetris;

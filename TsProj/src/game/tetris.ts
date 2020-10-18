@@ -1,6 +1,8 @@
 import { jsBehaviour } from "../puerts/jsBehaviour";
 import { JsBehaviour } from "csharp";
+import { common } from "../common/common";
 
+@common.globalObject
 export class tetris extends jsBehaviour {
     constructor(mono: JsBehaviour) {
         super(mono);

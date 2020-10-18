@@ -1,8 +1,10 @@
 import { jsBehaviour } from "../puerts/jsBehaviour";
 import { JsBehaviour, UnityEngine } from "csharp";
+import { common } from "../common/common";
 
 const speed = 10;
 
+@common.globalObject
 export class rotate extends jsBehaviour {
     constructor(mono: JsBehaviour) {
         super(mono);
