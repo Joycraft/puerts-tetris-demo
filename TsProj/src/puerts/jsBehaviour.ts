@@ -11,6 +11,10 @@ export class jsBehaviour {
         return this.mono == null ? null : this.mono.gameObject;
     }
 
+    get transform() {
+        return this.mono == null ? null : this.mono.transform;
+    }
+
     mono: JsBehaviour = null;
     updateListener = null;
     constructor(mono: JsBehaviour) {
