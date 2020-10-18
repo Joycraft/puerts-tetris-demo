@@ -4,6 +4,7 @@
 		"bundle:publish": "webpack --config webpack.config.release.js"
 	},
 	"devDependencies": {
+		"copy-webpack-plugin": "^6.2.1",
 		"flatbuffers": "^1.12.0",
 		"protobufjs": "^6.10.1",
 		"raw-loader": "^4.0.2",
