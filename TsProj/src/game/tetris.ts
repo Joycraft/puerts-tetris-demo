@@ -17,6 +17,7 @@ export class tetris extends jsBehaviour {
 
     Update() {
         super.Update();
+        if (!this.isValid()) return;
         if (!this.canUpdate()) return;
     }
 

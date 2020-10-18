@@ -17,13 +17,14 @@ export class jsBehaviour {
     }
 
     canUpdate() {
-        return this.isValid() && this.mono.gameObject.activeInHierarchy == true;
+        return this.mono.gameObject.activeInHierarchy == true;
     }
 
     Start() {
     }
 
     Update() {
+        if (!this.isValid()) return;
         if (!this.canUpdate()) return;
     }
 

@@ -713,6 +713,8 @@ class tetris extends _puerts_jsBehaviour__WEBPACK_IMPORTED_MODULE_0__["jsBehavio
     }
     Update() {
         super.Update();
+        if (!this.isValid())
+            return;
         if (!this.canUpdate())
             return;
     }
@@ -779,11 +781,13 @@ class jsBehaviour {
         return this.mono != null;
     }
     canUpdate() {
-        return this.isValid() && this.mono.gameObject.activeInHierarchy == true;
+        return this.mono.gameObject.activeInHierarchy == true;
     }
     Start() {
     }
     Update() {
+        if (!this.isValid())
+            return;
         if (!this.canUpdate())
             return;
     }
