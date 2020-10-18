@@ -1,4 +1,5 @@
 import { JsBehaviour } from "csharp";
+import { behaviourMgr } from "./behaviourMgr";
 import { EVT, globalEvent } from "./globalEvent";
 
 export class jsBehaviour {
@@ -10,6 +11,7 @@ export class jsBehaviour {
         this.mono.JsOnDestroy = () => this.OnDestory();
         this.updateListener = this.Update.bind(this);
         globalEvent.ins.emitter.on(EVT.UPDATE_TICK, this.updateListener);
+        behaviourMgr.ins.add(mono.GetHashCode(), this);
     }
 
     isValid() {

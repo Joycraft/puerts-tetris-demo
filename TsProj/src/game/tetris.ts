@@ -1,10 +1,9 @@
 import { jsBehaviour } from "../puerts/jsBehaviour";
 import { JsBehaviour } from "csharp";
-import { behaviourMgr } from "../puerts/behaviourMgr";
 
 export class tetris extends jsBehaviour {
     static create(mono: JsBehaviour) {
-        behaviourMgr.ins.add(mono.GetHashCode(), new tetris(mono));
+        new tetris(mono);
     }
 
     constructor(mono: JsBehaviour) {

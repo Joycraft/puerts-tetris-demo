@@ -1,13 +1,11 @@
 import { jsBehaviour } from "../puerts/jsBehaviour";
 import { JsBehaviour, UnityEngine } from "csharp";
-import { common } from "../common/common";
-import { behaviourMgr } from "../puerts/behaviourMgr";
 
 const speed = 10;
 
 export class rotate extends jsBehaviour {
     static create(mono: JsBehaviour) {
-        behaviourMgr.ins.add(mono.GetHashCode(), new rotate(mono));
+        new rotate(mono);
     }
 
     constructor(mono: JsBehaviour) {
