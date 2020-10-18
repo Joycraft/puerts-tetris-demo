@@ -17,62 +17,13 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: cff25b5a1621a3a418256ae502f03ec7
   m_SerializeEntries:
-  - m_GUID: 10fc7248b130c7c4181d37d3c9442c8a
-    m_Address: Assets/AssetsPackage/Js/puerts/csharp.js.txt
+  - m_GUID: 03061c5728ce6b04c982ab8df6484559
+    m_Address: Assets/AssetsPackage/Js
     m_ReadOnly: 0
     m_SerializedLabels:
     - JS
-    m_MainAsset: {fileID: 4900000, guid: 10fc7248b130c7c4181d37d3c9442c8a, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: 10fc7248b130c7c4181d37d3c9442c8a, type: 3}
-  - m_GUID: 201766655e28c884a80cdc937a8f1d80
-    m_Address: Assets/AssetsPackage/Js/puerts/polyfill.js.txt
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JS
-    m_MainAsset: {fileID: 4900000, guid: 201766655e28c884a80cdc937a8f1d80, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: 201766655e28c884a80cdc937a8f1d80, type: 3}
-  - m_GUID: 31f020378fbb7ad4599fd5acb48b0b80
-    m_Address: Assets/AssetsPackage/Js/bundle.js.txt
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JS
-    m_MainAsset: {fileID: 4900000, guid: 31f020378fbb7ad4599fd5acb48b0b80, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: 31f020378fbb7ad4599fd5acb48b0b80, type: 3}
-  - m_GUID: 357fe26349138e64183e66b2d2245d03
-    m_Address: Assets/AssetsPackage/Js/puerts/log.js.txt
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JS
-    m_MainAsset: {fileID: 4900000, guid: 357fe26349138e64183e66b2d2245d03, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: 357fe26349138e64183e66b2d2245d03, type: 3}
-  - m_GUID: 3659ecfa9bae788419390b347718fa0f
-    m_Address: Assets/AssetsPackage/Js/puerts/modular.js.txt
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JS
-    m_MainAsset: {fileID: 4900000, guid: 3659ecfa9bae788419390b347718fa0f, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: 3659ecfa9bae788419390b347718fa0f, type: 3}
-  - m_GUID: aaba98636e4c2054aa0c93f833a52432
-    m_Address: Assets/AssetsPackage/Js/puerts/timer.js.txt
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JS
-    m_MainAsset: {fileID: 4900000, guid: aaba98636e4c2054aa0c93f833a52432, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: aaba98636e4c2054aa0c93f833a52432, type: 3}
-  - m_GUID: b08da34970c6629448b04818577b0884
-    m_Address: Assets/AssetsPackage/Js/puerts/cjsload.js.txt
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JS
-    m_MainAsset: {fileID: 4900000, guid: b08da34970c6629448b04818577b0884, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: b08da34970c6629448b04818577b0884, type: 3}
-  - m_GUID: fa95f9e933465e148b284a5bc5fc901e
-    m_Address: Assets/AssetsPackage/Js/puerts/init.js.txt
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JS
-    m_MainAsset: {fileID: 4900000, guid: fa95f9e933465e148b284a5bc5fc901e, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: fa95f9e933465e148b284a5bc5fc901e, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: cd7225074b90d5d4b8b74344160e7bc8, type: 2}
   m_SchemaSet:
