@@ -1,5 +1,4 @@
 import { UnityEngine } from "csharp";
-import { common } from "../common/common";
 import { component } from "./component";
 
 export class componentMgr {
@@ -23,7 +22,17 @@ export class componentMgr {
         }
     }
 
-    getComponent(go: UnityEngine.GameObject, compName: string) {
-        
+    getComponent<T extends component>(go: UnityEngine.GameObject, compType: { prototype: T }): T {
+        let hashCode = go.GetHashCode();
+        if (this.map[hashCode] == null || this.map[hashCode].length <= 0) return null;
+        let components = this.map[hashCode].filter(comp => comp instanceof <typeof component><unknown>compType);
+        return <T>components[0];
+    }
+
+    getComponents<T extends component>(go: UnityEngine.GameObject, compType: { prototype: T }): T[] {
+        let hashCode = go.GetHashCode();
+        if (this.map[hashCode] == null || this.map[hashCode].length <= 0) return null;
+        let components = this.map[hashCode].filter(comp => comp instanceof <typeof component><unknown>compType);
+        return <T[]>components;
     }
 }
