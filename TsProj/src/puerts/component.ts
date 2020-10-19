@@ -1,5 +1,5 @@
 import { JsBehaviour } from "csharp";
-import { behaviourMgr } from "./behaviourMgr";
+import { componentMgr } from "./behaviourMgr";
 import { EVT, globalEvent } from "./globalEvent";
 
 export class component {
@@ -27,7 +27,7 @@ export class component {
             this.Update();
         };
         globalEvent.ins.emitter.on(EVT.UPDATE_TICK, this.updateListener);
-        behaviourMgr.ins.add(this.gameObject.GetHashCode(), this);
+        componentMgr.ins.add(this.gameObject.GetHashCode(), this);
     }
 
     isValid() {
@@ -46,7 +46,7 @@ export class component {
 
     OnDestory() {
         globalEvent.ins.emitter.off(EVT.UPDATE_TICK, this.updateListener);
-        behaviourMgr.ins.del(this.gameObject.GetHashCode(), this);
+        componentMgr.ins.del(this.gameObject.GetHashCode(), this);
         this.mono = null;
         this.updateListener = null;
     }

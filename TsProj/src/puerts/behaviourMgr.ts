@@ -1,7 +1,8 @@
+import { UnityEngine } from "csharp";
 import { component } from "./component";
 
-export class behaviourMgr {
-    static ins: behaviourMgr = new behaviourMgr();
+export class componentMgr {
+    static ins: componentMgr = new componentMgr();
 
     map: { [key: number]: component[] } = {};
 
@@ -21,7 +22,7 @@ export class behaviourMgr {
         }
     }
 
-    getComponent() {
-
+    getComponent(go: UnityEngine.GameObject, compName: string) {
+        
     }
 }
