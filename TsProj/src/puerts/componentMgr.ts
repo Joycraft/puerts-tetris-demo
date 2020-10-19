@@ -23,9 +23,8 @@ export class componentMgr {
     }
 
     getComponent<T extends component>(go: UnityEngine.GameObject, compType: { prototype: T }): T {
-        let hashCode = go.GetHashCode();
-        if (this.map[hashCode] == null || this.map[hashCode].length <= 0) return null;
-        let components = this.map[hashCode].filter(comp => comp instanceof <typeof component><unknown>compType);
+        let components = this.getComponents(go, compType);
+        if (components.length <= 0) return null;
         return <T>components[0];
     }
 
