@@ -22,20 +22,12 @@ export class component {
         this.mono.JsStart = () => this.Start();
         this.mono.JsOnDestroy = () => this.OnDestory();
         this.updateListener = () => {
-            if (!this.isValid()) return;
-            if (!this.canUpdate()) return;
+            if (this.gameObject == null) return;
+            if (this.gameObject.activeInHierarchy == false) return;
             this.Update();
         };
         globalEvent.ins.emitter.on(EVT.UPDATE_TICK, this.updateListener);
         componentMgr.ins.add(this.gameObject.GetHashCode(), this);
-    }
-
-    isValid() {
-        return this.gameObject != null;
-    }
-
-    canUpdate() {
-        return this.gameObject.activeInHierarchy == true;
     }
 
     Start() {
