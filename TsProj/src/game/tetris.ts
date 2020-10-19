@@ -1,9 +1,9 @@
-import { jsBehaviour } from "../puerts/jsBehaviour";
+import { behaviour } from "../puerts/behaviour";
 import { JsBehaviour } from "csharp";
 import { common } from "../common/common";
 
 @common.globalObject
-export class tetris extends jsBehaviour {
+export class tetris extends behaviour {
     constructor(mono: JsBehaviour) {
         super(mono);
     }
