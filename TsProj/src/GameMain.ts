@@ -11,7 +11,7 @@ class GameMain {
     }
 
     public onUpdate() {
-        globalEvent.ins.emitter.emit(EVT.UPDATE_TICK);
+        globalEvent.emitter.emit(EVT.UPDATE_TICK);
     }
 
     public onApplicationQuit() {

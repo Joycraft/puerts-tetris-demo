@@ -27,12 +27,12 @@ export class component {
             if (this.gameObject.activeInHierarchy == false) return;
             this.Update();
         };
-        globalEvent.ins.emitter.on(EVT.UPDATE_TICK, this.updateListener);
+        globalEvent.emitter.on(EVT.UPDATE_TICK, this.updateListener);
         componentMgr.ins.add(this.gameObject.GetHashCode(), this);
     }
 
     OnDestory() {
-        globalEvent.ins.emitter.off(EVT.UPDATE_TICK, this.updateListener);
+        globalEvent.emitter.off(EVT.UPDATE_TICK, this.updateListener);
         componentMgr.ins.del(this.gameObject.GetHashCode(), this);
         this.mono = null;
         this.updateListener = null;

@@ -5,11 +5,5 @@ export enum EVT {
 }
 
 export class globalEvent {
-    static ins: globalEvent = new globalEvent();
-    emitter: events.EventEmitter = null;
-
-    constructor() {
-        this.emitter = new events.EventEmitter();
-    }
-
+    static emitter: events.EventEmitter = new events.EventEmitter();
 }
