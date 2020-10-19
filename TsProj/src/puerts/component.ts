@@ -1,6 +1,6 @@
-import { JsBehaviour } from "csharp";
-import { componentMgr } from "./componentMgr";
 import { EVT, globalEvent } from "./globalEvent";
+import { componentMgr } from "./componentMgr";
+import { JsBehaviour } from "csharp";
 
 export class component {
     static create(mono: JsBehaviour) {
