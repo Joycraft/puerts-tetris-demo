@@ -2,7 +2,7 @@ import { component } from "../puerts/component";
 import { JsBehaviour, UnityEngine } from "csharp";
 import { common } from "../common/common";
 
-const speed = 10;
+const speed = 100;
 
 @common.globalObject
 export class rotate extends component {
