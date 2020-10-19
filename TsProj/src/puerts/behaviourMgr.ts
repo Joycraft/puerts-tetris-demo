@@ -1,4 +1,5 @@
 import { UnityEngine } from "csharp";
+import { common } from "../common/common";
 import { component } from "./component";
 
 export class componentMgr {
