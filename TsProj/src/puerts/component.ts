@@ -1,5 +1,5 @@
 import { JsBehaviour } from "csharp";
-import { componentMgr } from "./behaviourMgr";
+import { componentMgr } from "./componentMgr";
 import { EVT, globalEvent } from "./globalEvent";
 
 export class component {
