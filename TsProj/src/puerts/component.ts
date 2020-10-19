@@ -30,16 +30,17 @@ export class component {
         componentMgr.ins.add(this.gameObject.GetHashCode(), this);
     }
 
-    Start() {
-    }
-
-    Update() {
-    }
-
     OnDestory() {
         globalEvent.ins.emitter.off(EVT.UPDATE_TICK, this.updateListener);
         componentMgr.ins.del(this.gameObject.GetHashCode(), this);
         this.mono = null;
         this.updateListener = null;
     }
+
+    Start() {
+    }
+
+    Update() {
+    }
+
 }
