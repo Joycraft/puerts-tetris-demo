@@ -7,6 +7,9 @@ export class component {
         new this(mono);
     }
 
+    mono: JsBehaviour = null;
+    updateListener = null;
+
     get gameObject() {
         return this.mono == null ? null : this.mono.gameObject;
     }
@@ -15,8 +18,6 @@ export class component {
         return this.mono == null ? null : this.mono.transform;
     }
 
-    mono: JsBehaviour = null;
-    updateListener = null;
     constructor(mono: JsBehaviour) {
         this.mono = mono;
         this.mono.JsStart = () => this.Start();
