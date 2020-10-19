@@ -1,23 +1,27 @@
-import { behaviour } from "./behaviour";
+import { component } from "./component";
 
 export class behaviourMgr {
     static ins: behaviourMgr = new behaviourMgr();
 
-    map: { [key: number]: behaviour[] } = {};
+    map: { [key: number]: component[] } = {};
 
-    add(hashCode: number, jb: behaviour) {
+    add(hashCode: number, comp: component) {
         if (this.map[hashCode] == null)
             this.map[hashCode] = [];
-        this.map[hashCode].push(jb);
+        this.map[hashCode].push(comp);
     }
 
-    del(hashCode: number, jb: behaviour) {
+    del(hashCode: number, comp: component) {
         for (let i = 0, length = this.map[hashCode].length; i < length; i++) {
-            if (this.map[hashCode][i] == jb) {
+            if (this.map[hashCode][i] == comp) {
                 delete this.map[hashCode][i];
                 this.map[hashCode][i] = null;
                 return;
             }
         }
+    }
+
+    getComponent() {
+
     }
 }

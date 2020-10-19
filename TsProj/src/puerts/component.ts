@@ -2,7 +2,7 @@ import { JsBehaviour } from "csharp";
 import { behaviourMgr } from "./behaviourMgr";
 import { EVT, globalEvent } from "./globalEvent";
 
-export class behaviour {
+export class component {
     static create(mono: JsBehaviour) {
         new this(mono);
     }
