@@ -55,7 +55,7 @@
             "request": "attach",
             "name": "Attach to Remote",
             "protocol": "inspector",
-            "port": 9229
+            "port": 9666,
         }
     ]
 }

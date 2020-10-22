@@ -32,7 +32,7 @@ public class JsManager : MonoSingleton<JsManager>
     public void StartGame()
     {
         Dispose();
-        jsEnv = new JsEnv(new JsLoader(DebuggerRoot), 9229);
+        jsEnv = new JsEnv(new JsLoader(DebuggerRoot), 9666);
         //jsEnv.WaitDebugger();
         jsEnv.Eval("require('bundle')");
     }

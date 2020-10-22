@@ -9,7 +9,7 @@
             "request": "attach",
             "name": "Launch",
             "protocol": "inspector",
-            "port": 9229
+            "port": 9666
         }
     ]
 }
