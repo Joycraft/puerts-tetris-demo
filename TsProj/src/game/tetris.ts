@@ -13,7 +13,7 @@ export class tetris extends component {
         super.Start();
         console.log('tetris gameLogic start.');
         let cubePrefab = resLoader.ins.loadPrefab('prefab/Cube');
-        let cube = UnityEngine.Object.Instantiate(cubePrefab);
+        let cube = this.Instantiate(cubePrefab);
     }
 
     Update() {

@@ -1,6 +1,6 @@
 import { EVT, globalEvent } from "./globalEvent";
 import { componentMgr } from "./componentMgr";
-import { JsBehaviour } from "csharp";
+import { JsBehaviour, UnityEngine } from "csharp";
 
 export class component {
     static create(mono: JsBehaviour) {
@@ -37,6 +37,8 @@ export class component {
         this.mono = null;
         this.updateListener = null;
     }
+
+    Instantiate = UnityEngine.Object.Instantiate;
 
     Start() {
     }
