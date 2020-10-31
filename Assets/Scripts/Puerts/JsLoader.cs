@@ -3,18 +3,18 @@ using System.IO;
 
 public class JsLoader : ILoader
 {
-    public string debugRoot { get; private set; }
+    public string root { get; private set; }
 
     public JsLoader(string debugRoot)
     {
-        this.debugRoot = debugRoot;
+        this.root = debugRoot;
     }
 
     public bool FileExists(string filepath)
     {
         if (filepath.StartsWith("puerts/")) return true;
 #if UNITY_EDITOR
-        return System.IO.File.Exists(System.IO.Path.Combine(debugRoot, filepath));
+        return System.IO.File.Exists(System.IO.Path.Combine(root, filepath));
 #else
 			return true;
 #endif
@@ -22,13 +22,13 @@ public class JsLoader : ILoader
 
     public string ReadFile(string filepath, out string debugpath)
     {
-        debugpath = System.IO.Path.Combine(debugRoot, filepath);
+        debugpath = System.IO.Path.Combine(root, filepath);
         if (filepath.StartsWith("puerts/"))
         {
             var asset = UnityEngine.Resources.Load<UnityEngine.TextAsset>(filepath);
             return asset.text;
         }
-        return File.ReadAllText(Path.Combine(debugRoot, filepath));
+        return File.ReadAllText(Path.Combine(root, filepath));
     }
 
     public void Close() { }

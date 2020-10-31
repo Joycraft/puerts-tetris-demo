@@ -15,6 +15,7 @@
             jsEnv.AddLazyStaticWrapLoader(typeof(UnityEngine.Event), UnityEngine_Event_Wrap.GetRegisterInfo);
             jsEnv.AddLazyStaticWrapLoader(typeof(UnityEngine.Time), UnityEngine_Time_Wrap.GetRegisterInfo);
             jsEnv.AddLazyStaticWrapLoader(typeof(UnityEngine.Object), UnityEngine_Object_Wrap.GetRegisterInfo);
+            jsEnv.AddLazyStaticWrapLoader(typeof(UnityEngine.Resources), UnityEngine_Resources_Wrap.GetRegisterInfo);
             jsEnv.AddLazyStaticWrapLoader(typeof(MonoSingleton<JsManager>), MonoSingleton_1_JsManager__Wrap.GetRegisterInfo);
             jsEnv.AddLazyStaticWrapLoader(typeof(JsManager), JsManager_Wrap.GetRegisterInfo);
             jsEnv.AddLazyStaticWrapLoader(typeof(JsBehaviour), JsBehaviour_Wrap.GetRegisterInfo);

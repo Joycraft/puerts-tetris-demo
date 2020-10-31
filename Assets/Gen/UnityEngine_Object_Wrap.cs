@@ -598,36 +598,6 @@ namespace PuertsStaticWrap
         
         
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void O_op_Implicit(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
-        {
-            try
-            {
-                
-                
-                {
-                    
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                    
-                    
-                    
-                    {
-                        
-                        var arg0 = argHelper0.Get<UnityEngine.Object>(false);
-                        var result = (bool)arg0;
-                        Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
-                        
-                    }
-                }
-                
-                
-            }
-            catch (Exception e)
-            {
-                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
-            }
-        }
-        
-        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void O_op_Equality(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
@@ -710,7 +680,6 @@ namespace PuertsStaticWrap
                     { new Puerts.MethodKey {Name = "DontDestroyOnLoad", IsStatic = true},  F_DontDestroyOnLoad },
                     { new Puerts.MethodKey {Name = "FindObjectOfType", IsStatic = true},  F_FindObjectOfType },
                     { new Puerts.MethodKey {Name = "ToString", IsStatic = false},  M_ToString },
-                    { new Puerts.MethodKey {Name = "op_Implicit", IsStatic = true}, O_op_Implicit},
                     { new Puerts.MethodKey {Name = "op_Equality", IsStatic = true}, O_op_Equality},
                     { new Puerts.MethodKey {Name = "op_Inequality", IsStatic = true}, O_op_Inequality},
                     

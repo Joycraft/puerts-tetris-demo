@@ -2,10 +2,6 @@
 declare module 'csharp' {
     interface $Ref<T> {}
     
-    type $Extension<T1, T2> = {
-        [P in keyof T2] : T2[P] extends (obj:T1, ...args: infer P) => infer R ? (...args: P) => R : never;
-    }
-    
     namespace System {
         interface Array$1<T> extends System.Array {
             get_Item(index: number):T;
@@ -422,6 +418,26 @@ declare module 'csharp' {
             
         }
         enum HideFlags { None = 0, HideInHierarchy = 1, HideInInspector = 2, DontSaveInEditor = 4, NotEditable = 8, DontSaveInBuild = 16, DontUnloadUnusedAsset = 32, DontSave = 52, HideAndDontSave = 61 }
+        class Resources extends System.Object {
+            public constructor();
+            public static FindObjectsOfTypeAll(type: System.Type):System.Array$1<UnityEngine.Object>;
+            public static Load(path: string):UnityEngine.Object;
+            public static Load(path: string, systemTypeInstance: System.Type):UnityEngine.Object;
+            public static LoadAsync(path: string):UnityEngine.ResourceRequest;
+            public static LoadAsync(path: string, type: System.Type):UnityEngine.ResourceRequest;
+            public static LoadAll(path: string, systemTypeInstance: System.Type):System.Array$1<UnityEngine.Object>;
+            public static LoadAll(path: string):System.Array$1<UnityEngine.Object>;
+            public static GetBuiltinResource(type: System.Type, path: string):UnityEngine.Object;
+            public static UnloadAsset(assetToUnload: UnityEngine.Object):void;
+            public static UnloadUnusedAssets():UnityEngine.AsyncOperation;
+            
+        }
+        class ResourceRequest extends UnityEngine.AsyncOperation {
+            
+        }
+        class AsyncOperation extends UnityEngine.YieldInstruction {
+            
+        }
         
     }
     namespace System {
