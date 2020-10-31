@@ -25,7 +25,7 @@ namespace Puerts
 
         private readonly ILoader loader;
 
-        internal static List<JsEnv> jsEnvs = new List<JsEnv>();
+        public static List<JsEnv> jsEnvs = new List<JsEnv>();
 
         internal IntPtr isolate;
 
@@ -37,7 +37,7 @@ namespace Puerts
 
         public JsEnv(ILoader loader, int debugPort = -1)
         {
-            const int libVersionExpect = 6;
+            const int libVersionExpect = 7;
             int libVersion = PuertsDLL.GetLibVersion();
             if (libVersion != libVersionExpect)
             {
@@ -110,6 +110,8 @@ namespace Puerts
             ExecuteFile("puerts/modular.js");
             ExecuteFile("puerts/csharp.js");
             ExecuteFile("puerts/timer.js");
+            ExecuteFile("puerts/events.js");
+            ExecuteFile("puerts/promises.js");
             ExecuteFile("puerts/polyfill.js");
         }
 
