@@ -1,5 +1,5 @@
 import { component } from "../puerts/component";
-import { JsBehaviour, UnityEngine } from "csharp";
+import { JsBehaviour } from "csharp";
 import { common } from "../common/common";
 import { resLoader } from "../unity/resLoader";
 
