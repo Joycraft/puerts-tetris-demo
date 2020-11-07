@@ -128,7 +128,7 @@ namespace PuertsStaticWrap
         
         
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_DebuggerRoot(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        private static void G_jsRoot(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -143,7 +143,7 @@ namespace PuertsStaticWrap
         }
         
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_DebuggerRoot(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        private static void S_jsRoot(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -268,7 +268,7 @@ namespace PuertsStaticWrap
                 },
                 Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
                 {
-                    {"DebuggerRoot", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_DebuggerRoot, Setter = S_DebuggerRoot} },
+                    {"jsRoot", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_jsRoot, Setter = S_jsRoot} },
                     {"JsOnApplicationQuit", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_JsOnApplicationQuit, Setter = S_JsOnApplicationQuit} },
                     {"JsOnDispose", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_JsOnDispose, Setter = S_JsOnDispose} },
                     {"JsOnUpdate", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_JsOnUpdate, Setter = S_JsOnUpdate} },

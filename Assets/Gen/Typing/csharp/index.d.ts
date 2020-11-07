@@ -554,7 +554,7 @@ declare module 'csharp' {
     }
     
         class JsManager extends MonoSingleton$1<JsManager> {
-            public DebuggerRoot: string;
+            public jsRoot: string;
             public JsOnApplicationQuit: System.Action;
             public JsOnDispose: System.Action;
             public JsOnUpdate: System.Action;

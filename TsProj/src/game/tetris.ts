@@ -1,5 +1,5 @@
 import { component } from "../puerts/component";
-import { JsBehaviour } from "csharp";
+import { JsBehaviour, UnityEngine } from "csharp";
 import { common } from "../common/common";
 import { resLoader } from "../unity/resLoader";
 
@@ -13,7 +13,7 @@ export class tetris extends component {
         super.Start();
         console.log('tetris gameLogic start.');
         let cubePrefab = resLoader.ins.loadPrefab('prefab/Cube');
-        let cube = this.Instantiate(cubePrefab);
+        let cube = this.Instantiate(cubePrefab, this.transform);
     }
 
     Update() {
