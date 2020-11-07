@@ -5,7 +5,7 @@ using UnityEngine;
 public class JsManager : MonoSingleton<JsManager>
 {
     JsEnv jsEnv = null;
-    public string DebuggerRoot = System.IO.Path.Combine(Application.streamingAssetsPath, "scripts");
+    public string jsRoot = System.IO.Path.Combine(Application.streamingAssetsPath, "scripts");
     public Action JsOnApplicationQuit;
     public Action JsOnDispose;
     public Action JsOnUpdate;
@@ -32,7 +32,7 @@ public class JsManager : MonoSingleton<JsManager>
     public void StartGame()
     {
         Dispose();
-        jsEnv = new JsEnv(new JsLoader(DebuggerRoot), 9666);
+        jsEnv = new JsEnv(new JsLoader(jsRoot), 9666);
         //jsEnv.WaitDebugger();
         jsEnv.Eval("require('bundle')");
     }

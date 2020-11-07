@@ -133,7 +133,7 @@ namespace PuertsStaticWrap
             try
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as JsManager;
-                var result = obj.DebuggerRoot;
+                var result = obj.jsRoot;
                 Puerts.PuertsDLL.ReturnString(isolate, info, result);
             }
             catch (Exception e)
@@ -149,7 +149,7 @@ namespace PuertsStaticWrap
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as JsManager;
                 var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.DebuggerRoot = argHelper.GetString(false);
+                obj.jsRoot = argHelper.GetString(false);
             }
             catch (Exception e)
             {
