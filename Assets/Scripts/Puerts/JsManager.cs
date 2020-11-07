@@ -33,7 +33,7 @@ public class JsManager : MonoSingleton<JsManager>
     {
         Dispose();
         jsEnv = new JsEnv(new JsLoader(jsRoot), 9666);
-        //jsEnv.WaitDebugger();
+        jsEnv.WaitDebugger();
         jsEnv.Eval("require('bundle')");
     }
 
