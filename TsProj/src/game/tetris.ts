@@ -13,11 +13,9 @@ export class tetris extends component {
     }
 
     Start() {
+        console.log('tetris gameLogic start.');
         super.Start();
         this.content = this.transform.Find('content');
-        console.log('tetris gameLogic start.');
-        let cubePrefab = resLoader.ins.loadPrefab('prefab/Cube');
-        let cube = this.Instantiate(cubePrefab, this.content);
     }
 
     Update() {
