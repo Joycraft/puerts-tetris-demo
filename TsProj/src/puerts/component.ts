@@ -7,35 +7,35 @@ export class component {
         new this(mono);
     }
 
-    mono: JsBehaviour = null;
-    updateListener = null;
+    _mono: JsBehaviour = null;
+    _updateListener = null;
 
     get gameObject() {
-        return this.mono == null ? null : this.mono.gameObject;
+        return this._mono == null ? null : this._mono.gameObject;
     }
 
     get transform() {
-        return this.mono == null ? null : this.mono.transform;
+        return this._mono == null ? null : this._mono.transform;
     }
 
     constructor(mono: JsBehaviour) {
-        this.mono = mono;
-        this.mono.JsStart = () => this.Start();
-        this.mono.JsOnDestroy = () => this.OnDestory();
-        this.updateListener = () => {
+        this._mono = mono;
+        this._mono.JsStart = () => this.Start();
+        this._mono.JsOnDestroy = () => this.OnDestory();
+        this._updateListener = () => {
             if (this.gameObject == null) return;
             if (this.gameObject.activeInHierarchy == false) return;
             this.Update();
         };
-        globalEvent.emitter.on(EVT.UPDATE_TICK, this.updateListener);
+        globalEvent.emitter.on(EVT.UPDATE_TICK, this._updateListener);
         componentMgr.ins.add(this.gameObject.GetHashCode(), this);
     }
 
     OnDestory() {
-        globalEvent.emitter.off(EVT.UPDATE_TICK, this.updateListener);
+        globalEvent.emitter.off(EVT.UPDATE_TICK, this._updateListener);
         componentMgr.ins.del(this.gameObject.GetHashCode(), this);
-        this.mono = null;
-        this.updateListener = null;
+        this._mono = null;
+        this._updateListener = null;
     }
 
     Instantiate = UnityEngine.Object.Instantiate;
