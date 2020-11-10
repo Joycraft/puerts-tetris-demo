@@ -5,7 +5,6 @@ import { resLoader } from "../unity/resLoader";
 
 @common.globalObject
 export class tetris extends component {
-
     content: UnityEngine.Transform = null;
 
     constructor(mono: JsBehaviour) {
