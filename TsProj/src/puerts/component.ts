@@ -24,7 +24,7 @@ export class component {
         this._mono.JsOnDestroy = () => this.OnDestory();
         this._updateListener = () => {
             if (this.gameObject == null) return;
-            if (this.gameObject.activeSelf == false) return;
+            if (this.gameObject.activeInHierarchy == false) return;
             this.Update();
         };
         globalEvent.emitter.on(EVT.UPDATE_TICK, this._updateListener);
