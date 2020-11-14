@@ -213,7 +213,7 @@ export class tetris extends component {
             console.log('gameTick');
             if (this.curBlock)
                 this.curBlock.move(DIR.DOWN);
-        }, 500);
+        }, 100);
     }
 
     genRandomBlock() {
