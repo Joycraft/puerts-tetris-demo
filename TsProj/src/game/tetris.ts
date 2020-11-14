@@ -34,9 +34,10 @@ export class tetrisBlock extends component {
         return this._spinIndex;
     }
     public set spinIndex(value: number) {
-        this._spinIndex = value;
-        if (this._spinIndex >= this.allData.length || this._spinIndex < 0)
+        if (this._spinIndex >= this.allData.length - 1 || this._spinIndex < 0)
             this._spinIndex = 0;
+        if (this.checkBound(BOUND_TYPE.SPIN) == true) return;
+        this._spinIndex = value;
         this.draw();
     }
 
@@ -98,9 +99,7 @@ export class tetrisBlock extends component {
         } else {
             for (let i in this.data) {
                 let piece = this.data[i];
-
                 let boundPiece: tetrisData.tetrisPiece = null;
-
                 switch (bdType) {
                     case BOUND_TYPE.DOWN: //下移碰撞
                         boundPiece = { x: this.transform.localPosition.x + piece.x, y: this.transform.localPosition.y + piece.y - 1 };
@@ -123,14 +122,14 @@ export class tetrisBlock extends component {
         }
     }
 
-    move(dir: BOUND_TYPE) {
-        if (this.checkBound(dir)) {
-            if (dir == BOUND_TYPE.DOWN)
+    move(bdType: BOUND_TYPE) {
+        if (this.checkBound(bdType)) {
+            if (bdType == BOUND_TYPE.DOWN)
                 this.tetrisLogic.settle();
             return;
         }
 
-        switch (dir) {
+        switch (bdType) {
             case BOUND_TYPE.DOWN:
                 this.transform.localPosition = new UnityEngine.Vector3(this.transform.localPosition.x, this.transform.localPosition.y - 1, this.transform.localPosition.z);
                 break;
