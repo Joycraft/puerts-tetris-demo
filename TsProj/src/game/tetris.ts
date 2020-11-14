@@ -185,12 +185,16 @@ export class tetris extends component {
     Start() {
         console.log('tetris gameLogic start.');
         super.Start();
-        this.genBlock(1);
+        this.genRandomBlock();
         this.gameTick = setInterval(() => {
             console.log('gameTick');
             if (this.curBlock)
                 this.curBlock.move(DIR.DOWN);
         }, 100);
+    }
+
+    genRandomBlock() {
+        this.genBlock(common.ranInt(0, tetrisData.cubeData.length - 1));
     }
 
     genBlock(cubeType: number, spinIndex: number = 0) {
@@ -238,8 +242,7 @@ export class tetris extends component {
                 i--;
             }
         }
-
-        this.genBlock(0);
+        this.genRandomBlock();
     }
 
     Update() {
