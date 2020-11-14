@@ -38,7 +38,7 @@ export class component {
         this._updateListener = null;
     }
 
-    Instantiate = UnityEngine.Object.Instantiate;
+    Instantiate = UnityEngine.GameObject.Instantiate;
 
     Start() {
     }
