@@ -23,11 +23,14 @@ public class JsLoader : ILoader
     public string ReadFile(string filepath, out string debugpath)
     {
         debugpath = System.IO.Path.Combine(root, filepath);
+        UnityEngine.TextAsset asset = null;
         if (filepath.StartsWith("puerts/"))
         {
-            var asset = UnityEngine.Resources.Load<UnityEngine.TextAsset>(filepath);
+            asset = UnityEngine.Resources.Load<UnityEngine.TextAsset>(filepath);
             return asset.text;
         }
+        asset = UnityEngine.Resources.Load<UnityEngine.TextAsset>(filepath);
+        return asset.text;
         return File.ReadAllText(Path.Combine(root, filepath));
     }
 
