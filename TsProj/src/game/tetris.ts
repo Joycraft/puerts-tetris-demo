@@ -104,11 +104,10 @@ export class tetris extends component {
     }
 
     genBlock(cubeType: number, spinIndex: number = 0) {
-        let blockGo = <UnityEngine.GameObject>this.Instantiate(this.block);
-        let blockComp = componentMgr.ins.getComponent(blockGo, tetrisBlock);
+        let blockComp = componentMgr.ins.getComponent(<UnityEngine.GameObject>this.Instantiate(this.block), tetrisBlock);
         blockComp.type = cubeType;
         blockComp.spinIndex = spinIndex;
-        blockGo.transform.SetParent(this.content);
+        blockComp.transform.SetParent(this.content);
         this.curBlock = blockComp;
     }
 
