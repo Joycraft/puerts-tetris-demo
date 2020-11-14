@@ -55,6 +55,8 @@ export class tetrisBlock extends component {
         return this._tetrisLogic;
     }
 
+    isSettle: boolean = false;
+
     constructor(mono: JsBehaviour) {
         super(mono);
         console.log('tetris block create');
@@ -127,10 +129,14 @@ export class tetrisBlock extends component {
         }
     }
 
-    move(dir: DIR) {
+    async move(dir: DIR) {
         if (this.checkBound(dir)) {
-            if (dir == DIR.DOWN)
-                this.tetrisLogic.settle();
+            if (dir == DIR.DOWN) {
+                if (this.isSettle == true) return;
+                this.isSettle = true;
+                await common.timePromise(250);
+                this.tetrisLogic.settle()
+            };
             return;
         }
 

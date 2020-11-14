@@ -1,12 +1,12 @@
 export class common {
     //[min,max] 闭区间随机整数
-    static ranInt(min, max) {
+    static ranInt(min: number, max: number) {
         let aNumber = (min + 1 - max) * Math.random() + max;
         let result = Math.floor(aNumber);
         return result;
     }
 
-    static timePromise(time) {
+    static timePromise(time: number) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve();
