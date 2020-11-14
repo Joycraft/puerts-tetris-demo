@@ -1,132 +1,34 @@
 import { component } from "../puerts/component";
 import { JsBehaviour, UnityEngine } from "csharp";
 import { common } from "../common/common";
+import { tetrisCubeData, tetrisCube } from "./tetrisData";
 
-interface tetrisPiece {
-    x: number,
-    y: number,
+@common.globalObject
+export class tetrisBlock extends component {
+    cube: UnityEngine.Transform = null;
+
+    constructor(mono: JsBehaviour) {
+        super(mono);
+    }
+
+    Start() {
+        super.Start();
+        this.cube = this.transform.Find("Cube");
+    }
+
+    Update() {
+        super.Update();
+    }
+
+    OnDestory() {
+        super.OnDestory();
+    }
 }
-
-interface tetrisCube {
-    spins: tetrisPiece[][]
-}
-
-const tetrisCubeData: tetrisCube[] = [];
-const tetrisArrData = [];
-tetrisArrData[0] = [
-    [
-        0, 1, 0,    // ☐▨☐
-        1, 1, 1,    // ▨▨▨
-        0, 0, 0     // ☐☐☐
-    ],
-    [
-        0, 1, 0,    // ☐▨☐
-        0, 1, 1,    // ☐▨▨
-        0, 1, 0     // ☐▨☐
-    ],
-    [
-        0, 0, 0,    // ☐☐☐
-        1, 1, 1,    // ▨▨▨
-        0, 1, 0     // ☐▨☐
-    ],
-    [
-        0, 1, 0,    // ☐▨☐
-        1, 1, 0,    // ▨▨☐
-        0, 1, 0,    // ☐▨☐
-    ]
-]
-tetrisArrData[1] = [
-    [
-        1, 1, 0,    // ▨▨☐
-        1, 0, 0,    // ▨☐☐
-        1, 0, 0     // ▨☐☐
-    ],
-    [
-        0, 0, 0,    // ☐☐☐
-        1, 0, 0,    // ▨☐☐
-        1, 1, 1     // ▨▨▨
-    ],
-    [
-        0, 0, 1,    // ☐☐▨
-        0, 0, 1,    // ☐☐▨
-        0, 1, 1     // ☐▨▨
-    ],
-    [
-        1, 1, 1,    // ▨▨▨
-        0, 0, 1,    // ☐☐▨
-        0, 0, 0,    // ☐☐☐
-    ]
-]
-tetrisArrData[2] = [
-    [
-        1, 0, 0,    // ▨☐☐
-        1, 0, 0,    // ▨☐☐
-        1, 1, 0     // ▨▨☐
-    ],
-    [
-        0, 0, 0,    // ☐☐☐
-        0, 0, 1,    // ☐☐▨
-        1, 1, 1     // ▨▨▨
-    ],
-    [
-        0, 1, 1,    // ☐▨▨
-        0, 0, 1,    // ☐☐▨
-        0, 0, 1     // ☐☐▨
-    ],
-    [
-        1, 1, 1,    // ▨▨▨
-        1, 0, 0,    // ▨☐☐
-        0, 0, 0,    // ☐☐☐
-    ]
-]
-tetrisArrData[3] = [
-    [
-        0, 1, 0,    // ☐▨☐
-        1, 1, 0,    // ▨▨☐
-        1, 0, 0     // ▨☐☐
-    ],
-    [
-        1, 1, 0,    // ▨▨☐
-        0, 1, 1,    // ☐▨▨
-        0, 0, 0     // ☐☐☐
-    ],
-]
-tetrisArrData[4] = [
-    [
-        1, 0, 0,    // ▨☐☐
-        1, 1, 0,    // ▨▨☐
-        0, 1, 0     // ☐▨☐
-    ],
-    [
-        0, 1, 1,    // ☐▨▨
-        1, 1, 0,    // ▨▨☐
-        0, 0, 0     // ☐☐☐
-    ],
-]
-tetrisArrData[5] = [
-    [
-        1, 1,       // ▨▨
-        1, 1,       // ▨▨
-    ],
-]
-tetrisArrData[6] = [
-    [
-        0, 0, 0, 0, // ☐☐☐☐
-        1, 1, 1, 1, // ▨▨▨▨
-        0, 0, 0, 0, // ☐☐☐☐
-        0, 0, 0, 0  // ☐☐☐☐
-    ],
-    [
-        0, 0, 1, 0, // ☐☐▨☐
-        0, 0, 1, 0, // ☐☐▨☐
-        0, 0, 1, 0, // ☐☐▨☐
-        0, 0, 1, 0  // ☐☐▨☐
-    ],
-]
 
 @common.globalObject
 export class tetris extends component {
     content: UnityEngine.Transform = null;
+    block: UnityEngine.Transform = null;
 
     constructor(mono: JsBehaviour) {
         super(mono);
@@ -136,6 +38,13 @@ export class tetris extends component {
         console.log('tetris gameLogic start.');
         super.Start();
         this.content = this.transform.Find('content');
+        this.genBlock(tetrisCubeData[0]);
+    }
+
+    genBlock(cubeData: tetrisCube, spinIndex: number = 0) {
+        let blockGo = new UnityEngine.GameObject("new block");
+        let spinData = cubeData.spins[spinIndex];
+
     }
 
     Update() {
