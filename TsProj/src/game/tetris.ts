@@ -135,6 +135,10 @@ export class tetrisBlock extends component {
                 if (this.isSettle == true) return;
                 this.isSettle = true;
                 await common.timePromise(250);
+                if (this.checkBound(dir) != true) {
+                    this.isSettle = false;
+                    return;
+                }
                 this.tetrisLogic.settle()
             };
             return;
