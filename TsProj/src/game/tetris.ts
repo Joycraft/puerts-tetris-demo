@@ -1,8 +1,8 @@
-import { component } from "../puerts/component";
+import { componentMgr } from "../puerts/componentMgr";
 import { JsBehaviour, UnityEngine } from "csharp";
+import { component } from "../puerts/component";
 import { common } from "../common/common";
 import { tetrisData } from "./tetrisData";
-import { componentMgr } from "../puerts/componentMgr";
 import { $typeof } from "puerts";
 
 @common.globalObject
