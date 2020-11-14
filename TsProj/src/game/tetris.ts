@@ -245,7 +245,6 @@ export class tetris extends component {
 
     settle() {
         this.curBlock.cubeList.forEach(cube => {
-            cube.SetParent(this.content);
             this.addPiece({
                 pos: {
                     x: cube.localPosition.x + this.curBlock.transform.localPosition.x,
@@ -253,6 +252,7 @@ export class tetris extends component {
                 },
                 trans: cube,
             });
+            cube.SetParent(this.content);
         })
         UnityEngine.GameObject.Destroy(this.curBlock.gameObject);
         this.curBlock = null;
@@ -265,8 +265,10 @@ export class tetris extends component {
                     UnityEngine.GameObject.Destroy(linePiece.trans.gameObject);
                 });
                 this.settlePieces.filter(piece => piece != null && piece.pos.y > i)
-                    .forEach(piece =>
-                        piece.pos = new UnityEngine.Vector3(piece.pos.x, piece.pos.y - 1, piece.trans.position.z)
+                    .forEach(piece => {
+                        piece.trans.localPosition = new UnityEngine.Vector3(piece.trans.localPosition.x, piece.trans.localPosition.y - 1, piece.trans.localPosition.z);
+                        piece.pos.y--;
+                    }
                     );
                 i--;
             }
