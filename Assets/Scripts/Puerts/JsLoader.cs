@@ -5,9 +5,9 @@ public class JsLoader : ILoader
 {
     public string root { get; private set; }
 
-    public JsLoader(string debugRoot)
+    public JsLoader(string root)
     {
-        this.root = debugRoot;
+        this.root = root;
     }
 
     public bool FileExists(string filepath)
