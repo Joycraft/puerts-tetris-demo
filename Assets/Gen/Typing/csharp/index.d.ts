@@ -462,32 +462,6 @@ declare module 'csharp' {
         class Material extends UnityEngine.Object {
             
         }
-        class MonoBehaviour extends UnityEngine.Behaviour {
-            public useGUILayout: boolean;
-            public runInEditMode: boolean;
-            public constructor();
-            public IsInvoking():boolean;
-            public CancelInvoke():void;
-            public Invoke(methodName: string, time: number):void;
-            public InvokeRepeating(methodName: string, time: number, repeatRate: number):void;
-            public CancelInvoke(methodName: string):void;
-            public IsInvoking(methodName: string):boolean;
-            public StartCoroutine(methodName: string):UnityEngine.Coroutine;
-            public StartCoroutine(methodName: string, value: any):UnityEngine.Coroutine;
-            public StartCoroutine(routine: System.Collections.IEnumerator):UnityEngine.Coroutine;
-            public StopCoroutine(routine: System.Collections.IEnumerator):void;
-            public StopCoroutine(routine: UnityEngine.Coroutine):void;
-            public StopCoroutine(methodName: string):void;
-            public StopAllCoroutines():void;
-            public static print(message: any):void;
-            
-        }
-        class Coroutine extends UnityEngine.YieldInstruction {
-            
-        }
-        class YieldInstruction extends System.Object {
-            
-        }
         enum HideFlags { None = 0, HideInHierarchy = 1, HideInInspector = 2, DontSaveInEditor = 4, NotEditable = 8, DontSaveInBuild = 16, DontUnloadUnusedAsset = 32, DontSave = 52, HideAndDontSave = 61 }
         class Resources extends System.Object {
             public constructor();
@@ -507,6 +481,12 @@ declare module 'csharp' {
             
         }
         class AsyncOperation extends UnityEngine.YieldInstruction {
+            
+        }
+        class YieldInstruction extends System.Object {
+            
+        }
+        class MonoBehaviour extends UnityEngine.Behaviour {
             
         }
         

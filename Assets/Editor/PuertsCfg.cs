@@ -35,7 +35,6 @@ public class PuertsCfg
                 typeof(Canvas),
                 typeof(RenderMode),
                 typeof(Behaviour),
-                typeof(MonoBehaviour),
                 typeof(UnityEngine.Object),
                 typeof(UnityEngine.Resources),
                 typeof(UnityEngine.UI.Button),
