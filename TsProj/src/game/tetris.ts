@@ -99,7 +99,7 @@ export class tetrisBlock extends component {
                     break;
                 case DIR.LEFT:
                     boundPiece = { x: this.transform.localPosition.x + piece.x - 1, y: this.transform.localPosition.y + piece.y };
-                    if (boundPiece.x <= this.tetrisLogic.width / 2) return true;
+                    if (boundPiece.x <= -this.tetrisLogic.width / 2) return true;
                     break;
                 case DIR.RIGHT:
                     boundPiece = { x: this.transform.localPosition.x + piece.x + 1, y: this.transform.localPosition.y + piece.y };
@@ -154,8 +154,8 @@ export class tetris extends component {
     btnRight: UnityEngine.UI.Button = null;
 
     settlePieces: UnityEngine.Transform[][] = [];
-    width: number = 20;
-    height: number = 30;
+    width: number = 15;
+    height: number = 25;
 
     gameTick: NodeJS.Timeout = null;
 
@@ -214,6 +214,9 @@ export class tetris extends component {
         })
         UnityEngine.GameObject.Destroy(this.curBlock.gameObject);
         this.curBlock = null;
+
+        
+
         this.genBlock(0);
     }
 
