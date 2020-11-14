@@ -125,7 +125,6 @@ export class tetrisBlock extends component {
                 return true;
             }
         }
-
     }
 
     move(dir: DIR) {
