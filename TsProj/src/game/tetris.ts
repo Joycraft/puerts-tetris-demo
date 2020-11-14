@@ -95,15 +95,15 @@ export class tetrisBlock extends component {
             switch (dir) {
                 case DIR.DOWN:
                     boundPiece = { x: this.transform.localPosition.x + piece.x, y: this.transform.localPosition.y + piece.y - 1 };
-                    if (boundPiece.y <= 0) return true;
+                    if (boundPiece.y < 0) return true;
                     break;
                 case DIR.LEFT:
                     boundPiece = { x: this.transform.localPosition.x + piece.x - 1, y: this.transform.localPosition.y + piece.y };
-                    if (boundPiece.x <= -this.tetrisLogic.width / 2) return true;
+                    if (boundPiece.x < -this.tetrisLogic.width / 2) return true;
                     break;
                 case DIR.RIGHT:
                     boundPiece = { x: this.transform.localPosition.x + piece.x + 1, y: this.transform.localPosition.y + piece.y };
-                    if (boundPiece.x >= this.tetrisLogic.width / 2) return true;
+                    if (boundPiece.x > this.tetrisLogic.width / 2) return true;
                     break;
             }
 
@@ -142,6 +142,7 @@ export class tetrisBlock extends component {
     }
 }
 
+
 @common.globalObject
 export class tetris extends component {
     content: UnityEngine.Transform = null;
@@ -153,7 +154,7 @@ export class tetris extends component {
     btnLeft: UnityEngine.UI.Button = null;
     btnRight: UnityEngine.UI.Button = null;
 
-    settlePieces: UnityEngine.Transform[][] = [];
+    settlePieces: UnityEngine.Transform[] = [];
     width: number = 15;
     height: number = 25;
 
@@ -202,20 +203,41 @@ export class tetris extends component {
     }
 
     checkExist(posx: number, posy: number) {
-        return (this.settlePieces[posx] != null && this.settlePieces[posx][posy] != null);
+        return this.settlePieces.filter(piece => piece != null && piece.position.x == posx && piece.position.y == posy).length > 0
+    }
+
+    addPiece(piece: UnityEngine.Transform) {
+        for (let i in this.settlePieces) {
+            if (this.settlePieces[i] == null) {
+                this.settlePieces[i] = piece;
+                return;
+            }
+        }
+        this.settlePieces.push(piece);
     }
 
     settle() {
         this.curBlock.cubeList.forEach(cube => {
-            if (this.settlePieces[cube.position.x] == null)
-                this.settlePieces[cube.position.x] = [];
             cube.SetParent(this.content);
-            this.settlePieces[cube.position.x][cube.position.y] = cube;
+            this.addPiece(cube);
         })
         UnityEngine.GameObject.Destroy(this.curBlock.gameObject);
         this.curBlock = null;
 
-        
+        for (let i = 0; i < this.height; i++) {
+            let line = this.settlePieces.filter(piece => piece != null && piece.position.y == i);
+            if (line.length >= this.width) {
+                line.forEach(linePiece => {
+                    this.settlePieces[this.settlePieces.indexOf(linePiece)] = null;
+                    UnityEngine.GameObject.Destroy(linePiece.gameObject);
+                });
+                this.settlePieces.filter(piece => piece != null && piece.position.y > i)
+                    .forEach(piece =>
+                        piece.position = new UnityEngine.Vector3(piece.position.x, piece.position.y - 1, piece.position.z)
+                    );
+                i--;
+            }
+        }
 
         this.genBlock(0);
     }
