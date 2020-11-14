@@ -194,7 +194,7 @@ export class tetris extends component {
     }
 
     genRandomBlock() {
-        this.genBlock(common.ranInt(0, tetrisData.cubeData.length - 1));
+        this.genBlock(common.ranInt(0, tetrisData.cubeData.length));
     }
 
     genBlock(cubeType: number, spinIndex: number = 0) {
