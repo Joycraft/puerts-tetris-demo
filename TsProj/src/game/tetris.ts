@@ -43,7 +43,7 @@ export class tetrisBlock extends component {
     constructor(mono: JsBehaviour) {
         super(mono);
         console.log('tetris block create');
-        this.cube = this.transform.Find("/Tetris/Cube");
+        this.cube = this.transform.Find("/Tetris/cube");
     }
 
     Start() {
@@ -95,10 +95,9 @@ export class tetris extends component {
     Start() {
         console.log('tetris gameLogic start.');
         super.Start();
-        this.genBlock(0);
+        this.genBlock(1);
 
         setInterval(() => {
-            this.curBlock.type++;
             this.curBlock.spinIndex++;
         }, 1000);
     }
