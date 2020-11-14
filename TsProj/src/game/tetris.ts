@@ -103,7 +103,6 @@ export class tetrisBlock extends component {
     }
 
     checkBound(dir: DIR) {
-
         for (let i in this.data) {
             let piece = this.data[i];
             let boundPiece: tetrisData.tetrisPiece = null;
