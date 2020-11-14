@@ -5,10 +5,11 @@ import { common } from "../common/common";
 import { tetrisData } from "./tetrisData";
 import { $typeof } from "puerts";
 
-enum DIR {
+enum BOUND_TYPE {
     LEFT,
     RIGHT,
     DOWN,
+    SPIN, //旋转
 }
 
 @common.globalObject
@@ -86,48 +87,57 @@ export class tetrisBlock extends component {
         }
     }
 
-    checkBound(dir: DIR) {
-        for (let i in this.data) {
-            let piece = this.data[i];
+    checkBound(bdType: BOUND_TYPE) {
+        if (bdType == BOUND_TYPE.SPIN) { //旋转碰撞测试
+            let spinedData = this.allData[this.spinIndex + 1];
+            spinedData.forEach(piece => {
+                if (this.tetrisLogic.checkExist(piece.x, piece.y) == true) {
+                    return true;
+                }
+            })
+        } else {
+            for (let i in this.data) {
+                let piece = this.data[i];
 
-            let boundPiece: tetrisData.tetrisPiece = null;
+                let boundPiece: tetrisData.tetrisPiece = null;
 
-            switch (dir) {
-                case DIR.DOWN:
-                    boundPiece = { x: this.transform.localPosition.x + piece.x, y: this.transform.localPosition.y + piece.y - 1 };
-                    if (boundPiece.y < 0) return true;
-                    break;
-                case DIR.LEFT:
-                    boundPiece = { x: this.transform.localPosition.x + piece.x - 1, y: this.transform.localPosition.y + piece.y };
-                    if (boundPiece.x < -this.tetrisLogic.width / 2) return true;
-                    break;
-                case DIR.RIGHT:
-                    boundPiece = { x: this.transform.localPosition.x + piece.x + 1, y: this.transform.localPosition.y + piece.y };
-                    if (boundPiece.x > this.tetrisLogic.width / 2) return true;
-                    break;
-            }
+                switch (bdType) {
+                    case BOUND_TYPE.DOWN: //下移碰撞
+                        boundPiece = { x: this.transform.localPosition.x + piece.x, y: this.transform.localPosition.y + piece.y - 1 };
+                        if (boundPiece.y < 0) return true;
+                        break;
+                    case BOUND_TYPE.LEFT: //左移碰撞
+                        boundPiece = { x: this.transform.localPosition.x + piece.x - 1, y: this.transform.localPosition.y + piece.y };
+                        if (boundPiece.x < -this.tetrisLogic.width / 2) return true;
+                        break;
+                    case BOUND_TYPE.RIGHT: //右移碰撞
+                        boundPiece = { x: this.transform.localPosition.x + piece.x + 1, y: this.transform.localPosition.y + piece.y };
+                        if (boundPiece.x > this.tetrisLogic.width / 2) return true;
+                        break;
+                }
 
-            if (this.tetrisLogic.checkExist(boundPiece.x, boundPiece.y) == true) {
-                return true;
+                if (this.tetrisLogic.checkExist(boundPiece.x, boundPiece.y) == true) {
+                    return true;
+                }
             }
         }
     }
 
-    move(dir: DIR) {
+    move(dir: BOUND_TYPE) {
         if (this.checkBound(dir)) {
-            if (dir == DIR.DOWN)
+            if (dir == BOUND_TYPE.DOWN)
                 this.tetrisLogic.settle();
             return;
         }
 
         switch (dir) {
-            case DIR.DOWN:
+            case BOUND_TYPE.DOWN:
                 this.transform.localPosition = new UnityEngine.Vector3(this.transform.localPosition.x, this.transform.localPosition.y - 1, this.transform.localPosition.z);
                 break;
-            case DIR.LEFT:
+            case BOUND_TYPE.LEFT:
                 this.transform.localPosition = new UnityEngine.Vector3(this.transform.localPosition.x - 1, this.transform.localPosition.y, this.transform.localPosition.z);
                 break;
-            case DIR.RIGHT:
+            case BOUND_TYPE.RIGHT:
                 this.transform.localPosition = new UnityEngine.Vector3(this.transform.localPosition.x + 1, this.transform.localPosition.y, this.transform.localPosition.z);
                 break;
         }
@@ -174,11 +184,11 @@ export class tetris extends component {
         })
         this.btnLeft.onClick.AddListener(() => {
             if (this.curBlock)
-                this.curBlock.move(DIR.LEFT);
+                this.curBlock.move(BOUND_TYPE.LEFT);
         })
         this.btnRight.onClick.AddListener(() => {
             if (this.curBlock)
-                this.curBlock.move(DIR.RIGHT);
+                this.curBlock.move(BOUND_TYPE.RIGHT);
         })
     }
 
@@ -189,7 +199,7 @@ export class tetris extends component {
         this.gameTick = setInterval(() => {
             console.log('gameTick');
             if (this.curBlock)
-                this.curBlock.move(DIR.DOWN);
+                this.curBlock.move(BOUND_TYPE.DOWN);
         }, 100);
     }
 
