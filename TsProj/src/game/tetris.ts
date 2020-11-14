@@ -3,6 +3,7 @@ import { JsBehaviour, UnityEngine } from "csharp";
 import { common } from "../common/common";
 import { tetrisData } from "./tetrisData";
 import { componentMgr } from "../puerts/componentMgr";
+import { $typeof } from "puerts";
 
 @common.globalObject
 export class tetrisBlock extends component {
@@ -40,6 +41,14 @@ export class tetrisBlock extends component {
         return tetrisData.cubeData[this.type].spins[this.spinIndex];
     }
 
+    private _tetrisLogic: tetris = null;
+    public get tetrisLogic(): tetris {
+        if (this._tetrisLogic == null) {
+            this._tetrisLogic = componentMgr.ins.getComponent(this.transform.Find("/Tetris"), tetris);
+        }
+        return this._tetrisLogic;
+    }
+
     constructor(mono: JsBehaviour) {
         super(mono);
         console.log('tetris block create');
@@ -71,6 +80,23 @@ export class tetrisBlock extends component {
         }
     }
 
+    moveDown() {
+        this.transform.localPosition = new UnityEngine.Vector3(this.transform.localPosition.x, this.transform.localPosition.y - 1, this.transform.localPosition.z);
+
+        let isSettle = false;
+        for (let i in this.data) {
+            let piece = this.data[i];
+            let underPiece: tetrisData.tetrisPiece = { x: this.transform.localPosition.x + piece.x, y: this.transform.localPosition.y + piece.y - 1 };
+            if (this.tetrisLogic.checkExist(underPiece.x, underPiece.y) == true || underPiece.y <= 0) {
+                isSettle = true;
+                break;
+            }
+        }
+        if (isSettle) {
+            this.tetrisLogic.settle();
+        }
+    }
+
     Update() {
         super.Update();
     }
@@ -86,10 +112,22 @@ export class tetris extends component {
     block: UnityEngine.Transform = null;
     curBlock: tetrisBlock = null;
 
+    //UI
+    btnSpin: UnityEngine.UI.Button = null;
+
+    settlePieces: UnityEngine.Transform[][] = [];
+    width: number = 20;
+    height: number = 30;
+
     constructor(mono: JsBehaviour) {
         super(mono);
         this.content = this.transform.Find('content');
         this.block = this.transform.Find('block');
+        this.btnSpin = this.transform.Find('/Canvas/Button').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
+        this.btnSpin.onClick.AddListener(() => {
+            if (this.curBlock)
+                this.curBlock.spinIndex++;
+        })
     }
 
     Start() {
@@ -97,9 +135,11 @@ export class tetris extends component {
         super.Start();
         this.genBlock(1);
 
-        setInterval(() => {
-            this.curBlock.spinIndex++;
-        }, 1000);
+        let gameTick = setInterval(() => {
+            console.log('gameTick');
+            if (this.curBlock)
+                this.curBlock.moveDown();
+        }, 100);
     }
 
     genBlock(cubeType: number, spinIndex: number = 0) {
@@ -108,6 +148,23 @@ export class tetris extends component {
         blockComp.spinIndex = spinIndex;
         blockComp.transform.SetParent(this.content);
         this.curBlock = blockComp;
+        this.curBlock.transform.localPosition = new UnityEngine.Vector3(0, this.height + 5, 0);
+    }
+
+    checkExist(posx: number, posy: number) {
+        return (this.settlePieces[posx] != null && this.settlePieces[posx][posy] != null);
+    }
+
+    settle() {
+        this.curBlock.cubeList.forEach(cube => {
+            if (this.settlePieces[cube.position.x] == null)
+                this.settlePieces[cube.position.x] = [];
+            cube.SetParent(this.content);
+            this.settlePieces[cube.position.x][cube.position.y] = cube;
+        })
+        UnityEngine.GameObject.Destroy(this.curBlock.gameObject);
+        this.curBlock = null;
+        this.genBlock(0);
     }
 
     Update() {

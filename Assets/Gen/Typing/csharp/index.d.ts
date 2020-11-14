@@ -99,7 +99,6 @@ declare module 'csharp' {
             public static Scale(a: UnityEngine.Vector3, b: UnityEngine.Vector3):UnityEngine.Vector3;
             public Scale(scale: UnityEngine.Vector3):void;
             public static Cross(lhs: UnityEngine.Vector3, rhs: UnityEngine.Vector3):UnityEngine.Vector3;
-            public GetHashCode():number;
             public Equals(other: any):boolean;
             public Equals(other: UnityEngine.Vector3):boolean;
             public static Reflect(inDirection: UnityEngine.Vector3, inNormal: UnityEngine.Vector3):UnityEngine.Vector3;
@@ -136,8 +135,6 @@ declare module 'csharp' {
             public hideFlags: UnityEngine.HideFlags;
             public constructor();
             public GetInstanceID():number;
-            public GetHashCode():number;
-            public Equals(other: any):boolean;
             public static op_Implicit(exists: UnityEngine.Object):boolean;
             public static Instantiate(original: UnityEngine.Object, position: UnityEngine.Vector3, rotation: UnityEngine.Quaternion):UnityEngine.Object;
             public static Instantiate(original: UnityEngine.Object, position: UnityEngine.Vector3, rotation: UnityEngine.Quaternion, parent: UnityEngine.Transform):UnityEngine.Object;
@@ -156,94 +153,35 @@ declare module 'csharp' {
             public static FindObjectsOfType(type: System.Type):System.Array$1<UnityEngine.Object>;
             public static DontDestroyOnLoad(target: UnityEngine.Object):void;
             public static FindObjectOfType(type: System.Type):UnityEngine.Object;
-            public ToString():string;
             public static op_Equality(x: UnityEngine.Object, y: UnityEngine.Object):boolean;
             public static op_Inequality(x: UnityEngine.Object, y: UnityEngine.Object):boolean;
             
         }
         enum LogType { Error = 0, Assert = 1, Warning = 2, Log = 3, Exception = 4 }
         enum LogOption { None = 0, NoStacktrace = 1 }
-        class GameObject extends UnityEngine.Object {
-            public transform: UnityEngine.Transform;
-            public layer: number;
-            public activeSelf: boolean;
-            public activeInHierarchy: boolean;
-            public isStatic: boolean;
-            public tag: string;
-            public scene: UnityEngine.SceneManagement.Scene;
-            public sceneCullingMask: bigint;
-            public gameObject: UnityEngine.GameObject;
-            public constructor(name: string);
+        class Time extends System.Object {
+            public static time: number;
+            public static timeSinceLevelLoad: number;
+            public static deltaTime: number;
+            public static fixedTime: number;
+            public static unscaledTime: number;
+            public static fixedUnscaledTime: number;
+            public static unscaledDeltaTime: number;
+            public static fixedUnscaledDeltaTime: number;
+            public static fixedDeltaTime: number;
+            public static maximumDeltaTime: number;
+            public static smoothDeltaTime: number;
+            public static maximumParticleDeltaTime: number;
+            public static timeScale: number;
+            public static frameCount: number;
+            public static renderedFrameCount: number;
+            public static realtimeSinceStartup: number;
+            public static captureDeltaTime: number;
+            public static captureFramerate: number;
+            public static inFixedTimeStep: boolean;
             public constructor();
-            public constructor(name: string, ...components: System.Type[]);
-            public static CreatePrimitive(type: UnityEngine.PrimitiveType):UnityEngine.GameObject;
-            public GetComponent(type: System.Type):UnityEngine.Component;
-            public GetComponent(type: string):UnityEngine.Component;
-            public GetComponentInChildren(type: System.Type, includeInactive: boolean):UnityEngine.Component;
-            public GetComponentInChildren(type: System.Type):UnityEngine.Component;
-            public GetComponentInParent(type: System.Type):UnityEngine.Component;
-            public GetComponents(type: System.Type):System.Array$1<UnityEngine.Component>;
-            public GetComponents(type: System.Type, results: System.Collections.Generic.List$1<UnityEngine.Component>):void;
-            public GetComponentsInChildren(type: System.Type):System.Array$1<UnityEngine.Component>;
-            public GetComponentsInChildren(type: System.Type, includeInactive: boolean):System.Array$1<UnityEngine.Component>;
-            public GetComponentsInParent(type: System.Type):System.Array$1<UnityEngine.Component>;
-            public GetComponentsInParent(type: System.Type, includeInactive: boolean):System.Array$1<UnityEngine.Component>;
-            public TryGetComponent(type: System.Type, component: $Ref<UnityEngine.Component>):boolean;
-            public static FindWithTag(tag: string):UnityEngine.GameObject;
-            public SendMessageUpwards(methodName: string, options: UnityEngine.SendMessageOptions):void;
-            public SendMessage(methodName: string, options: UnityEngine.SendMessageOptions):void;
-            public BroadcastMessage(methodName: string, options: UnityEngine.SendMessageOptions):void;
-            public AddComponent(componentType: System.Type):UnityEngine.Component;
-            public SetActive(value: boolean):void;
-            public CompareTag(tag: string):boolean;
-            public static FindGameObjectWithTag(tag: string):UnityEngine.GameObject;
-            public static FindGameObjectsWithTag(tag: string):System.Array$1<UnityEngine.GameObject>;
-            public SendMessageUpwards(methodName: string, value: any, options: UnityEngine.SendMessageOptions):void;
-            public SendMessageUpwards(methodName: string, value: any):void;
-            public SendMessageUpwards(methodName: string):void;
-            public SendMessage(methodName: string, value: any, options: UnityEngine.SendMessageOptions):void;
-            public SendMessage(methodName: string, value: any):void;
-            public SendMessage(methodName: string):void;
-            public BroadcastMessage(methodName: string, parameter: any, options: UnityEngine.SendMessageOptions):void;
-            public BroadcastMessage(methodName: string, parameter: any):void;
-            public BroadcastMessage(methodName: string):void;
-            public static Find(name: string):UnityEngine.GameObject;
             
         }
-        enum PrimitiveType { Sphere = 0, Capsule = 1, Cylinder = 2, Cube = 3, Plane = 4, Quad = 5 }
-        class Component extends UnityEngine.Object {
-            public transform: UnityEngine.Transform;
-            public gameObject: UnityEngine.GameObject;
-            public tag: string;
-            public constructor();
-            public GetComponent(type: System.Type):UnityEngine.Component;
-            public TryGetComponent(type: System.Type, component: $Ref<UnityEngine.Component>):boolean;
-            public GetComponent(type: string):UnityEngine.Component;
-            public GetComponentInChildren(t: System.Type, includeInactive: boolean):UnityEngine.Component;
-            public GetComponentInChildren(t: System.Type):UnityEngine.Component;
-            public GetComponentsInChildren(t: System.Type, includeInactive: boolean):System.Array$1<UnityEngine.Component>;
-            public GetComponentsInChildren(t: System.Type):System.Array$1<UnityEngine.Component>;
-            public GetComponentInParent(t: System.Type):UnityEngine.Component;
-            public GetComponentsInParent(t: System.Type, includeInactive: boolean):System.Array$1<UnityEngine.Component>;
-            public GetComponentsInParent(t: System.Type):System.Array$1<UnityEngine.Component>;
-            public GetComponents(type: System.Type):System.Array$1<UnityEngine.Component>;
-            public GetComponents(type: System.Type, results: System.Collections.Generic.List$1<UnityEngine.Component>):void;
-            public CompareTag(tag: string):boolean;
-            public SendMessageUpwards(methodName: string, value: any, options: UnityEngine.SendMessageOptions):void;
-            public SendMessageUpwards(methodName: string, value: any):void;
-            public SendMessageUpwards(methodName: string):void;
-            public SendMessageUpwards(methodName: string, options: UnityEngine.SendMessageOptions):void;
-            public SendMessage(methodName: string, value: any):void;
-            public SendMessage(methodName: string):void;
-            public SendMessage(methodName: string, value: any, options: UnityEngine.SendMessageOptions):void;
-            public SendMessage(methodName: string, options: UnityEngine.SendMessageOptions):void;
-            public BroadcastMessage(methodName: string, parameter: any, options: UnityEngine.SendMessageOptions):void;
-            public BroadcastMessage(methodName: string, parameter: any):void;
-            public BroadcastMessage(methodName: string):void;
-            public BroadcastMessage(methodName: string, options: UnityEngine.SendMessageOptions):void;
-            
-        }
-        enum SendMessageOptions { RequireReceiver = 0, DontRequireReceiver = 1 }
         class Transform extends UnityEngine.Component {
             public position: UnityEngine.Vector3;
             public localPosition: UnityEngine.Vector3;
@@ -307,6 +245,38 @@ declare module 'csharp' {
             public GetChild(index: number):UnityEngine.Transform;
             
         }
+        class Component extends UnityEngine.Object {
+            public transform: UnityEngine.Transform;
+            public gameObject: UnityEngine.GameObject;
+            public tag: string;
+            public constructor();
+            public GetComponent(type: System.Type):UnityEngine.Component;
+            public TryGetComponent(type: System.Type, component: $Ref<UnityEngine.Component>):boolean;
+            public GetComponent(type: string):UnityEngine.Component;
+            public GetComponentInChildren(t: System.Type, includeInactive: boolean):UnityEngine.Component;
+            public GetComponentInChildren(t: System.Type):UnityEngine.Component;
+            public GetComponentsInChildren(t: System.Type, includeInactive: boolean):System.Array$1<UnityEngine.Component>;
+            public GetComponentsInChildren(t: System.Type):System.Array$1<UnityEngine.Component>;
+            public GetComponentInParent(t: System.Type):UnityEngine.Component;
+            public GetComponentsInParent(t: System.Type, includeInactive: boolean):System.Array$1<UnityEngine.Component>;
+            public GetComponentsInParent(t: System.Type):System.Array$1<UnityEngine.Component>;
+            public GetComponents(type: System.Type):System.Array$1<UnityEngine.Component>;
+            public GetComponents(type: System.Type, results: System.Collections.Generic.List$1<UnityEngine.Component>):void;
+            public CompareTag(tag: string):boolean;
+            public SendMessageUpwards(methodName: string, value: any, options: UnityEngine.SendMessageOptions):void;
+            public SendMessageUpwards(methodName: string, value: any):void;
+            public SendMessageUpwards(methodName: string):void;
+            public SendMessageUpwards(methodName: string, options: UnityEngine.SendMessageOptions):void;
+            public SendMessage(methodName: string, value: any):void;
+            public SendMessage(methodName: string):void;
+            public SendMessage(methodName: string, value: any, options: UnityEngine.SendMessageOptions):void;
+            public SendMessage(methodName: string, options: UnityEngine.SendMessageOptions):void;
+            public BroadcastMessage(methodName: string, parameter: any, options: UnityEngine.SendMessageOptions):void;
+            public BroadcastMessage(methodName: string, parameter: any):void;
+            public BroadcastMessage(methodName: string):void;
+            public BroadcastMessage(methodName: string, options: UnityEngine.SendMessageOptions):void;
+            
+        }
         class Quaternion extends System.ValueType {
             
         }
@@ -314,10 +284,182 @@ declare module 'csharp' {
             
         }
         enum Space { World = 0, Self = 1 }
+        class GameObject extends UnityEngine.Object {
+            public transform: UnityEngine.Transform;
+            public layer: number;
+            public activeSelf: boolean;
+            public activeInHierarchy: boolean;
+            public isStatic: boolean;
+            public tag: string;
+            public scene: UnityEngine.SceneManagement.Scene;
+            public sceneCullingMask: bigint;
+            public gameObject: UnityEngine.GameObject;
+            public constructor(name: string);
+            public constructor();
+            public constructor(name: string, ...components: System.Type[]);
+            public static CreatePrimitive(type: UnityEngine.PrimitiveType):UnityEngine.GameObject;
+            public GetComponent(type: System.Type):UnityEngine.Component;
+            public GetComponent(type: string):UnityEngine.Component;
+            public GetComponentInChildren(type: System.Type, includeInactive: boolean):UnityEngine.Component;
+            public GetComponentInChildren(type: System.Type):UnityEngine.Component;
+            public GetComponentInParent(type: System.Type):UnityEngine.Component;
+            public GetComponents(type: System.Type):System.Array$1<UnityEngine.Component>;
+            public GetComponents(type: System.Type, results: System.Collections.Generic.List$1<UnityEngine.Component>):void;
+            public GetComponentsInChildren(type: System.Type):System.Array$1<UnityEngine.Component>;
+            public GetComponentsInChildren(type: System.Type, includeInactive: boolean):System.Array$1<UnityEngine.Component>;
+            public GetComponentsInParent(type: System.Type):System.Array$1<UnityEngine.Component>;
+            public GetComponentsInParent(type: System.Type, includeInactive: boolean):System.Array$1<UnityEngine.Component>;
+            public TryGetComponent(type: System.Type, component: $Ref<UnityEngine.Component>):boolean;
+            public static FindWithTag(tag: string):UnityEngine.GameObject;
+            public SendMessageUpwards(methodName: string, options: UnityEngine.SendMessageOptions):void;
+            public SendMessage(methodName: string, options: UnityEngine.SendMessageOptions):void;
+            public BroadcastMessage(methodName: string, options: UnityEngine.SendMessageOptions):void;
+            public AddComponent(componentType: System.Type):UnityEngine.Component;
+            public SetActive(value: boolean):void;
+            public CompareTag(tag: string):boolean;
+            public static FindGameObjectWithTag(tag: string):UnityEngine.GameObject;
+            public static FindGameObjectsWithTag(tag: string):System.Array$1<UnityEngine.GameObject>;
+            public SendMessageUpwards(methodName: string, value: any, options: UnityEngine.SendMessageOptions):void;
+            public SendMessageUpwards(methodName: string, value: any):void;
+            public SendMessageUpwards(methodName: string):void;
+            public SendMessage(methodName: string, value: any, options: UnityEngine.SendMessageOptions):void;
+            public SendMessage(methodName: string, value: any):void;
+            public SendMessage(methodName: string):void;
+            public BroadcastMessage(methodName: string, parameter: any, options: UnityEngine.SendMessageOptions):void;
+            public BroadcastMessage(methodName: string, parameter: any):void;
+            public BroadcastMessage(methodName: string):void;
+            public static Find(name: string):UnityEngine.GameObject;
+            
+        }
+        enum SendMessageOptions { RequireReceiver = 0, DontRequireReceiver = 1 }
+        enum PrimitiveType { Sphere = 0, Capsule = 1, Cylinder = 2, Cube = 3, Plane = 4, Quad = 5 }
+        class ParticleSystem extends UnityEngine.Component {
+            public isPlaying: boolean;
+            public isEmitting: boolean;
+            public isStopped: boolean;
+            public isPaused: boolean;
+            public particleCount: number;
+            public time: number;
+            public randomSeed: number;
+            public useAutoRandomSeed: boolean;
+            public proceduralSimulationSupported: boolean;
+            public main: UnityEngine.ParticleSystem.MainModule;
+            public emission: UnityEngine.ParticleSystem.EmissionModule;
+            public shape: UnityEngine.ParticleSystem.ShapeModule;
+            public velocityOverLifetime: UnityEngine.ParticleSystem.VelocityOverLifetimeModule;
+            public limitVelocityOverLifetime: UnityEngine.ParticleSystem.LimitVelocityOverLifetimeModule;
+            public inheritVelocity: UnityEngine.ParticleSystem.InheritVelocityModule;
+            public forceOverLifetime: UnityEngine.ParticleSystem.ForceOverLifetimeModule;
+            public colorOverLifetime: UnityEngine.ParticleSystem.ColorOverLifetimeModule;
+            public colorBySpeed: UnityEngine.ParticleSystem.ColorBySpeedModule;
+            public sizeOverLifetime: UnityEngine.ParticleSystem.SizeOverLifetimeModule;
+            public sizeBySpeed: UnityEngine.ParticleSystem.SizeBySpeedModule;
+            public rotationOverLifetime: UnityEngine.ParticleSystem.RotationOverLifetimeModule;
+            public rotationBySpeed: UnityEngine.ParticleSystem.RotationBySpeedModule;
+            public externalForces: UnityEngine.ParticleSystem.ExternalForcesModule;
+            public noise: UnityEngine.ParticleSystem.NoiseModule;
+            public collision: UnityEngine.ParticleSystem.CollisionModule;
+            public trigger: UnityEngine.ParticleSystem.TriggerModule;
+            public subEmitters: UnityEngine.ParticleSystem.SubEmittersModule;
+            public textureSheetAnimation: UnityEngine.ParticleSystem.TextureSheetAnimationModule;
+            public lights: UnityEngine.ParticleSystem.LightsModule;
+            public trails: UnityEngine.ParticleSystem.TrailModule;
+            public customData: UnityEngine.ParticleSystem.CustomDataModule;
+            public constructor();
+            public SetParticles(particles: System.Array$1<UnityEngine.ParticleSystem.Particle>, size: number, offset: number):void;
+            public SetParticles(particles: System.Array$1<UnityEngine.ParticleSystem.Particle>, size: number):void;
+            public SetParticles(particles: System.Array$1<UnityEngine.ParticleSystem.Particle>):void;
+            public SetParticles(particles: Unity.Collections.NativeArray$1<UnityEngine.ParticleSystem.Particle>, size: number, offset: number):void;
+            public SetParticles(particles: Unity.Collections.NativeArray$1<UnityEngine.ParticleSystem.Particle>, size: number):void;
+            public SetParticles(particles: Unity.Collections.NativeArray$1<UnityEngine.ParticleSystem.Particle>):void;
+            public GetParticles(particles: System.Array$1<UnityEngine.ParticleSystem.Particle>, size: number, offset: number):number;
+            public GetParticles(particles: System.Array$1<UnityEngine.ParticleSystem.Particle>, size: number):number;
+            public GetParticles(particles: System.Array$1<UnityEngine.ParticleSystem.Particle>):number;
+            public GetParticles(particles: Unity.Collections.NativeArray$1<UnityEngine.ParticleSystem.Particle>, size: number, offset: number):number;
+            public GetParticles(particles: Unity.Collections.NativeArray$1<UnityEngine.ParticleSystem.Particle>, size: number):number;
+            public GetParticles(particles: Unity.Collections.NativeArray$1<UnityEngine.ParticleSystem.Particle>):number;
+            public SetCustomParticleData(customData: System.Collections.Generic.List$1<UnityEngine.Vector4>, streamIndex: UnityEngine.ParticleSystemCustomData):void;
+            public GetCustomParticleData(customData: System.Collections.Generic.List$1<UnityEngine.Vector4>, streamIndex: UnityEngine.ParticleSystemCustomData):number;
+            public GetPlaybackState():UnityEngine.ParticleSystem.PlaybackState;
+            public SetPlaybackState(playbackState: UnityEngine.ParticleSystem.PlaybackState):void;
+            public GetTrails():UnityEngine.ParticleSystem.Trails;
+            public SetTrails(trailData: UnityEngine.ParticleSystem.Trails):void;
+            public Simulate(t: number, withChildren: boolean, restart: boolean, fixedTimeStep: boolean):void;
+            public Simulate(t: number, withChildren: boolean, restart: boolean):void;
+            public Simulate(t: number, withChildren: boolean):void;
+            public Simulate(t: number):void;
+            public Play(withChildren: boolean):void;
+            public Play():void;
+            public Pause(withChildren: boolean):void;
+            public Pause():void;
+            public Stop(withChildren: boolean, stopBehavior: UnityEngine.ParticleSystemStopBehavior):void;
+            public Stop(withChildren: boolean):void;
+            public Stop():void;
+            public Clear(withChildren: boolean):void;
+            public Clear():void;
+            public IsAlive(withChildren: boolean):boolean;
+            public IsAlive():boolean;
+            public Emit(count: number):void;
+            public Emit(emitParams: UnityEngine.ParticleSystem.EmitParams, count: number):void;
+            public TriggerSubEmitter(subEmitterIndex: number):void;
+            public TriggerSubEmitter(subEmitterIndex: number, particle: $Ref<UnityEngine.ParticleSystem.Particle>):void;
+            public TriggerSubEmitter(subEmitterIndex: number, particles: System.Collections.Generic.List$1<UnityEngine.ParticleSystem.Particle>):void;
+            public static ResetPreMappedBufferMemory():void;
+            
+        }
+        class Color32 extends System.ValueType {
+            
+        }
+        enum ParticleSystemSimulationSpace { Local = 0, World = 1, Custom = 2 }
+        enum ParticleSystemScalingMode { Hierarchy = 0, Local = 1, Shape = 2 }
+        class Vector4 extends System.ValueType {
+            
+        }
+        enum ParticleSystemCustomData { Custom1 = 0, Custom2 = 1 }
+        enum ParticleSystemStopBehavior { StopEmittingAndClear = 0, StopEmitting = 1 }
+        class Canvas extends UnityEngine.Behaviour {
+            public renderMode: UnityEngine.RenderMode;
+            public isRootCanvas: boolean;
+            public pixelRect: UnityEngine.Rect;
+            public scaleFactor: number;
+            public referencePixelsPerUnit: number;
+            public overridePixelPerfect: boolean;
+            public pixelPerfect: boolean;
+            public planeDistance: number;
+            public renderOrder: number;
+            public overrideSorting: boolean;
+            public sortingOrder: number;
+            public targetDisplay: number;
+            public sortingLayerID: number;
+            public cachedSortingLayerValue: number;
+            public additionalShaderChannels: UnityEngine.AdditionalCanvasShaderChannels;
+            public sortingLayerName: string;
+            public rootCanvas: UnityEngine.Canvas;
+            public worldCamera: UnityEngine.Camera;
+            public normalizedSortingGridSize: number;
+            public constructor();
+            public static add_willRenderCanvases(value: UnityEngine.Canvas.WillRenderCanvases):void;
+            public static remove_willRenderCanvases(value: UnityEngine.Canvas.WillRenderCanvases):void;
+            public static GetDefaultCanvasMaterial():UnityEngine.Material;
+            public static GetETC1SupportedCanvasMaterial():UnityEngine.Material;
+            public static ForceUpdateCanvases():void;
+            
+        }
         class Behaviour extends UnityEngine.Component {
             public enabled: boolean;
             public isActiveAndEnabled: boolean;
             public constructor();
+            
+        }
+        enum RenderMode { ScreenSpaceOverlay = 0, ScreenSpaceCamera = 1, WorldSpace = 2 }
+        class Rect extends System.ValueType {
+            
+        }
+        enum AdditionalCanvasShaderChannels { None = 0, TexCoord1 = 1, TexCoord2 = 2, TexCoord3 = 4, Normal = 8, Tangent = 16 }
+        class Camera extends UnityEngine.Behaviour {
+            
+        }
+        class Material extends UnityEngine.Object {
             
         }
         class MonoBehaviour extends UnityEngine.Behaviour {
@@ -346,77 +488,6 @@ declare module 'csharp' {
         class YieldInstruction extends System.Object {
             
         }
-        class Event extends System.Object {
-            public rawType: UnityEngine.EventType;
-            public mousePosition: UnityEngine.Vector2;
-            public delta: UnityEngine.Vector2;
-            public pointerType: UnityEngine.PointerType;
-            public button: number;
-            public modifiers: UnityEngine.EventModifiers;
-            public pressure: number;
-            public clickCount: number;
-            public character: number;
-            public keyCode: UnityEngine.KeyCode;
-            public displayIndex: number;
-            public type: UnityEngine.EventType;
-            public commandName: string;
-            public shift: boolean;
-            public control: boolean;
-            public alt: boolean;
-            public command: boolean;
-            public capsLock: boolean;
-            public numeric: boolean;
-            public functionKey: boolean;
-            public static current: UnityEngine.Event;
-            public isKey: boolean;
-            public isMouse: boolean;
-            public isScrollWheel: boolean;
-            public constructor();
-            public constructor(displayIndex: number);
-            public constructor(other: UnityEngine.Event);
-            public GetTypeForControl(controlID: number):UnityEngine.EventType;
-            public static PopEvent(outEvent: UnityEngine.Event):boolean;
-            public static GetEventCount():number;
-            public static KeyboardEvent(key: string):UnityEngine.Event;
-            public GetHashCode():number;
-            public Equals(obj: any):boolean;
-            public ToString():string;
-            public Use():void;
-            
-        }
-        enum EventType { MouseDown = 0, MouseUp = 1, MouseMove = 2, MouseDrag = 3, KeyDown = 4, KeyUp = 5, ScrollWheel = 6, Repaint = 7, Layout = 8, DragUpdated = 9, DragPerform = 10, DragExited = 15, Ignore = 11, Used = 12, ValidateCommand = 13, ExecuteCommand = 14, ContextClick = 16, MouseEnterWindow = 20, MouseLeaveWindow = 21, mouseDown = 0, mouseUp = 1, mouseMove = 2, mouseDrag = 3, keyDown = 4, keyUp = 5, scrollWheel = 6, repaint = 7, layout = 8, dragUpdated = 9, dragPerform = 10, ignore = 11, used = 12 }
-        class Vector2 extends System.ValueType {
-            
-        }
-        enum PointerType { Mouse = 0, Touch = 1, Pen = 2 }
-        enum EventModifiers { None = 0, Shift = 1, Control = 2, Alt = 4, Command = 8, Numeric = 16, CapsLock = 32, FunctionKey = 64 }
-        enum KeyCode { None = 0, Backspace = 8, Delete = 127, Tab = 9, Clear = 12, Return = 13, Pause = 19, Escape = 27, Space = 32, Keypad0 = 256, Keypad1 = 257, Keypad2 = 258, Keypad3 = 259, Keypad4 = 260, Keypad5 = 261, Keypad6 = 262, Keypad7 = 263, Keypad8 = 264, Keypad9 = 265, KeypadPeriod = 266, KeypadDivide = 267, KeypadMultiply = 268, KeypadMinus = 269, KeypadPlus = 270, KeypadEnter = 271, KeypadEquals = 272, UpArrow = 273, DownArrow = 274, RightArrow = 275, LeftArrow = 276, Insert = 277, Home = 278, End = 279, PageUp = 280, PageDown = 281, F1 = 282, F2 = 283, F3 = 284, F4 = 285, F5 = 286, F6 = 287, F7 = 288, F8 = 289, F9 = 290, F10 = 291, F11 = 292, F12 = 293, F13 = 294, F14 = 295, F15 = 296, Alpha0 = 48, Alpha1 = 49, Alpha2 = 50, Alpha3 = 51, Alpha4 = 52, Alpha5 = 53, Alpha6 = 54, Alpha7 = 55, Alpha8 = 56, Alpha9 = 57, Exclaim = 33, DoubleQuote = 34, Hash = 35, Dollar = 36, Percent = 37, Ampersand = 38, Quote = 39, LeftParen = 40, RightParen = 41, Asterisk = 42, Plus = 43, Comma = 44, Minus = 45, Period = 46, Slash = 47, Colon = 58, Semicolon = 59, Less = 60, Equals = 61, Greater = 62, Question = 63, At = 64, LeftBracket = 91, Backslash = 92, RightBracket = 93, Caret = 94, Underscore = 95, BackQuote = 96, A = 97, B = 98, C = 99, D = 100, E = 101, F = 102, G = 103, H = 104, I = 105, J = 106, K = 107, L = 108, M = 109, N = 110, O = 111, P = 112, Q = 113, R = 114, S = 115, T = 116, U = 117, V = 118, W = 119, X = 120, Y = 121, Z = 122, LeftCurlyBracket = 123, Pipe = 124, RightCurlyBracket = 125, Tilde = 126, Numlock = 300, CapsLock = 301, ScrollLock = 302, RightShift = 303, LeftShift = 304, RightControl = 305, LeftControl = 306, RightAlt = 307, LeftAlt = 308, LeftCommand = 310, LeftApple = 310, LeftWindows = 311, RightCommand = 309, RightApple = 309, RightWindows = 312, AltGr = 313, Help = 315, Print = 316, SysReq = 317, Break = 318, Menu = 319, Mouse0 = 323, Mouse1 = 324, Mouse2 = 325, Mouse3 = 326, Mouse4 = 327, Mouse5 = 328, Mouse6 = 329, JoystickButton0 = 330, JoystickButton1 = 331, JoystickButton2 = 332, JoystickButton3 = 333, JoystickButton4 = 334, JoystickButton5 = 335, JoystickButton6 = 336, JoystickButton7 = 337, JoystickButton8 = 338, JoystickButton9 = 339, JoystickButton10 = 340, JoystickButton11 = 341, JoystickButton12 = 342, JoystickButton13 = 343, JoystickButton14 = 344, JoystickButton15 = 345, JoystickButton16 = 346, JoystickButton17 = 347, JoystickButton18 = 348, JoystickButton19 = 349, Joystick1Button0 = 350, Joystick1Button1 = 351, Joystick1Button2 = 352, Joystick1Button3 = 353, Joystick1Button4 = 354, Joystick1Button5 = 355, Joystick1Button6 = 356, Joystick1Button7 = 357, Joystick1Button8 = 358, Joystick1Button9 = 359, Joystick1Button10 = 360, Joystick1Button11 = 361, Joystick1Button12 = 362, Joystick1Button13 = 363, Joystick1Button14 = 364, Joystick1Button15 = 365, Joystick1Button16 = 366, Joystick1Button17 = 367, Joystick1Button18 = 368, Joystick1Button19 = 369, Joystick2Button0 = 370, Joystick2Button1 = 371, Joystick2Button2 = 372, Joystick2Button3 = 373, Joystick2Button4 = 374, Joystick2Button5 = 375, Joystick2Button6 = 376, Joystick2Button7 = 377, Joystick2Button8 = 378, Joystick2Button9 = 379, Joystick2Button10 = 380, Joystick2Button11 = 381, Joystick2Button12 = 382, Joystick2Button13 = 383, Joystick2Button14 = 384, Joystick2Button15 = 385, Joystick2Button16 = 386, Joystick2Button17 = 387, Joystick2Button18 = 388, Joystick2Button19 = 389, Joystick3Button0 = 390, Joystick3Button1 = 391, Joystick3Button2 = 392, Joystick3Button3 = 393, Joystick3Button4 = 394, Joystick3Button5 = 395, Joystick3Button6 = 396, Joystick3Button7 = 397, Joystick3Button8 = 398, Joystick3Button9 = 399, Joystick3Button10 = 400, Joystick3Button11 = 401, Joystick3Button12 = 402, Joystick3Button13 = 403, Joystick3Button14 = 404, Joystick3Button15 = 405, Joystick3Button16 = 406, Joystick3Button17 = 407, Joystick3Button18 = 408, Joystick3Button19 = 409, Joystick4Button0 = 410, Joystick4Button1 = 411, Joystick4Button2 = 412, Joystick4Button3 = 413, Joystick4Button4 = 414, Joystick4Button5 = 415, Joystick4Button6 = 416, Joystick4Button7 = 417, Joystick4Button8 = 418, Joystick4Button9 = 419, Joystick4Button10 = 420, Joystick4Button11 = 421, Joystick4Button12 = 422, Joystick4Button13 = 423, Joystick4Button14 = 424, Joystick4Button15 = 425, Joystick4Button16 = 426, Joystick4Button17 = 427, Joystick4Button18 = 428, Joystick4Button19 = 429, Joystick5Button0 = 430, Joystick5Button1 = 431, Joystick5Button2 = 432, Joystick5Button3 = 433, Joystick5Button4 = 434, Joystick5Button5 = 435, Joystick5Button6 = 436, Joystick5Button7 = 437, Joystick5Button8 = 438, Joystick5Button9 = 439, Joystick5Button10 = 440, Joystick5Button11 = 441, Joystick5Button12 = 442, Joystick5Button13 = 443, Joystick5Button14 = 444, Joystick5Button15 = 445, Joystick5Button16 = 446, Joystick5Button17 = 447, Joystick5Button18 = 448, Joystick5Button19 = 449, Joystick6Button0 = 450, Joystick6Button1 = 451, Joystick6Button2 = 452, Joystick6Button3 = 453, Joystick6Button4 = 454, Joystick6Button5 = 455, Joystick6Button6 = 456, Joystick6Button7 = 457, Joystick6Button8 = 458, Joystick6Button9 = 459, Joystick6Button10 = 460, Joystick6Button11 = 461, Joystick6Button12 = 462, Joystick6Button13 = 463, Joystick6Button14 = 464, Joystick6Button15 = 465, Joystick6Button16 = 466, Joystick6Button17 = 467, Joystick6Button18 = 468, Joystick6Button19 = 469, Joystick7Button0 = 470, Joystick7Button1 = 471, Joystick7Button2 = 472, Joystick7Button3 = 473, Joystick7Button4 = 474, Joystick7Button5 = 475, Joystick7Button6 = 476, Joystick7Button7 = 477, Joystick7Button8 = 478, Joystick7Button9 = 479, Joystick7Button10 = 480, Joystick7Button11 = 481, Joystick7Button12 = 482, Joystick7Button13 = 483, Joystick7Button14 = 484, Joystick7Button15 = 485, Joystick7Button16 = 486, Joystick7Button17 = 487, Joystick7Button18 = 488, Joystick7Button19 = 489, Joystick8Button0 = 490, Joystick8Button1 = 491, Joystick8Button2 = 492, Joystick8Button3 = 493, Joystick8Button4 = 494, Joystick8Button5 = 495, Joystick8Button6 = 496, Joystick8Button7 = 497, Joystick8Button8 = 498, Joystick8Button9 = 499, Joystick8Button10 = 500, Joystick8Button11 = 501, Joystick8Button12 = 502, Joystick8Button13 = 503, Joystick8Button14 = 504, Joystick8Button15 = 505, Joystick8Button16 = 506, Joystick8Button17 = 507, Joystick8Button18 = 508, Joystick8Button19 = 509 }
-        class Ray extends System.ValueType {
-            
-        }
-        class Time extends System.Object {
-            public static time: number;
-            public static timeSinceLevelLoad: number;
-            public static deltaTime: number;
-            public static fixedTime: number;
-            public static unscaledTime: number;
-            public static fixedUnscaledTime: number;
-            public static unscaledDeltaTime: number;
-            public static fixedUnscaledDeltaTime: number;
-            public static fixedDeltaTime: number;
-            public static maximumDeltaTime: number;
-            public static smoothDeltaTime: number;
-            public static maximumParticleDeltaTime: number;
-            public static timeScale: number;
-            public static frameCount: number;
-            public static renderedFrameCount: number;
-            public static realtimeSinceStartup: number;
-            public static captureDeltaTime: number;
-            public static captureFramerate: number;
-            public static inFixedTimeStep: boolean;
-            public constructor();
-            
-        }
         enum HideFlags { None = 0, HideInHierarchy = 1, HideInInspector = 2, DontSaveInEditor = 4, NotEditable = 8, DontSaveInBuild = 16, DontUnloadUnusedAsset = 32, DontSave = 52, HideAndDontSave = 61 }
         class Resources extends System.Object {
             public constructor();
@@ -442,6 +513,13 @@ declare module 'csharp' {
     }
     namespace System {
         class Object {
+            public constructor();
+            public Equals(obj: any):boolean;
+            public static Equals(objA: any, objB: any):boolean;
+            public GetHashCode():number;
+            public GetType():System.Type;
+            public ToString():string;
+            public static ReferenceEquals(objA: any, objB: any):boolean;
             
         }
         class Void extends System.ValueType {
@@ -465,13 +543,173 @@ declare module 'csharp' {
         class Exception extends System.Object {
             
         }
+        class Int32 extends System.ValueType {
+            
+        }
         class Type extends System.Reflection.MemberInfo {
+            public static FilterAttribute: System.Reflection.MemberFilter;
+            public static FilterName: System.Reflection.MemberFilter;
+            public static FilterNameIgnoreCase: System.Reflection.MemberFilter;
+            public static Missing: any;
+            public static Delimiter: number;
+            public static EmptyTypes: System.Array$1<System.Type>;
+            public MemberType: System.Reflection.MemberTypes;
+            public DeclaringType: System.Type;
+            public DeclaringMethod: System.Reflection.MethodBase;
+            public ReflectedType: System.Type;
+            public StructLayoutAttribute: System.Runtime.InteropServices.StructLayoutAttribute;
+            public GUID: System.Guid;
+            public static DefaultBinder: System.Reflection.Binder;
+            public Module: System.Reflection.Module;
+            public Assembly: System.Reflection.Assembly;
+            public TypeHandle: System.RuntimeTypeHandle;
+            public FullName: string;
+            public Namespace: string;
+            public AssemblyQualifiedName: string;
+            public BaseType: System.Type;
+            public TypeInitializer: System.Reflection.ConstructorInfo;
+            public IsNested: boolean;
+            public Attributes: System.Reflection.TypeAttributes;
+            public GenericParameterAttributes: System.Reflection.GenericParameterAttributes;
+            public IsVisible: boolean;
+            public IsNotPublic: boolean;
+            public IsPublic: boolean;
+            public IsNestedPublic: boolean;
+            public IsNestedPrivate: boolean;
+            public IsNestedFamily: boolean;
+            public IsNestedAssembly: boolean;
+            public IsNestedFamANDAssem: boolean;
+            public IsNestedFamORAssem: boolean;
+            public IsAutoLayout: boolean;
+            public IsLayoutSequential: boolean;
+            public IsExplicitLayout: boolean;
+            public IsClass: boolean;
+            public IsInterface: boolean;
+            public IsValueType: boolean;
+            public IsAbstract: boolean;
+            public IsSealed: boolean;
+            public IsEnum: boolean;
+            public IsSpecialName: boolean;
+            public IsImport: boolean;
+            public IsSerializable: boolean;
+            public IsAnsiClass: boolean;
+            public IsUnicodeClass: boolean;
+            public IsAutoClass: boolean;
+            public IsArray: boolean;
+            public IsGenericType: boolean;
+            public IsGenericTypeDefinition: boolean;
+            public IsConstructedGenericType: boolean;
+            public IsGenericParameter: boolean;
+            public GenericParameterPosition: number;
+            public ContainsGenericParameters: boolean;
+            public IsByRef: boolean;
+            public IsPointer: boolean;
+            public IsPrimitive: boolean;
+            public IsCOMObject: boolean;
+            public HasElementType: boolean;
+            public IsContextful: boolean;
+            public IsMarshalByRef: boolean;
+            public GenericTypeArguments: System.Array$1<System.Type>;
+            public IsSecurityCritical: boolean;
+            public IsSecuritySafeCritical: boolean;
+            public IsSecurityTransparent: boolean;
+            public UnderlyingSystemType: System.Type;
+            public static GetType(typeName: string, assemblyResolver: System.Func$2<System.Reflection.AssemblyName, System.Reflection.Assembly>, typeResolver: System.Func$4<System.Reflection.Assembly, string, boolean, System.Type>):System.Type;
+            public static GetType(typeName: string, assemblyResolver: System.Func$2<System.Reflection.AssemblyName, System.Reflection.Assembly>, typeResolver: System.Func$4<System.Reflection.Assembly, string, boolean, System.Type>, throwOnError: boolean):System.Type;
+            public static GetType(typeName: string, assemblyResolver: System.Func$2<System.Reflection.AssemblyName, System.Reflection.Assembly>, typeResolver: System.Func$4<System.Reflection.Assembly, string, boolean, System.Type>, throwOnError: boolean, ignoreCase: boolean):System.Type;
+            public MakePointerType():System.Type;
+            public MakeByRefType():System.Type;
+            public MakeArrayType():System.Type;
+            public MakeArrayType(rank: number):System.Type;
+            public static GetTypeFromProgID(progID: string):System.Type;
+            public static GetTypeFromProgID(progID: string, throwOnError: boolean):System.Type;
+            public static GetTypeFromProgID(progID: string, server: string):System.Type;
+            public static GetTypeFromProgID(progID: string, server: string, throwOnError: boolean):System.Type;
+            public static GetTypeFromCLSID(clsid: System.Guid):System.Type;
+            public static GetTypeFromCLSID(clsid: System.Guid, throwOnError: boolean):System.Type;
+            public static GetTypeFromCLSID(clsid: System.Guid, server: string):System.Type;
+            public static GetTypeFromCLSID(clsid: System.Guid, server: string, throwOnError: boolean):System.Type;
+            public static GetTypeCode(type: System.Type):System.TypeCode;
+            public InvokeMember(name: string, invokeAttr: System.Reflection.BindingFlags, binder: System.Reflection.Binder, target: any, args: System.Array$1<any>, modifiers: System.Array$1<System.Reflection.ParameterModifier>, culture: System.Globalization.CultureInfo, namedParameters: System.Array$1<string>):any;
+            public InvokeMember(name: string, invokeAttr: System.Reflection.BindingFlags, binder: System.Reflection.Binder, target: any, args: System.Array$1<any>, culture: System.Globalization.CultureInfo):any;
+            public InvokeMember(name: string, invokeAttr: System.Reflection.BindingFlags, binder: System.Reflection.Binder, target: any, args: System.Array$1<any>):any;
+            public static GetTypeHandle(o: any):System.RuntimeTypeHandle;
+            public GetArrayRank():number;
+            public GetConstructor(bindingAttr: System.Reflection.BindingFlags, binder: System.Reflection.Binder, callConvention: System.Reflection.CallingConventions, types: System.Array$1<System.Type>, modifiers: System.Array$1<System.Reflection.ParameterModifier>):System.Reflection.ConstructorInfo;
+            public GetConstructor(bindingAttr: System.Reflection.BindingFlags, binder: System.Reflection.Binder, types: System.Array$1<System.Type>, modifiers: System.Array$1<System.Reflection.ParameterModifier>):System.Reflection.ConstructorInfo;
+            public GetConstructor(types: System.Array$1<System.Type>):System.Reflection.ConstructorInfo;
+            public GetConstructors():System.Array$1<System.Reflection.ConstructorInfo>;
+            public GetConstructors(bindingAttr: System.Reflection.BindingFlags):System.Array$1<System.Reflection.ConstructorInfo>;
+            public GetMethod(name: string, bindingAttr: System.Reflection.BindingFlags, binder: System.Reflection.Binder, callConvention: System.Reflection.CallingConventions, types: System.Array$1<System.Type>, modifiers: System.Array$1<System.Reflection.ParameterModifier>):System.Reflection.MethodInfo;
+            public GetMethod(name: string, bindingAttr: System.Reflection.BindingFlags, binder: System.Reflection.Binder, types: System.Array$1<System.Type>, modifiers: System.Array$1<System.Reflection.ParameterModifier>):System.Reflection.MethodInfo;
+            public GetMethod(name: string, types: System.Array$1<System.Type>, modifiers: System.Array$1<System.Reflection.ParameterModifier>):System.Reflection.MethodInfo;
+            public GetMethod(name: string, types: System.Array$1<System.Type>):System.Reflection.MethodInfo;
+            public GetMethod(name: string, bindingAttr: System.Reflection.BindingFlags):System.Reflection.MethodInfo;
+            public GetMethod(name: string):System.Reflection.MethodInfo;
+            public GetMethods():System.Array$1<System.Reflection.MethodInfo>;
+            public GetMethods(bindingAttr: System.Reflection.BindingFlags):System.Array$1<System.Reflection.MethodInfo>;
+            public GetField(name: string, bindingAttr: System.Reflection.BindingFlags):System.Reflection.FieldInfo;
+            public GetField(name: string):System.Reflection.FieldInfo;
+            public GetFields():System.Array$1<System.Reflection.FieldInfo>;
+            public GetFields(bindingAttr: System.Reflection.BindingFlags):System.Array$1<System.Reflection.FieldInfo>;
+            public GetInterface(name: string):System.Type;
+            public GetInterface(name: string, ignoreCase: boolean):System.Type;
+            public GetInterfaces():System.Array$1<System.Type>;
+            public FindInterfaces(filter: System.Reflection.TypeFilter, filterCriteria: any):System.Array$1<System.Type>;
+            public GetEvent(name: string):System.Reflection.EventInfo;
+            public GetEvent(name: string, bindingAttr: System.Reflection.BindingFlags):System.Reflection.EventInfo;
+            public GetEvents():System.Array$1<System.Reflection.EventInfo>;
+            public GetEvents(bindingAttr: System.Reflection.BindingFlags):System.Array$1<System.Reflection.EventInfo>;
+            public GetProperty(name: string, bindingAttr: System.Reflection.BindingFlags, binder: System.Reflection.Binder, returnType: System.Type, types: System.Array$1<System.Type>, modifiers: System.Array$1<System.Reflection.ParameterModifier>):System.Reflection.PropertyInfo;
+            public GetProperty(name: string, returnType: System.Type, types: System.Array$1<System.Type>, modifiers: System.Array$1<System.Reflection.ParameterModifier>):System.Reflection.PropertyInfo;
+            public GetProperty(name: string, bindingAttr: System.Reflection.BindingFlags):System.Reflection.PropertyInfo;
+            public GetProperty(name: string, returnType: System.Type, types: System.Array$1<System.Type>):System.Reflection.PropertyInfo;
+            public GetProperty(name: string, types: System.Array$1<System.Type>):System.Reflection.PropertyInfo;
+            public GetProperty(name: string, returnType: System.Type):System.Reflection.PropertyInfo;
+            public GetProperty(name: string):System.Reflection.PropertyInfo;
+            public GetProperties(bindingAttr: System.Reflection.BindingFlags):System.Array$1<System.Reflection.PropertyInfo>;
+            public GetProperties():System.Array$1<System.Reflection.PropertyInfo>;
+            public GetNestedTypes():System.Array$1<System.Type>;
+            public GetNestedTypes(bindingAttr: System.Reflection.BindingFlags):System.Array$1<System.Type>;
+            public GetNestedType(name: string):System.Type;
+            public GetNestedType(name: string, bindingAttr: System.Reflection.BindingFlags):System.Type;
+            public GetMember(name: string):System.Array$1<System.Reflection.MemberInfo>;
+            public GetMember(name: string, bindingAttr: System.Reflection.BindingFlags):System.Array$1<System.Reflection.MemberInfo>;
+            public GetMember(name: string, type: System.Reflection.MemberTypes, bindingAttr: System.Reflection.BindingFlags):System.Array$1<System.Reflection.MemberInfo>;
+            public GetMembers():System.Array$1<System.Reflection.MemberInfo>;
+            public GetMembers(bindingAttr: System.Reflection.BindingFlags):System.Array$1<System.Reflection.MemberInfo>;
+            public GetDefaultMembers():System.Array$1<System.Reflection.MemberInfo>;
+            public FindMembers(memberType: System.Reflection.MemberTypes, bindingAttr: System.Reflection.BindingFlags, filter: System.Reflection.MemberFilter, filterCriteria: any):System.Array$1<System.Reflection.MemberInfo>;
+            public GetGenericParameterConstraints():System.Array$1<System.Type>;
+            public MakeGenericType(...typeArguments: System.Type[]):System.Type;
+            public GetElementType():System.Type;
+            public GetGenericArguments():System.Array$1<System.Type>;
+            public GetGenericTypeDefinition():System.Type;
+            public GetEnumNames():System.Array$1<string>;
+            public GetEnumValues():System.Array;
+            public GetEnumUnderlyingType():System.Type;
+            public IsEnumDefined(value: any):boolean;
+            public GetEnumName(value: any):string;
+            public IsSubclassOf(c: System.Type):boolean;
+            public IsInstanceOfType(o: any):boolean;
+            public IsAssignableFrom(c: System.Type):boolean;
+            public IsEquivalentTo(other: System.Type):boolean;
+            public static GetTypeArray(args: System.Array$1<any>):System.Array$1<System.Type>;
+            public Equals(o: any):boolean;
+            public Equals(o: System.Type):boolean;
+            public static op_Equality(left: System.Type, right: System.Type):boolean;
+            public static op_Inequality(left: System.Type, right: System.Type):boolean;
+            public GetInterfaceMap(interfaceType: System.Type):System.Reflection.InterfaceMapping;
+            public GetType():System.Type;
+            public static GetType(typeName: string):System.Type;
+            public static GetType(typeName: string, throwOnError: boolean):System.Type;
+            public static GetType(typeName: string, throwOnError: boolean, ignoreCase: boolean):System.Type;
+            public static ReflectionOnlyGetType(typeName: string, throwIfNotFound: boolean, ignoreCase: boolean):System.Type;
+            public static GetTypeFromHandle(handle: System.RuntimeTypeHandle):System.Type;
+            public GetType():System.Type;
             
         }
         class Array extends System.Object {
-            
-        }
-        class Int32 extends System.ValueType {
             
         }
         class UInt64 extends System.ValueType {
@@ -492,8 +730,6 @@ declare module 'csharp' {
             public static CreateDelegate(type: System.Type, target: any, method: string, ignoreCase: boolean):Function;
             public DynamicInvoke(...args: any[]):any;
             public Clone():any;
-            public Equals(obj: any):boolean;
-            public GetHashCode():number;
             public GetObjectData(info: System.Runtime.Serialization.SerializationInfo, context: System.Runtime.Serialization.StreamingContext):void;
             public GetInvocationList():System.Array$1<Function>;
             public static Combine(a: Function, b: Function):Function;
@@ -504,13 +740,34 @@ declare module 'csharp' {
             public static op_Inequality(d1: Function, d2: Function):boolean;
             
         }
+        type MulticastDelegate = (...args:any[]) => any;
+        var MulticastDelegate: {new (func: (...args:any[]) => any): MulticastDelegate;}
         class Char extends System.ValueType {
+            
+        }
+        type Func$2<T,TResult> = (arg: T) => TResult;
+        type Func$4<T1,T2,T3,TResult> = (arg1: T1, arg2: T2, arg3: T3) => TResult;
+        class Attribute extends System.Object {
+            
+        }
+        class Guid extends System.ValueType {
+            
+        }
+        enum TypeCode { Empty = 0, Object = 1, DBNull = 2, Boolean = 3, Char = 4, SByte = 5, Byte = 6, Int16 = 7, UInt16 = 8, Int32 = 9, UInt32 = 10, Int64 = 11, UInt64 = 12, Single = 13, Double = 14, Decimal = 15, DateTime = 16, String = 18 }
+        class RuntimeTypeHandle extends System.ValueType {
+            
+        }
+        class UInt32 extends System.ValueType {
             
         }
         type Action = () => void;
         var Action: {new (func: () => void): Action;}
-        type MulticastDelegate = (...args:any[]) => any;
-        var MulticastDelegate: {new (func: (...args:any[]) => any): MulticastDelegate;}
+        
+    }
+    namespace System.Collections {
+        interface IEnumerator {
+            
+        }
         
     }
     namespace System.Reflection {
@@ -521,6 +778,45 @@ declare module 'csharp' {
             
         }
         class MethodBase extends System.Reflection.MemberInfo {
+            
+        }
+        type MemberFilter = (m: System.Reflection.MemberInfo, filterCriteria: any) => boolean;
+        var MemberFilter: {new (func: (m: System.Reflection.MemberInfo, filterCriteria: any) => boolean): MemberFilter;}
+        enum MemberTypes { Constructor = 1, Event = 2, Field = 4, Method = 8, Property = 16, TypeInfo = 32, Custom = 64, NestedType = 128, All = 191 }
+        class AssemblyName extends System.Object {
+            
+        }
+        class Assembly extends System.Object {
+            
+        }
+        class Binder extends System.Object {
+            
+        }
+        enum BindingFlags { Default = 0, IgnoreCase = 1, DeclaredOnly = 2, Instance = 4, Static = 8, Public = 16, NonPublic = 32, FlattenHierarchy = 64, InvokeMethod = 256, CreateInstance = 512, GetField = 1024, SetField = 2048, GetProperty = 4096, SetProperty = 8192, PutDispProperty = 16384, PutRefDispProperty = 32768, ExactBinding = 65536, SuppressChangeType = 131072, OptionalParamBinding = 262144, IgnoreReturn = 16777216 }
+        class ParameterModifier extends System.ValueType {
+            
+        }
+        class Module extends System.Object {
+            
+        }
+        class ConstructorInfo extends System.Reflection.MethodBase {
+            
+        }
+        enum CallingConventions { Standard = 1, VarArgs = 2, Any = 3, HasThis = 32, ExplicitThis = 64 }
+        class FieldInfo extends System.Reflection.MemberInfo {
+            
+        }
+        type TypeFilter = (m: System.Type, filterCriteria: any) => boolean;
+        var TypeFilter: {new (func: (m: System.Type, filterCriteria: any) => boolean): TypeFilter;}
+        class EventInfo extends System.Reflection.MemberInfo {
+            
+        }
+        class PropertyInfo extends System.Reflection.MemberInfo {
+            
+        }
+        enum TypeAttributes { VisibilityMask = 7, NotPublic = 0, Public = 1, NestedPublic = 2, NestedPrivate = 3, NestedFamily = 4, NestedAssembly = 5, NestedFamANDAssem = 6, NestedFamORAssem = 7, LayoutMask = 24, AutoLayout = 0, SequentialLayout = 8, ExplicitLayout = 16, ClassSemanticsMask = 32, Class = 0, Interface = 32, Abstract = 128, Sealed = 256, SpecialName = 1024, Import = 4096, Serializable = 8192, WindowsRuntime = 16384, StringFormatMask = 196608, AnsiClass = 0, UnicodeClass = 65536, AutoClass = 131072, CustomFormatClass = 196608, CustomFormatMask = 12582912, BeforeFieldInit = 1048576, ReservedMask = 264192, RTSpecialName = 2048, HasSecurity = 262144 }
+        enum GenericParameterAttributes { None = 0, VarianceMask = 3, Covariant = 1, Contravariant = 2, SpecialConstraintMask = 28, ReferenceTypeConstraint = 4, NotNullableValueTypeConstraint = 8, DefaultConstructorConstraint = 16 }
+        class InterfaceMapping extends System.ValueType {
             
         }
         
@@ -537,12 +833,6 @@ declare module 'csharp' {
         }
         
     }
-    namespace System.Collections {
-        interface IEnumerator {
-            
-        }
-        
-    }
     namespace System.Runtime.Serialization {
         class SerializationInfo extends System.Object {
             
@@ -550,6 +840,159 @@ declare module 'csharp' {
         class StreamingContext extends System.ValueType {
             
         }
+        
+    }
+    namespace System.Runtime.InteropServices {
+        class StructLayoutAttribute extends System.Attribute {
+            
+        }
+        
+    }
+    namespace System.Globalization {
+        class CultureInfo extends System.Object {
+            
+        }
+        
+    }
+    namespace UnityEngine.ParticleSystem {
+        class Particle extends System.ValueType {
+            
+        }
+        class PlaybackState extends System.ValueType {
+            
+        }
+        class Trails extends System.ValueType {
+            
+        }
+        class EmitParams extends System.ValueType {
+            
+        }
+        class MainModule extends System.ValueType {
+            
+        }
+        class EmissionModule extends System.ValueType {
+            
+        }
+        class ShapeModule extends System.ValueType {
+            
+        }
+        class VelocityOverLifetimeModule extends System.ValueType {
+            
+        }
+        class LimitVelocityOverLifetimeModule extends System.ValueType {
+            
+        }
+        class InheritVelocityModule extends System.ValueType {
+            
+        }
+        class ForceOverLifetimeModule extends System.ValueType {
+            
+        }
+        class ColorOverLifetimeModule extends System.ValueType {
+            
+        }
+        class ColorBySpeedModule extends System.ValueType {
+            
+        }
+        class SizeOverLifetimeModule extends System.ValueType {
+            
+        }
+        class SizeBySpeedModule extends System.ValueType {
+            
+        }
+        class RotationOverLifetimeModule extends System.ValueType {
+            
+        }
+        class RotationBySpeedModule extends System.ValueType {
+            
+        }
+        class ExternalForcesModule extends System.ValueType {
+            
+        }
+        class NoiseModule extends System.ValueType {
+            
+        }
+        class CollisionModule extends System.ValueType {
+            
+        }
+        class TriggerModule extends System.ValueType {
+            
+        }
+        class SubEmittersModule extends System.ValueType {
+            
+        }
+        class TextureSheetAnimationModule extends System.ValueType {
+            
+        }
+        class LightsModule extends System.ValueType {
+            
+        }
+        class TrailModule extends System.ValueType {
+            
+        }
+        class CustomDataModule extends System.ValueType {
+            
+        }
+        
+    }
+    namespace Unity.Collections {
+        class NativeArray$1<T> extends System.ValueType {
+            
+        }
+        
+    }
+    namespace UnityEngine.Canvas {
+        type WillRenderCanvases = () => void;
+        var WillRenderCanvases: {new (func: () => void): WillRenderCanvases;}
+        
+    }
+    namespace UnityEngine.UI {
+        class Button extends UnityEngine.UI.Selectable {
+            public onClick: UnityEngine.UI.Button.ButtonClickedEvent;
+            public OnPointerClick(eventData: UnityEngine.EventSystems.PointerEventData):void;
+            public OnSubmit(eventData: UnityEngine.EventSystems.BaseEventData):void;
+            
+        }
+        class Selectable extends UnityEngine.EventSystems.UIBehaviour {
+            
+        }
+        
+    }
+    namespace UnityEngine.EventSystems {
+        class UIBehaviour extends UnityEngine.MonoBehaviour {
+            
+        }
+        class PointerEventData extends UnityEngine.EventSystems.BaseEventData {
+            
+        }
+        class BaseEventData extends UnityEngine.EventSystems.AbstractEventData {
+            
+        }
+        class AbstractEventData extends System.Object {
+            
+        }
+        
+    }
+    namespace UnityEngine.UI.Button {
+        class ButtonClickedEvent extends UnityEngine.Events.UnityEvent {
+            public constructor();
+            
+        }
+        
+    }
+    namespace UnityEngine.Events {
+        class UnityEvent extends UnityEngine.Events.UnityEventBase {
+            public constructor();
+            public AddListener(call: UnityEngine.Events.UnityAction):void;
+            public RemoveListener(call: UnityEngine.Events.UnityAction):void;
+            public Invoke():void;
+            
+        }
+        class UnityEventBase extends System.Object {
+            
+        }
+        type UnityAction = () => void;
+        var UnityAction: {new (func: () => void): UnityAction;}
         
     }
     
