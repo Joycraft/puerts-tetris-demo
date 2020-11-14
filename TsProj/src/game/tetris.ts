@@ -158,6 +158,13 @@ export class tetrisBlock extends component {
     }
 }
 
+interface pieceObj {
+    pos: {
+        x: number,
+        y: number,
+    },
+    trans: UnityEngine.Transform,
+}
 
 @common.globalObject
 export class tetris extends component {
@@ -170,7 +177,7 @@ export class tetris extends component {
     btnLeft: UnityEngine.UI.Button = null;
     btnRight: UnityEngine.UI.Button = null;
 
-    settlePieces: UnityEngine.Transform[] = [];
+    settlePieces: pieceObj[] = [];
     width: number = 15;
     height: number = 25;
 
@@ -223,10 +230,10 @@ export class tetris extends component {
     }
 
     checkExist(posx: number, posy: number) {
-        return this.settlePieces.filter(piece => piece != null && piece.position.x == posx && piece.position.y == posy).length > 0
+        return this.settlePieces.filter(piece => piece != null && piece.pos.x == posx && piece.pos.y == posy).length > 0
     }
 
-    addPiece(piece: UnityEngine.Transform) {
+    addPiece(piece: pieceObj) {
         for (let i in this.settlePieces) {
             if (this.settlePieces[i] == null) {
                 this.settlePieces[i] = piece;
@@ -239,21 +246,27 @@ export class tetris extends component {
     settle() {
         this.curBlock.cubeList.forEach(cube => {
             cube.SetParent(this.content);
-            this.addPiece(cube);
+            this.addPiece({
+                pos: {
+                    x: cube.localPosition.x + this.curBlock.transform.localPosition.x,
+                    y: cube.localPosition.y + this.curBlock.transform.localPosition.y,
+                },
+                trans: cube,
+            });
         })
         UnityEngine.GameObject.Destroy(this.curBlock.gameObject);
         this.curBlock = null;
 
         for (let i = 0; i < this.height; i++) {
-            let line = this.settlePieces.filter(piece => piece != null && piece.position.y == i);
+            let line = this.settlePieces.filter(piece => piece != null && piece.pos.y == i);
             if (line.length >= this.width) {
                 line.forEach(linePiece => {
                     this.settlePieces[this.settlePieces.indexOf(linePiece)] = null;
-                    UnityEngine.GameObject.Destroy(linePiece.gameObject);
+                    UnityEngine.GameObject.Destroy(linePiece.trans.gameObject);
                 });
-                this.settlePieces.filter(piece => piece != null && piece.position.y > i)
+                this.settlePieces.filter(piece => piece != null && piece.pos.y > i)
                     .forEach(piece =>
-                        piece.position = new UnityEngine.Vector3(piece.position.x, piece.position.y - 1, piece.position.z)
+                        piece.pos = new UnityEngine.Vector3(piece.pos.x, piece.pos.y - 1, piece.trans.position.z)
                     );
                 i--;
             }
