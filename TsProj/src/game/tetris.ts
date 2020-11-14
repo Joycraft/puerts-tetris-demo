@@ -5,6 +5,12 @@ import { common } from "../common/common";
 import { tetrisData } from "./tetrisData";
 import { $typeof } from "puerts";
 
+enum DIR {
+    LEFT,
+    RIGHT,
+    DOWN,
+}
+
 @common.globalObject
 export class tetrisBlock extends component {
     cube: UnityEngine.Transform = null;
@@ -80,20 +86,50 @@ export class tetrisBlock extends component {
         }
     }
 
-    moveDown() {
-        this.transform.localPosition = new UnityEngine.Vector3(this.transform.localPosition.x, this.transform.localPosition.y - 1, this.transform.localPosition.z);
-
-        let isSettle = false;
+    checkBound(dir: DIR) {
         for (let i in this.data) {
             let piece = this.data[i];
-            let underPiece: tetrisData.tetrisPiece = { x: this.transform.localPosition.x + piece.x, y: this.transform.localPosition.y + piece.y - 1 };
-            if (this.tetrisLogic.checkExist(underPiece.x, underPiece.y) == true || underPiece.y <= 0) {
-                isSettle = true;
-                break;
+
+            let boundPiece: tetrisData.tetrisPiece = null;
+
+            switch (dir) {
+                case DIR.DOWN:
+                    boundPiece = { x: this.transform.localPosition.x + piece.x, y: this.transform.localPosition.y + piece.y - 1 };
+                    if (boundPiece.y <= 0) return true;
+                    break;
+                case DIR.LEFT:
+                    boundPiece = { x: this.transform.localPosition.x + piece.x - 1, y: this.transform.localPosition.y + piece.y };
+                    if (boundPiece.x <= this.tetrisLogic.width / 2) return true;
+                    break;
+                case DIR.RIGHT:
+                    boundPiece = { x: this.transform.localPosition.x + piece.x + 1, y: this.transform.localPosition.y + piece.y };
+                    if (boundPiece.x >= this.tetrisLogic.width / 2) return true;
+                    break;
+            }
+
+            if (this.tetrisLogic.checkExist(boundPiece.x, boundPiece.y) == true) {
+                return true;
             }
         }
-        if (isSettle) {
-            this.tetrisLogic.settle();
+    }
+
+    move(dir: DIR) {
+        if (this.checkBound(dir)) {
+            if (dir == DIR.DOWN)
+                this.tetrisLogic.settle();
+            return;
+        }
+
+        switch (dir) {
+            case DIR.DOWN:
+                this.transform.localPosition = new UnityEngine.Vector3(this.transform.localPosition.x, this.transform.localPosition.y - 1, this.transform.localPosition.z);
+                break;
+            case DIR.LEFT:
+                this.transform.localPosition = new UnityEngine.Vector3(this.transform.localPosition.x - 1, this.transform.localPosition.y, this.transform.localPosition.z);
+                break;
+            case DIR.RIGHT:
+                this.transform.localPosition = new UnityEngine.Vector3(this.transform.localPosition.x + 1, this.transform.localPosition.y, this.transform.localPosition.z);
+                break;
         }
     }
 
@@ -114,16 +150,23 @@ export class tetris extends component {
 
     //UI
     btnSpin: UnityEngine.UI.Button = null;
+    btnLeft: UnityEngine.UI.Button = null;
+    btnRight: UnityEngine.UI.Button = null;
 
     settlePieces: UnityEngine.Transform[][] = [];
     width: number = 20;
     height: number = 30;
+
+    gameTick: NodeJS.Timeout = null;
 
     constructor(mono: JsBehaviour) {
         super(mono);
         this.content = this.transform.Find('content');
         this.block = this.transform.Find('block');
         this.btnSpin = this.transform.Find('/Canvas/Button').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
+        this.btnLeft = this.transform.Find('/Canvas/Left').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
+        this.btnRight = this.transform.Find('/Canvas/Right').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
+
         this.btnSpin.onClick.AddListener(() => {
             if (this.curBlock)
                 this.curBlock.spinIndex++;
@@ -134,11 +177,10 @@ export class tetris extends component {
         console.log('tetris gameLogic start.');
         super.Start();
         this.genBlock(1);
-
-        let gameTick = setInterval(() => {
+        this.gameTick = setInterval(() => {
             console.log('gameTick');
             if (this.curBlock)
-                this.curBlock.moveDown();
+                this.curBlock.move(DIR.DOWN);
         }, 100);
     }
 
@@ -173,5 +215,6 @@ export class tetris extends component {
 
     OnDestory() {
         super.OnDestory();
+        clearInterval(this.gameTick);
     }
 }
