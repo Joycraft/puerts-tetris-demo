@@ -208,18 +208,22 @@ export class tetris extends component {
         this.btnSpin.onClick.AddListener(() => {
             if (this.curBlock)
                 this.curBlock.spinIndex++;
-        })
+        });
         this.btnLeft.onClick.AddListener(() => {
             if (this.curBlock)
                 this.curBlock.move(DIR.LEFT);
-        })
+        });
         this.btnRight.onClick.AddListener(() => {
             if (this.curBlock)
                 this.curBlock.move(DIR.RIGHT);
-        })
+        });
+        this.btnDown.onClick.AddListener(() => {
+            if (this.curBlock)
+                this.curBlock.move(DIR.DOWN);
+        });
         this.btnStartGame.onClick.AddListener(() => {
             this.StartGame();
-        })
+        });
     }
 
     StartGame() {
