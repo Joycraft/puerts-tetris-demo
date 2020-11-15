@@ -184,6 +184,7 @@ export class tetris extends component {
     btnSpin: UnityEngine.UI.Button = null;
     btnLeft: UnityEngine.UI.Button = null;
     btnRight: UnityEngine.UI.Button = null;
+    btnStartGame: UnityEngine.UI.Button = null;
 
     //Data
     curBlock: tetrisBlock = null;
@@ -197,9 +198,10 @@ export class tetris extends component {
         super(mono);
         this.content = this.transform.Find('content');
         this.block = this.transform.Find('block');
-        this.btnSpin = this.transform.Find('/Canvas/Button').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
+        this.btnSpin = this.transform.Find('/Canvas/Spin').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
         this.btnLeft = this.transform.Find('/Canvas/Left').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
         this.btnRight = this.transform.Find('/Canvas/Right').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
+        this.btnStartGame = this.transform.Find('/Canvas/StartGame').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
 
         this.btnSpin.onClick.AddListener(() => {
             if (this.curBlock)
@@ -213,12 +215,27 @@ export class tetris extends component {
             if (this.curBlock)
                 this.curBlock.move(DIR.RIGHT);
         })
+        this.btnStartGame.onClick.AddListener(() => {
+            this.StartGame();
+        })
+    }
+
+    StartGame() {
+        if (this.curBlock != null) {
+            UnityEngine.GameObject.Destroy(this.curBlock.gameObject);
+            this.curBlock = null;
+        }
+        this.settlePieces.forEach(pieceObj => {
+            UnityEngine.GameObject.Destroy(pieceObj.trans.gameObject);
+        })
+        this.settlePieces = [];
+        this.genRandomBlock();
+        this.btnStartGame.gameObject.SetActive(false);
     }
 
     Start() {
         console.log('tetris gameLogic start.');
         super.Start();
-        this.genRandomBlock();
         this.gameTick = setInterval(() => {
             console.log('gameTick');
             if (this.curBlock)
