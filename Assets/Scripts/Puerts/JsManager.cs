@@ -5,7 +5,7 @@ using UnityEngine;
 public class JsManager : MonoSingleton<JsManager>
 {
     JsEnv jsEnv = null;
-    public string jsRoot = System.IO.Path.Combine(Application.streamingAssetsPath, "scripts");
+    public string jsRoot = System.IO.Path.Combine(Application.persistentDataPath, "scripts");
     public Action JsOnApplicationQuit;
     public Action JsOnDispose;
     public Action JsOnUpdate;
