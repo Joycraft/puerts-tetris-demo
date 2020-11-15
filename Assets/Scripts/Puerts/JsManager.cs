@@ -5,7 +5,7 @@ using UnityEngine;
 public class JsManager : MonoSingleton<JsManager>
 {
     JsEnv jsEnv = null;
-    public string jsRoot = System.IO.Path.Combine(Application.persistentDataPath, "scripts");
+    public string jsRoot;
     public Action JsOnApplicationQuit;
     public Action JsOnDispose;
     public Action JsOnUpdate;
@@ -17,6 +17,7 @@ public class JsManager : MonoSingleton<JsManager>
 
     void Awake()
     {
+        jsRoot = System.IO.Path.Combine(Application.persistentDataPath, "scripts");
         StartGame();
     }
 
