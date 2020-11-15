@@ -185,6 +185,7 @@ export class tetris extends component {
     btnLeft: UnityEngine.UI.Button = null;
     btnRight: UnityEngine.UI.Button = null;
     btnStartGame: UnityEngine.UI.Button = null;
+    btnDown: UnityEngine.UI.Button = null;
 
     //Data
     curBlock: tetrisBlock = null;
@@ -202,6 +203,7 @@ export class tetris extends component {
         this.btnLeft = this.transform.Find('/Canvas/Left').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
         this.btnRight = this.transform.Find('/Canvas/Right').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
         this.btnStartGame = this.transform.Find('/Canvas/StartGame').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
+        this.btnDown = this.transform.Find('/Canvas/Down').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
 
         this.btnSpin.onClick.AddListener(() => {
             if (this.curBlock)
