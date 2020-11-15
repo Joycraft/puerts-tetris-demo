@@ -227,12 +227,13 @@ export class tetris extends component {
     }
 
     genRandomBlock() {
-        let blockType = common.ranInt(0, tetrisData.cubeData.length);
-        let spinIndex = common.ranInt(0, tetrisData.cubeData[blockType].spins.length);
+        let blockType = common.ranInt(0, tetrisData.cubeData.length - 1);
+        let spinIndex = common.ranInt(0, tetrisData.cubeData[blockType].spins.length - 1);
         this.genBlock(blockType, spinIndex);
     }
 
     genBlock(blockType: number, spinIndex: number = 0) {
+        console.log(`genBlock Type:${blockType}, Spin:${spinIndex}`);
         let blockComp = componentMgr.ins.getComponent(<UnityEngine.GameObject>this.Instantiate(this.block), tetrisBlock);
         blockComp.type = blockType;
         blockComp.spinIndex = spinIndex;
