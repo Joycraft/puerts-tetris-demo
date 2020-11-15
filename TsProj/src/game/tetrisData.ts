@@ -153,13 +153,11 @@ export namespace tetrisData {
 
     export let cubeData: tetrisCube[] = [];
 
-    for (let i = 0, length = tetrisArrData.length; i < length; i++) {
-        let arrData = tetrisArrData[i];
+    tetrisArrData.forEach((arrData, index) => {
         let tetrisCube: tetrisCube = {
             spins: [],
         }
-        for (let i = 0, length = arrData.arr.length; i < length; i++) {
-            let spinArr = arrData.arr[i];
+        arrData.arr.forEach(spinArr => {
             let spin: tetrisPiece[] = [];
             for (let i in spinArr) {
                 for (let j in spinArr[i]) {
@@ -174,9 +172,10 @@ export namespace tetrisData {
                 }
             }
             tetrisCube.spins.push(spin);
-        }
+        })
         cubeData.push(tetrisCube);
-    }
+    })
+
 }
 
 
