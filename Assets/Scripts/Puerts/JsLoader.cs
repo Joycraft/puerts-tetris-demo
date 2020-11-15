@@ -29,8 +29,6 @@ public class JsLoader : ILoader
             asset = UnityEngine.Resources.Load<UnityEngine.TextAsset>(filepath);
             return asset.text;
         }
-        asset = UnityEngine.Resources.Load<UnityEngine.TextAsset>(filepath);
-        return asset.text;
         return File.ReadAllText(Path.Combine(root, filepath));
     }
 
