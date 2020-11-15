@@ -46,6 +46,8 @@ public class PuertsCfg
                 typeof(UnityEngine.Material),
                 typeof(UnityEngine.Color),
                 typeof(UnityEngine.Color32),
+                typeof(UnityEngine.AudioSource),
+                typeof(UnityEngine.AudioClip),
 
                 typeof(MonoSingleton<JsManager>),
                 typeof(JsManager),

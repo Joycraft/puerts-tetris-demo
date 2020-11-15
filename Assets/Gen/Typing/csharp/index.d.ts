@@ -721,6 +721,90 @@ declare module 'csharp' {
         class ComputeBuffer extends System.Object {
             
         }
+        class AudioSource extends UnityEngine.AudioBehaviour {
+            public volume: number;
+            public pitch: number;
+            public time: number;
+            public timeSamples: number;
+            public clip: UnityEngine.AudioClip;
+            public outputAudioMixerGroup: UnityEngine.Audio.AudioMixerGroup;
+            public isPlaying: boolean;
+            public isVirtual: boolean;
+            public loop: boolean;
+            public ignoreListenerVolume: boolean;
+            public playOnAwake: boolean;
+            public ignoreListenerPause: boolean;
+            public velocityUpdateMode: UnityEngine.AudioVelocityUpdateMode;
+            public panStereo: number;
+            public spatialBlend: number;
+            public spatialize: boolean;
+            public spatializePostEffects: boolean;
+            public reverbZoneMix: number;
+            public bypassEffects: boolean;
+            public bypassListenerEffects: boolean;
+            public bypassReverbZones: boolean;
+            public dopplerLevel: number;
+            public spread: number;
+            public priority: number;
+            public mute: boolean;
+            public minDistance: number;
+            public maxDistance: number;
+            public rolloffMode: UnityEngine.AudioRolloffMode;
+            public constructor();
+            public Play():void;
+            public Play(delay: bigint):void;
+            public PlayDelayed(delay: number):void;
+            public PlayScheduled(time: number):void;
+            public PlayOneShot(clip: UnityEngine.AudioClip):void;
+            public PlayOneShot(clip: UnityEngine.AudioClip, volumeScale: number):void;
+            public SetScheduledStartTime(time: number):void;
+            public SetScheduledEndTime(time: number):void;
+            public Stop():void;
+            public Pause():void;
+            public UnPause():void;
+            public static PlayClipAtPoint(clip: UnityEngine.AudioClip, position: UnityEngine.Vector3):void;
+            public static PlayClipAtPoint(clip: UnityEngine.AudioClip, position: UnityEngine.Vector3, volume: number):void;
+            public SetCustomCurve(type: UnityEngine.AudioSourceCurveType, curve: UnityEngine.AnimationCurve):void;
+            public GetCustomCurve(type: UnityEngine.AudioSourceCurveType):UnityEngine.AnimationCurve;
+            public GetOutputData(samples: System.Array$1<number>, channel: number):void;
+            public GetSpectrumData(samples: System.Array$1<number>, channel: number, window: UnityEngine.FFTWindow):void;
+            public SetSpatializerFloat(index: number, value: number):boolean;
+            public GetSpatializerFloat(index: number, value: $Ref<number>):boolean;
+            public GetAmbisonicDecoderFloat(index: number, value: $Ref<number>):boolean;
+            public SetAmbisonicDecoderFloat(index: number, value: number):boolean;
+            
+        }
+        class AudioBehaviour extends UnityEngine.Behaviour {
+            
+        }
+        class AudioClip extends UnityEngine.Object {
+            public length: number;
+            public samples: number;
+            public channels: number;
+            public frequency: number;
+            public loadType: UnityEngine.AudioClipLoadType;
+            public preloadAudioData: boolean;
+            public ambisonic: boolean;
+            public loadInBackground: boolean;
+            public loadState: UnityEngine.AudioDataLoadState;
+            public LoadAudioData():boolean;
+            public UnloadAudioData():boolean;
+            public GetData(data: System.Array$1<number>, offsetSamples: number):boolean;
+            public SetData(data: System.Array$1<number>, offsetSamples: number):boolean;
+            public static Create(name: string, lengthSamples: number, channels: number, frequency: number, stream: boolean):UnityEngine.AudioClip;
+            public static Create(name: string, lengthSamples: number, channels: number, frequency: number, stream: boolean, pcmreadercallback: UnityEngine.AudioClip.PCMReaderCallback):UnityEngine.AudioClip;
+            public static Create(name: string, lengthSamples: number, channels: number, frequency: number, stream: boolean, pcmreadercallback: UnityEngine.AudioClip.PCMReaderCallback, pcmsetpositioncallback: UnityEngine.AudioClip.PCMSetPositionCallback):UnityEngine.AudioClip;
+            
+        }
+        enum AudioVelocityUpdateMode { Auto = 0, Fixed = 1, Dynamic = 2 }
+        enum AudioSourceCurveType { CustomRolloff = 0, SpatialBlend = 1, ReverbZoneMix = 2, Spread = 3 }
+        class AnimationCurve extends System.Object {
+            
+        }
+        enum AudioRolloffMode { Logarithmic = 0, Linear = 1, Custom = 2 }
+        enum FFTWindow { Rectangular = 0, Triangle = 1, Hamming = 2, Hanning = 3, Blackman = 4, BlackmanHarris = 5 }
+        enum AudioClipLoadType { DecompressOnLoad = 0, CompressedInMemory = 1, Streaming = 2 }
+        enum AudioDataLoadState { Unloaded = 0, Loading = 1, Loaded = 2, Failed = 3 }
         
     }
     namespace System {
@@ -975,6 +1059,9 @@ declare module 'csharp' {
         class Byte extends System.ValueType {
             
         }
+        class Double extends System.ValueType {
+            
+        }
         type Action = () => void;
         var Action: {new (func: () => void): Action;}
         
@@ -1222,6 +1309,19 @@ declare module 'csharp' {
     }
     namespace UnityEngine.Experimental.Rendering {
         enum RayTracingMode { Off = 0, Static = 1, DynamicTransform = 2, DynamicGeometry = 3 }
+        
+    }
+    namespace UnityEngine.Audio {
+        class AudioMixerGroup extends UnityEngine.Object {
+            
+        }
+        
+    }
+    namespace UnityEngine.AudioClip {
+        type PCMReaderCallback = (data: System.Array$1<number>) => void;
+        var PCMReaderCallback: {new (func: (data: System.Array$1<number>) => void): PCMReaderCallback;}
+        type PCMSetPositionCallback = (position: number) => void;
+        var PCMSetPositionCallback: {new (func: (position: number) => void): PCMSetPositionCallback;}
         
     }
     

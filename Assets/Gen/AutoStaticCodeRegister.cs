@@ -26,6 +26,8 @@
             jsEnv.AddLazyStaticWrapLoader(typeof(UnityEngine.Material), UnityEngine_Material_Wrap.GetRegisterInfo);
             jsEnv.AddLazyStaticWrapLoader(typeof(UnityEngine.Color), UnityEngine_Color_Wrap.GetRegisterInfo);
             jsEnv.AddLazyStaticWrapLoader(typeof(UnityEngine.Color32), UnityEngine_Color32_Wrap.GetRegisterInfo);
+            jsEnv.AddLazyStaticWrapLoader(typeof(UnityEngine.AudioSource), UnityEngine_AudioSource_Wrap.GetRegisterInfo);
+            jsEnv.AddLazyStaticWrapLoader(typeof(UnityEngine.AudioClip), UnityEngine_AudioClip_Wrap.GetRegisterInfo);
             jsEnv.AddLazyStaticWrapLoader(typeof(MonoSingleton<JsManager>), MonoSingleton_1_JsManager__Wrap.GetRegisterInfo);
             jsEnv.AddLazyStaticWrapLoader(typeof(JsManager), JsManager_Wrap.GetRegisterInfo);
             jsEnv.AddLazyStaticWrapLoader(typeof(JsBehaviour), JsBehaviour_Wrap.GetRegisterInfo);
