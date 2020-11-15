@@ -176,6 +176,7 @@ interface pieceObj {
 
 @common.globalObject
 export class tetris extends component {
+    //GameObject
     content: UnityEngine.Transform = null;
     block: UnityEngine.Transform = null;
     curBlock: tetrisBlock = null;
@@ -185,6 +186,7 @@ export class tetris extends component {
     btnLeft: UnityEngine.UI.Button = null;
     btnRight: UnityEngine.UI.Button = null;
 
+    //Data
     settlePieces: pieceObj[] = [];
     width: number = 15;
     height: number = 25;
