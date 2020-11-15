@@ -85,99 +85,6 @@ namespace PuertsStaticWrap
         
         
         
-        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_scaleInLightmap(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
-        {
-            try
-            {
-                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.MeshRenderer;
-                var result = obj.scaleInLightmap;
-                Puerts.PuertsDLL.ReturnNumber(isolate, info, result);
-            }
-            catch (Exception e)
-            {
-                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
-            }
-        }
-        
-        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_scaleInLightmap(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
-        {
-            try
-            {
-                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.MeshRenderer;
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.scaleInLightmap = argHelper.GetFloat(false);
-            }
-            catch (Exception e)
-            {
-                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
-            }
-        }
-        
-        
-        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_receiveGI(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
-        {
-            try
-            {
-                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.MeshRenderer;
-                var result = obj.receiveGI;
-                Puerts.PuertsDLL.ReturnNumber(isolate, info, (int)result);
-            }
-            catch (Exception e)
-            {
-                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
-            }
-        }
-        
-        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_receiveGI(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
-        {
-            try
-            {
-                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.MeshRenderer;
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.receiveGI = (UnityEngine.ReceiveGI)argHelper.GetInt32(false);
-            }
-            catch (Exception e)
-            {
-                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
-            }
-        }
-        
-        
-        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_stitchLightmapSeams(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
-        {
-            try
-            {
-                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.MeshRenderer;
-                var result = obj.stitchLightmapSeams;
-                Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
-            }
-            catch (Exception e)
-            {
-                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
-            }
-        }
-        
-        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_stitchLightmapSeams(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
-        {
-            try
-            {
-                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.MeshRenderer;
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.stitchLightmapSeams = argHelper.GetBoolean(false);
-            }
-            catch (Exception e)
-            {
-                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
-            }
-        }
-        
-        
         
         
         public static Puerts.TypeRegisterInfo GetRegisterInfo()
@@ -194,9 +101,6 @@ namespace PuertsStaticWrap
                 {
                     {"additionalVertexStreams", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_additionalVertexStreams, Setter = S_additionalVertexStreams} },
                     {"subMeshStartIndex", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_subMeshStartIndex, Setter = null} },
-                    {"scaleInLightmap", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_scaleInLightmap, Setter = S_scaleInLightmap} },
-                    {"receiveGI", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_receiveGI, Setter = S_receiveGI} },
-                    {"stitchLightmapSeams", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_stitchLightmapSeams, Setter = S_stitchLightmapSeams} },
                     
                 }
             };

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Puerts;
 using System;
 using UnityEngine;
+using System.Reflection;
 
 //1、配置类必须打[Configure]标签
 //2、必须放Editor目录
@@ -64,5 +65,29 @@ public class PuertsCfg
                 //typeof(Vector3),
             };
         }
+    }
+
+    static List<List<string>> filterProperty = new List<List<string>>
+    {
+        new List<string>(){ "UnityEngine.MeshRenderer", "scaleInLightmap" },
+        new List<string>(){ "UnityEngine.MeshRenderer", "receiveGI" },
+        new List<string>(){ "UnityEngine.MeshRenderer", "stitchLightmapSeams" },
+    };
+
+    [Filter]
+    static bool Filter(MemberInfo memberInfo)
+    {
+        if (memberInfo.MemberType == MemberTypes.Property)
+        {
+            var propertyInfo = memberInfo as PropertyInfo;
+            foreach (var sub in filterProperty)
+            {
+                if (propertyInfo.DeclaringType.FullName == sub[0] && propertyInfo.Name == sub[1])
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

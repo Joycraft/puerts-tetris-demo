@@ -698,9 +698,6 @@ declare module 'csharp' {
         class MeshRenderer extends UnityEngine.Renderer {
             public additionalVertexStreams: UnityEngine.Mesh;
             public subMeshStartIndex: number;
-            public scaleInLightmap: number;
-            public receiveGI: UnityEngine.ReceiveGI;
-            public stitchLightmapSeams: boolean;
             public constructor();
             
         }
