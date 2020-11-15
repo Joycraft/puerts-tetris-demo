@@ -251,12 +251,15 @@ export class tetris extends component {
 
     genBlock(blockType: number, spinIndex: number = 0) {
         console.log(`genBlock Type:${blockType}, Spin:${spinIndex}`);
-        let blockComp = componentMgr.ins.getComponent(<UnityEngine.GameObject>this.Instantiate(this.block), tetrisBlock);
-        blockComp.type = blockType;
-        blockComp.spinIndex = spinIndex;
-        blockComp.transform.SetParent(this.content);
-        this.curBlock = blockComp;
+        if (this.curBlock != null) {
+            UnityEngine.GameObject.Destroy(this.curBlock.gameObject);
+            this.curBlock = null;
+        }
+        this.curBlock = componentMgr.ins.getComponent(<UnityEngine.GameObject>this.Instantiate(this.block), tetrisBlock);
+        this.curBlock.transform.SetParent(this.content);
         this.curBlock.transform.localPosition = new UnityEngine.Vector3(0, this.height + 5, 0);
+        this.curBlock.type = blockType;
+        this.curBlock.spinIndex = spinIndex;
     }
 
     checkExist(posx: number, posy: number) {
