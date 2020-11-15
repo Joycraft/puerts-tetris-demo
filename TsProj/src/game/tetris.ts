@@ -190,7 +190,7 @@ export class tetris extends component {
     curBlock: tetrisBlock = null;
     settlePieces: pieceObj[] = [];
     width: number = 15;
-    height: number = 25;
+    height: number = 20;
 
     gameTick: NodeJS.Timeout = null;
 
@@ -240,7 +240,7 @@ export class tetris extends component {
             console.log('gameTick');
             if (this.curBlock)
                 this.curBlock.move(DIR.DOWN);
-        }, 150);
+        }, 500);
     }
 
     genRandomBlock() {
