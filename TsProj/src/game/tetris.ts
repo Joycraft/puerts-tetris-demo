@@ -212,8 +212,8 @@ export class tetris extends component {
         this.btnRight = this.transform.Find('/Canvas/Right').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
         this.btnStartGame = this.transform.Find('/Canvas/StartGame').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
         this.btnDown = this.transform.Find('/Canvas/Down').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
-        this.audioSpin = this.transform.Find('/Canvas/Audio/spin').GetComponent($typeof(UnityEngine.AudioSource)) as UnityEngine.AudioSource;
-        this.audioClear = this.transform.Find('/Canvas/Audio/clear').GetComponent($typeof(UnityEngine.AudioSource)) as UnityEngine.AudioSource;
+        this.audioSpin = this.transform.Find('/Audio/spin').GetComponent($typeof(UnityEngine.AudioSource)) as UnityEngine.AudioSource;
+        this.audioClear = this.transform.Find('/Audio/clear').GetComponent($typeof(UnityEngine.AudioSource)) as UnityEngine.AudioSource;
 
         this.btnSpin.onClick.AddListener(() => {
             if (this.curBlock)

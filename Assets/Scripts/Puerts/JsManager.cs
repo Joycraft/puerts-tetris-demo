@@ -17,7 +17,11 @@ public class JsManager : MonoSingleton<JsManager>
 
     void Awake()
     {
+#if UNITY_EDITOR
+        jsRoot = System.IO.Path.Combine(Application.streamingAssetsPath, "scripts");
+#else
         jsRoot = System.IO.Path.Combine(Application.persistentDataPath, "scripts");
+#endif
         StartGame();
     }
 
