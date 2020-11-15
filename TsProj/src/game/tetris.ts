@@ -179,7 +179,6 @@ export class tetris extends component {
     //GameObject
     content: UnityEngine.Transform = null;
     block: UnityEngine.Transform = null;
-    curBlock: tetrisBlock = null;
 
     //UI
     btnSpin: UnityEngine.UI.Button = null;
@@ -187,6 +186,7 @@ export class tetris extends component {
     btnRight: UnityEngine.UI.Button = null;
 
     //Data
+    curBlock: tetrisBlock = null;
     settlePieces: pieceObj[] = [];
     width: number = 15;
     height: number = 25;
