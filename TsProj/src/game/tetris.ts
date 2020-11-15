@@ -77,6 +77,11 @@ export class tetrisBlock extends component {
                 let cube = <UnityEngine.GameObject>this.Instantiate(this.cube);
                 cube.transform.SetParent(this.transform);
                 cube.transform.localPosition = new UnityEngine.Vector3(pieceData.x, pieceData.y, 0);
+                let mat = cube.GetComponent($typeof(UnityEngine.MeshRenderer)) as UnityEngine.MeshRenderer;
+                let color = tetrisData.tetrisColor[this.type];
+                let UnityColor = new UnityEngine.Color(color[0] / 255, color[1] / 255, color[2] / 255, color[3] / 255);
+                mat.material.SetColor("_Color", UnityColor)
+                mat.material.SetColor("_OutlineColor", UnityColor);
                 this.cubeList.push(cube.transform);
             })
             return;

@@ -40,6 +40,11 @@ public class PuertsCfg
                 typeof(UnityEngine.UI.Button),
                 typeof(UnityEngine.UI.Button.ButtonClickedEvent),
                 typeof(UnityEngine.Events.UnityEvent),
+                typeof(UnityEngine.Renderer),
+                typeof(UnityEngine.MeshRenderer),
+                typeof(UnityEngine.Material),
+                typeof(UnityEngine.Color),
+                typeof(UnityEngine.Color32),
 
                 typeof(MonoSingleton<JsManager>),
                 typeof(JsManager),

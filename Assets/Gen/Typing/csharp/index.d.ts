@@ -128,6 +128,48 @@ declare module 'csharp' {
             
         }
         class Color extends System.ValueType {
+            public r: number;
+            public g: number;
+            public b: number;
+            public a: number;
+            public static red: UnityEngine.Color;
+            public static green: UnityEngine.Color;
+            public static blue: UnityEngine.Color;
+            public static white: UnityEngine.Color;
+            public static black: UnityEngine.Color;
+            public static yellow: UnityEngine.Color;
+            public static cyan: UnityEngine.Color;
+            public static magenta: UnityEngine.Color;
+            public static gray: UnityEngine.Color;
+            public static grey: UnityEngine.Color;
+            public static clear: UnityEngine.Color;
+            public grayscale: number;
+            public linear: UnityEngine.Color;
+            public gamma: UnityEngine.Color;
+            public maxColorComponent: number;
+            public constructor(r: number, g: number, b: number, a: number);
+            public constructor(r: number, g: number, b: number);
+            public ToString():string;
+            public ToString(format: string):string;
+            public Equals(other: any):boolean;
+            public Equals(other: UnityEngine.Color):boolean;
+            public static op_Addition(a: UnityEngine.Color, b: UnityEngine.Color):UnityEngine.Color;
+            public static op_Subtraction(a: UnityEngine.Color, b: UnityEngine.Color):UnityEngine.Color;
+            public static op_Multiply(a: UnityEngine.Color, b: UnityEngine.Color):UnityEngine.Color;
+            public static op_Multiply(a: UnityEngine.Color, b: number):UnityEngine.Color;
+            public static op_Multiply(b: number, a: UnityEngine.Color):UnityEngine.Color;
+            public static op_Division(a: UnityEngine.Color, b: number):UnityEngine.Color;
+            public static op_Equality(lhs: UnityEngine.Color, rhs: UnityEngine.Color):boolean;
+            public static op_Inequality(lhs: UnityEngine.Color, rhs: UnityEngine.Color):boolean;
+            public static Lerp(a: UnityEngine.Color, b: UnityEngine.Color, t: number):UnityEngine.Color;
+            public static LerpUnclamped(a: UnityEngine.Color, b: UnityEngine.Color, t: number):UnityEngine.Color;
+            public static op_Implicit(c: UnityEngine.Color):UnityEngine.Vector4;
+            public static op_Implicit(v: UnityEngine.Vector4):UnityEngine.Color;
+            public get_Item(index: number):number;
+            public set_Item(index: number, value: number):void;
+            public static RGBToHSV(rgbColor: UnityEngine.Color, H: $Ref<number>, S: $Ref<number>, V: $Ref<number>):void;
+            public static HSVToRGB(H: number, S: number, V: number):UnityEngine.Color;
+            public static HSVToRGB(H: number, S: number, V: number, hdr: boolean):UnityEngine.Color;
             
         }
         class Object extends System.Object {
@@ -408,6 +450,19 @@ declare module 'csharp' {
             
         }
         class Color32 extends System.ValueType {
+            public r: number;
+            public g: number;
+            public b: number;
+            public a: number;
+            public constructor(r: number, g: number, b: number, a: number);
+            public static op_Implicit(c: UnityEngine.Color):UnityEngine.Color32;
+            public static op_Implicit(c: UnityEngine.Color32):UnityEngine.Color;
+            public static Lerp(a: UnityEngine.Color32, b: UnityEngine.Color32, t: number):UnityEngine.Color32;
+            public static LerpUnclamped(a: UnityEngine.Color32, b: UnityEngine.Color32, t: number):UnityEngine.Color32;
+            public get_Item(index: number):number;
+            public set_Item(index: number, value: number):void;
+            public ToString():string;
+            public ToString(format: string):string;
             
         }
         enum ParticleSystemSimulationSpace { Local = 0, World = 1, Custom = 2 }
@@ -460,6 +515,109 @@ declare module 'csharp' {
             
         }
         class Material extends UnityEngine.Object {
+            public shader: UnityEngine.Shader;
+            public color: UnityEngine.Color;
+            public mainTexture: UnityEngine.Texture;
+            public mainTextureOffset: UnityEngine.Vector2;
+            public mainTextureScale: UnityEngine.Vector2;
+            public renderQueue: number;
+            public globalIlluminationFlags: UnityEngine.MaterialGlobalIlluminationFlags;
+            public doubleSidedGI: boolean;
+            public enableInstancing: boolean;
+            public passCount: number;
+            public shaderKeywords: System.Array$1<string>;
+            public constructor(shader: UnityEngine.Shader);
+            public constructor(source: UnityEngine.Material);
+            public HasProperty(nameID: number):boolean;
+            public HasProperty(name: string):boolean;
+            public EnableKeyword(keyword: string):void;
+            public DisableKeyword(keyword: string):void;
+            public IsKeywordEnabled(keyword: string):boolean;
+            public SetShaderPassEnabled(passName: string, enabled: boolean):void;
+            public GetShaderPassEnabled(passName: string):boolean;
+            public GetPassName(pass: number):string;
+            public FindPass(passName: string):number;
+            public SetOverrideTag(tag: string, val: string):void;
+            public GetTag(tag: string, searchFallbacks: boolean, defaultValue: string):string;
+            public GetTag(tag: string, searchFallbacks: boolean):string;
+            public Lerp(start: UnityEngine.Material, end: UnityEngine.Material, t: number):void;
+            public SetPass(pass: number):boolean;
+            public CopyPropertiesFromMaterial(mat: UnityEngine.Material):void;
+            public ComputeCRC():number;
+            public GetTexturePropertyNames():System.Array$1<string>;
+            public GetTexturePropertyNameIDs():System.Array$1<number>;
+            public GetTexturePropertyNames(outNames: System.Collections.Generic.List$1<string>):void;
+            public GetTexturePropertyNameIDs(outNames: System.Collections.Generic.List$1<number>):void;
+            public SetFloat(name: string, value: number):void;
+            public SetFloat(nameID: number, value: number):void;
+            public SetInt(name: string, value: number):void;
+            public SetInt(nameID: number, value: number):void;
+            public SetColor(name: string, value: UnityEngine.Color):void;
+            public SetColor(nameID: number, value: UnityEngine.Color):void;
+            public SetVector(name: string, value: UnityEngine.Vector4):void;
+            public SetVector(nameID: number, value: UnityEngine.Vector4):void;
+            public SetMatrix(name: string, value: UnityEngine.Matrix4x4):void;
+            public SetMatrix(nameID: number, value: UnityEngine.Matrix4x4):void;
+            public SetTexture(name: string, value: UnityEngine.Texture):void;
+            public SetTexture(nameID: number, value: UnityEngine.Texture):void;
+            public SetTexture(name: string, value: UnityEngine.RenderTexture, element: UnityEngine.Rendering.RenderTextureSubElement):void;
+            public SetTexture(nameID: number, value: UnityEngine.RenderTexture, element: UnityEngine.Rendering.RenderTextureSubElement):void;
+            public SetBuffer(name: string, value: UnityEngine.ComputeBuffer):void;
+            public SetBuffer(nameID: number, value: UnityEngine.ComputeBuffer):void;
+            public SetConstantBuffer(name: string, value: UnityEngine.ComputeBuffer, offset: number, size: number):void;
+            public SetConstantBuffer(nameID: number, value: UnityEngine.ComputeBuffer, offset: number, size: number):void;
+            public SetFloatArray(name: string, values: System.Collections.Generic.List$1<number>):void;
+            public SetFloatArray(nameID: number, values: System.Collections.Generic.List$1<number>):void;
+            public SetFloatArray(name: string, values: System.Array$1<number>):void;
+            public SetFloatArray(nameID: number, values: System.Array$1<number>):void;
+            public SetColorArray(name: string, values: System.Collections.Generic.List$1<UnityEngine.Color>):void;
+            public SetColorArray(nameID: number, values: System.Collections.Generic.List$1<UnityEngine.Color>):void;
+            public SetColorArray(name: string, values: System.Array$1<UnityEngine.Color>):void;
+            public SetColorArray(nameID: number, values: System.Array$1<UnityEngine.Color>):void;
+            public SetVectorArray(name: string, values: System.Collections.Generic.List$1<UnityEngine.Vector4>):void;
+            public SetVectorArray(nameID: number, values: System.Collections.Generic.List$1<UnityEngine.Vector4>):void;
+            public SetVectorArray(name: string, values: System.Array$1<UnityEngine.Vector4>):void;
+            public SetVectorArray(nameID: number, values: System.Array$1<UnityEngine.Vector4>):void;
+            public SetMatrixArray(name: string, values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>):void;
+            public SetMatrixArray(nameID: number, values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>):void;
+            public SetMatrixArray(name: string, values: System.Array$1<UnityEngine.Matrix4x4>):void;
+            public SetMatrixArray(nameID: number, values: System.Array$1<UnityEngine.Matrix4x4>):void;
+            public GetFloat(name: string):number;
+            public GetFloat(nameID: number):number;
+            public GetInt(name: string):number;
+            public GetInt(nameID: number):number;
+            public GetColor(name: string):UnityEngine.Color;
+            public GetColor(nameID: number):UnityEngine.Color;
+            public GetVector(name: string):UnityEngine.Vector4;
+            public GetVector(nameID: number):UnityEngine.Vector4;
+            public GetMatrix(name: string):UnityEngine.Matrix4x4;
+            public GetMatrix(nameID: number):UnityEngine.Matrix4x4;
+            public GetTexture(name: string):UnityEngine.Texture;
+            public GetTexture(nameID: number):UnityEngine.Texture;
+            public GetFloatArray(name: string):System.Array$1<number>;
+            public GetFloatArray(nameID: number):System.Array$1<number>;
+            public GetColorArray(name: string):System.Array$1<UnityEngine.Color>;
+            public GetColorArray(nameID: number):System.Array$1<UnityEngine.Color>;
+            public GetVectorArray(name: string):System.Array$1<UnityEngine.Vector4>;
+            public GetVectorArray(nameID: number):System.Array$1<UnityEngine.Vector4>;
+            public GetMatrixArray(name: string):System.Array$1<UnityEngine.Matrix4x4>;
+            public GetMatrixArray(nameID: number):System.Array$1<UnityEngine.Matrix4x4>;
+            public GetFloatArray(name: string, values: System.Collections.Generic.List$1<number>):void;
+            public GetFloatArray(nameID: number, values: System.Collections.Generic.List$1<number>):void;
+            public GetColorArray(name: string, values: System.Collections.Generic.List$1<UnityEngine.Color>):void;
+            public GetColorArray(nameID: number, values: System.Collections.Generic.List$1<UnityEngine.Color>):void;
+            public GetVectorArray(name: string, values: System.Collections.Generic.List$1<UnityEngine.Vector4>):void;
+            public GetVectorArray(nameID: number, values: System.Collections.Generic.List$1<UnityEngine.Vector4>):void;
+            public GetMatrixArray(name: string, values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>):void;
+            public GetMatrixArray(nameID: number, values: System.Collections.Generic.List$1<UnityEngine.Matrix4x4>):void;
+            public SetTextureOffset(name: string, value: UnityEngine.Vector2):void;
+            public SetTextureOffset(nameID: number, value: UnityEngine.Vector2):void;
+            public SetTextureScale(name: string, value: UnityEngine.Vector2):void;
+            public SetTextureScale(nameID: number, value: UnityEngine.Vector2):void;
+            public GetTextureOffset(name: string):UnityEngine.Vector2;
+            public GetTextureOffset(nameID: number):UnityEngine.Vector2;
+            public GetTextureScale(name: string):UnityEngine.Vector2;
+            public GetTextureScale(nameID: number):UnityEngine.Vector2;
             
         }
         enum HideFlags { None = 0, HideInHierarchy = 1, HideInInspector = 2, DontSaveInEditor = 4, NotEditable = 8, DontSaveInBuild = 16, DontUnloadUnusedAsset = 32, DontSave = 52, HideAndDontSave = 61 }
@@ -487,6 +645,83 @@ declare module 'csharp' {
             
         }
         class MonoBehaviour extends UnityEngine.Behaviour {
+            
+        }
+        class Renderer extends UnityEngine.Component {
+            public bounds: UnityEngine.Bounds;
+            public enabled: boolean;
+            public isVisible: boolean;
+            public shadowCastingMode: UnityEngine.Rendering.ShadowCastingMode;
+            public receiveShadows: boolean;
+            public forceRenderingOff: boolean;
+            public motionVectorGenerationMode: UnityEngine.MotionVectorGenerationMode;
+            public lightProbeUsage: UnityEngine.Rendering.LightProbeUsage;
+            public reflectionProbeUsage: UnityEngine.Rendering.ReflectionProbeUsage;
+            public renderingLayerMask: number;
+            public rendererPriority: number;
+            public rayTracingMode: UnityEngine.Experimental.Rendering.RayTracingMode;
+            public sortingLayerName: string;
+            public sortingLayerID: number;
+            public sortingOrder: number;
+            public allowOcclusionWhenDynamic: boolean;
+            public isPartOfStaticBatch: boolean;
+            public worldToLocalMatrix: UnityEngine.Matrix4x4;
+            public localToWorldMatrix: UnityEngine.Matrix4x4;
+            public lightProbeProxyVolumeOverride: UnityEngine.GameObject;
+            public probeAnchor: UnityEngine.Transform;
+            public lightmapIndex: number;
+            public realtimeLightmapIndex: number;
+            public lightmapScaleOffset: UnityEngine.Vector4;
+            public realtimeLightmapScaleOffset: UnityEngine.Vector4;
+            public materials: System.Array$1<UnityEngine.Material>;
+            public material: UnityEngine.Material;
+            public sharedMaterial: UnityEngine.Material;
+            public sharedMaterials: System.Array$1<UnityEngine.Material>;
+            public constructor();
+            public HasPropertyBlock():boolean;
+            public SetPropertyBlock(properties: UnityEngine.MaterialPropertyBlock):void;
+            public SetPropertyBlock(properties: UnityEngine.MaterialPropertyBlock, materialIndex: number):void;
+            public GetPropertyBlock(properties: UnityEngine.MaterialPropertyBlock):void;
+            public GetPropertyBlock(properties: UnityEngine.MaterialPropertyBlock, materialIndex: number):void;
+            public GetMaterials(m: System.Collections.Generic.List$1<UnityEngine.Material>):void;
+            public GetSharedMaterials(m: System.Collections.Generic.List$1<UnityEngine.Material>):void;
+            public GetClosestReflectionProbes(result: System.Collections.Generic.List$1<UnityEngine.Rendering.ReflectionProbeBlendInfo>):void;
+            
+        }
+        class Bounds extends System.ValueType {
+            
+        }
+        class MaterialPropertyBlock extends System.Object {
+            
+        }
+        enum MotionVectorGenerationMode { Camera = 0, Object = 1, ForceNoMotion = 2 }
+        class MeshRenderer extends UnityEngine.Renderer {
+            public additionalVertexStreams: UnityEngine.Mesh;
+            public subMeshStartIndex: number;
+            public scaleInLightmap: number;
+            public receiveGI: UnityEngine.ReceiveGI;
+            public stitchLightmapSeams: boolean;
+            public constructor();
+            
+        }
+        class Mesh extends UnityEngine.Object {
+            
+        }
+        enum ReceiveGI { Lightmaps = 1, LightProbes = 2 }
+        class Shader extends UnityEngine.Object {
+            
+        }
+        class Texture extends UnityEngine.Object {
+            
+        }
+        class Vector2 extends System.ValueType {
+            
+        }
+        enum MaterialGlobalIlluminationFlags { None = 0, RealtimeEmissive = 1, BakedEmissive = 2, EmissiveIsBlack = 4, AnyEmissive = 3 }
+        class RenderTexture extends UnityEngine.Texture {
+            
+        }
+        class ComputeBuffer extends System.Object {
             
         }
         
@@ -740,6 +975,9 @@ declare module 'csharp' {
         class UInt32 extends System.ValueType {
             
         }
+        class Byte extends System.ValueType {
+            
+        }
         type Action = () => void;
         var Action: {new (func: () => void): Action;}
         
@@ -973,6 +1211,20 @@ declare module 'csharp' {
         }
         type UnityAction = () => void;
         var UnityAction: {new (func: () => void): UnityAction;}
+        
+    }
+    namespace UnityEngine.Rendering {
+        enum ShadowCastingMode { Off = 0, On = 1, TwoSided = 2, ShadowsOnly = 3 }
+        enum LightProbeUsage { Off = 0, BlendProbes = 1, UseProxyVolume = 2, CustomProvided = 4 }
+        enum ReflectionProbeUsage { Off = 0, BlendProbes = 1, BlendProbesAndSkybox = 2, Simple = 3 }
+        class ReflectionProbeBlendInfo extends System.ValueType {
+            
+        }
+        enum RenderTextureSubElement { Color = 0, Depth = 1, Stencil = 2, Default = 3 }
+        
+    }
+    namespace UnityEngine.Experimental.Rendering {
+        enum RayTracingMode { Off = 0, Static = 1, DynamicTransform = 2, DynamicGeometry = 3 }
         
     }
     

@@ -1,3 +1,5 @@
+import { UnityEngine } from "csharp";
+
 export namespace tetrisData {
     export interface tetrisPiece {
         x: number,
@@ -6,6 +8,16 @@ export namespace tetrisData {
 
     export interface tetrisCube {
         spins: tetrisPiece[][]
+    }
+
+    export const tetrisColor: { [key: number]: number[] } = {
+        [0]: [0, 166, 255, 255],
+        [1]: [255, 166, 0, 255],
+        [2]: [166, 255, 0, 255],
+        [3]: [255, 0, 166, 255],
+        [4]: [255, 0, 0, 255],
+        [5]: [120, 255, 255, 255],
+        [6]: [255, 255, 255, 255],
     }
 
     let tetrisArrData: {
