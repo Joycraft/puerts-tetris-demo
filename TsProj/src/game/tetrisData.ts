@@ -1,5 +1,3 @@
-import { UnityEngine } from "csharp";
-
 export namespace tetrisData {
     export interface tetrisPiece {
         x: number,
