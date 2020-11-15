@@ -139,7 +139,7 @@ export class tetrisBlock extends component {
                     this.isSettle = false;
                     return;
                 }
-                this.tetrisLogic.settle()
+                this.tetrisLogic.settle(this.cubeList, this.transform.localPosition);
             };
             return;
         }
@@ -276,12 +276,12 @@ export class tetris extends component {
         this.settlePieces.push(piece);
     }
 
-    settle() {
-        this.curBlock.cubeList.forEach(cube => {
+    settle(cubeList: UnityEngine.Transform[], blockPos: UnityEngine.Vector3) {
+        cubeList.forEach(cube => {
             this.addPiece({
                 pos: {
-                    x: cube.localPosition.x + this.curBlock.transform.localPosition.x,
-                    y: cube.localPosition.y + this.curBlock.transform.localPosition.y,
+                    x: cube.localPosition.x + blockPos.x,
+                    y: cube.localPosition.y + blockPos.y,
                 },
                 trans: cube,
             });
