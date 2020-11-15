@@ -218,21 +218,26 @@ export class tetris extends component {
         this.btnSpin.onClick.AddListener(() => {
             if (this.curBlock)
                 this.curBlock.spinIndex++;
+            this.audioSpin.PlayOneShot(this.audioSpin.clip);
         });
         this.btnLeft.onClick.AddListener(() => {
             if (this.curBlock)
                 this.curBlock.move(DIR.LEFT);
+            this.audioSpin.PlayOneShot(this.audioSpin.clip);
         });
         this.btnRight.onClick.AddListener(() => {
             if (this.curBlock)
                 this.curBlock.move(DIR.RIGHT);
+            this.audioSpin.PlayOneShot(this.audioSpin.clip);
         });
         this.btnDown.onClick.AddListener(() => {
             if (this.curBlock)
                 this.curBlock.move(DIR.DOWN);
+            this.audioSpin.PlayOneShot(this.audioSpin.clip);
         });
         this.btnStartGame.onClick.AddListener(() => {
             this.StartGame();
+            this.audioSpin.PlayOneShot(this.audioSpin.clip);
         });
     }
 
@@ -319,6 +324,7 @@ export class tetris extends component {
                         piece.pos.y--;
                     }
                     );
+                this.audioClear.Play();
                 i--;
             }
         }
