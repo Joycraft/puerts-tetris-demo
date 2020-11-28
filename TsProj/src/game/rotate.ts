@@ -4,7 +4,7 @@ import { Common } from "../Common/Common";
 
 const speed = 50;
 
-@Common.globalObject
+@Common.GlobalObject
 export class Rotate extends Component {
     constructor(mono: JsBehaviour) {
         super(mono);

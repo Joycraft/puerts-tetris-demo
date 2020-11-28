@@ -11,7 +11,7 @@ enum DIR {
     DOWN,
 }
 
-@Common.globalObject
+@Common.GlobalObject
 export class TetrisBlock extends Component {
     cube: UnityEngine.Transform = null;
 
@@ -138,7 +138,7 @@ export class TetrisBlock extends Component {
             if (dir == DIR.DOWN) {
                 if (this.isSettle == true) return;
                 this.isSettle = true;
-                await Common.timePromise(250);
+                await Common.TimePromise(250);
                 if (this.CheckBound(dir) != true) {
                     this.isSettle = false;
                     return;
@@ -178,7 +178,7 @@ interface pieceObj {
     trans: UnityEngine.Transform,
 }
 
-@Common.globalObject
+@Common.GlobalObject
 export class Tetris extends Component {
     //GameObject
     content: UnityEngine.Transform = null;
@@ -265,8 +265,8 @@ export class Tetris extends Component {
     }
 
     private GenRandomBlock() {
-        let blockType = Common.ranInt(0, TetrisData.cubeData.length - 1);
-        let spinIndex = Common.ranInt(0, TetrisData.cubeData[blockType].spins.length - 1);
+        let blockType = Common.RanInt(0, TetrisData.cubeData.length - 1);
+        let spinIndex = Common.RanInt(0, TetrisData.cubeData[blockType].spins.length - 1);
         this.GenBlock(blockType, spinIndex);
     }
 
