@@ -1,4 +1,4 @@
-export namespace tetrisData {
+export namespace TetrisData {
     export interface tetrisPiece {
         x: number,
         y: number,

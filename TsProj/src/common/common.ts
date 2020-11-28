@@ -1,4 +1,4 @@
-export class common {
+export class Common {
     //[min,max] 闭区间随机整数
     static ranInt(min: number, max: number) {
         var Range = max - min;

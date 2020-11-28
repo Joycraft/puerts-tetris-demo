@@ -4,6 +4,6 @@ export enum EVT {
     UPDATE_TICK = 'updateTick',
 }
 
-export class globalEvent {
+export class GlobalEvent {
     static emitter: events.EventEmitter = new events.EventEmitter();
 }

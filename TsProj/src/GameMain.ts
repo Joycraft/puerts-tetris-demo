@@ -1,5 +1,5 @@
 import { JsManager } from 'csharp';
-import { EVT, globalEvent } from './puerts/globalEvent';
+import { EVT, GlobalEvent } from './Puerts/GlobalEvent';
 require('./game/rotate');
 require('./game/tetris');
 
@@ -11,7 +11,7 @@ class GameMain {
     }
 
     public onUpdate() {
-        globalEvent.emitter.emit(EVT.UPDATE_TICK);
+        GlobalEvent.emitter.emit(EVT.UPDATE_TICK);
     }
 
     public onApplicationQuit() {

@@ -1,8 +1,8 @@
-import { componentMgr } from "../puerts/componentMgr";
+import { ComponentMgr } from "../Puerts/ComponentMgr";
 import { JsBehaviour, UnityEngine } from "csharp";
-import { component } from "../puerts/component";
-import { common } from "../common/common";
-import { tetrisData } from "./tetrisData";
+import { Component } from "../Puerts/Component";
+import { Common } from "../Common/Common";
+import { TetrisData } from "./TetrisData";
 import { $typeof } from "puerts";
 
 enum DIR {
@@ -11,8 +11,8 @@ enum DIR {
     DOWN,
 }
 
-@common.globalObject
-export class tetrisBlock extends component {
+@Common.globalObject
+export class TetrisBlock extends Component {
     cube: UnityEngine.Transform = null;
 
     cubeList: UnityEngine.Transform[] = [];
@@ -23,7 +23,7 @@ export class tetrisBlock extends component {
     }
     public set type(value: number) {
         this._type = value;
-        if (this._type >= tetrisData.cubeData.length || this._type < 0)
+        if (this._type >= TetrisData.cubeData.length || this._type < 0)
             this._type = 0;
         this.Draw();
     }
@@ -40,17 +40,17 @@ export class tetrisBlock extends component {
     }
 
     get allData() {
-        return tetrisData.cubeData[this.type].spins;
+        return TetrisData.cubeData[this.type].spins;
     }
 
     get data() {
-        return tetrisData.cubeData[this.type].spins[this.spinIndex];
+        return TetrisData.cubeData[this.type].spins[this.spinIndex];
     }
 
-    private _tetrisLogic: tetris = null;
-    public get tetrisLogic(): tetris {
+    private _tetrisLogic: Tetris = null;
+    public get tetrisLogic(): Tetris {
         if (this._tetrisLogic == null) {
-            this._tetrisLogic = componentMgr.ins.getComponent(this.transform.Find("/Tetris"), tetris);
+            this._tetrisLogic = ComponentMgr.ins.getComponent(this.transform.Find("/Tetris"), Tetris);
         }
         return this._tetrisLogic;
     }
@@ -78,7 +78,7 @@ export class tetrisBlock extends component {
                 cube.transform.SetParent(this.transform);
                 cube.transform.localPosition = new UnityEngine.Vector3(pieceData.x, pieceData.y, 0);
                 let mat = cube.GetComponent($typeof(UnityEngine.MeshRenderer)) as UnityEngine.MeshRenderer;
-                let color = tetrisData.tetrisColor[this.type];
+                let color = TetrisData.tetrisColor[this.type];
                 let UnityColor = new UnityEngine.Color(color[0] / 255, color[1] / 255, color[2] / 255, color[3] / 255);
                 mat.material.SetColor("_Color", UnityColor)
                 this.cubeList.push(cube.transform);
@@ -96,7 +96,7 @@ export class tetrisBlock extends component {
             value = 0;
         let spinedData = this.allData[value];
         for (let i in spinedData) {
-            let boundPiece: tetrisData.tetrisPiece = { x: spinedData[i].x + this.transform.localPosition.x, y: spinedData[i].y + this.transform.localPosition.y };
+            let boundPiece: TetrisData.tetrisPiece = { x: spinedData[i].x + this.transform.localPosition.x, y: spinedData[i].y + this.transform.localPosition.y };
             if (this.tetrisLogic.CheckExist(boundPiece.x, boundPiece.y) == true
                 || boundPiece.x < - this.tetrisLogic.width / 2
                 || boundPiece.x > this.tetrisLogic.width / 2
@@ -111,7 +111,7 @@ export class tetrisBlock extends component {
     private CheckBound(dir: DIR) {
         for (let i in this.data) {
             let piece = this.data[i];
-            let boundPiece: tetrisData.tetrisPiece = null;
+            let boundPiece: TetrisData.tetrisPiece = null;
             switch (dir) {
                 case DIR.DOWN: //下移碰撞
                     boundPiece = { x: this.transform.localPosition.x + piece.x, y: this.transform.localPosition.y + piece.y - 1 };
@@ -138,7 +138,7 @@ export class tetrisBlock extends component {
             if (dir == DIR.DOWN) {
                 if (this.isSettle == true) return;
                 this.isSettle = true;
-                await common.timePromise(250);
+                await Common.timePromise(250);
                 if (this.CheckBound(dir) != true) {
                     this.isSettle = false;
                     return;
@@ -178,8 +178,8 @@ interface pieceObj {
     trans: UnityEngine.Transform,
 }
 
-@common.globalObject
-export class tetris extends component {
+@Common.globalObject
+export class Tetris extends Component {
     //GameObject
     content: UnityEngine.Transform = null;
     block: UnityEngine.Transform = null;
@@ -196,7 +196,7 @@ export class tetris extends component {
     audioClear: UnityEngine.AudioSource = null;
 
     //Data
-    curBlock: tetrisBlock = null;
+    curBlock: TetrisBlock = null;
     settlePieces: pieceObj[] = [];
     width: number = 15;
     height: number = 20;
@@ -265,8 +265,8 @@ export class tetris extends component {
     }
 
     private GenRandomBlock() {
-        let blockType = common.ranInt(0, tetrisData.cubeData.length - 1);
-        let spinIndex = common.ranInt(0, tetrisData.cubeData[blockType].spins.length - 1);
+        let blockType = Common.ranInt(0, TetrisData.cubeData.length - 1);
+        let spinIndex = Common.ranInt(0, TetrisData.cubeData[blockType].spins.length - 1);
         this.GenBlock(blockType, spinIndex);
     }
 
@@ -276,7 +276,7 @@ export class tetris extends component {
             UnityEngine.GameObject.Destroy(this.curBlock.gameObject);
             this.curBlock = null;
         }
-        this.curBlock = componentMgr.ins.getComponent(<UnityEngine.GameObject>this.Instantiate(this.block), tetrisBlock);
+        this.curBlock = ComponentMgr.ins.getComponent(<UnityEngine.GameObject>this.Instantiate(this.block), TetrisBlock);
         this.curBlock.transform.SetParent(this.content);
         this.curBlock.transform.localPosition = new UnityEngine.Vector3(0, this.height + 5, 0);
         this.curBlock.type = blockType;

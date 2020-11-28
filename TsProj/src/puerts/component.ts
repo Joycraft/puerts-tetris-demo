@@ -1,8 +1,8 @@
-import { EVT, globalEvent } from "./globalEvent";
-import { componentMgr } from "./componentMgr";
+import { EVT, GlobalEvent } from "./GlobalEvent";
+import { ComponentMgr } from "./ComponentMgr";
 import { JsBehaviour, UnityEngine } from "csharp";
 
-export class component {
+export class Component {
     static create(mono: JsBehaviour) {
         new this(mono);
     }
@@ -27,13 +27,13 @@ export class component {
             if (this.gameObject.activeInHierarchy == false) return;
             this.Update();
         };
-        globalEvent.emitter.on(EVT.UPDATE_TICK, this._updateListener);
-        componentMgr.ins.add(this.gameObject.GetHashCode(), this);
+        GlobalEvent.emitter.on(EVT.UPDATE_TICK, this._updateListener);
+        ComponentMgr.ins.add(this.gameObject.GetHashCode(), this);
     }
 
     OnDestory() {
-        globalEvent.emitter.off(EVT.UPDATE_TICK, this._updateListener);
-        componentMgr.ins.del(this.gameObject.GetHashCode(), this);
+        GlobalEvent.emitter.off(EVT.UPDATE_TICK, this._updateListener);
+        ComponentMgr.ins.del(this.gameObject.GetHashCode(), this);
         this._mono = null;
         this._updateListener = null;
     }
