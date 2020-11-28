@@ -18,6 +18,8 @@ export namespace tetrisData {
         [6]: [255, 255, 255, 255],
     }
 
+    export let cubeData: tetrisCube[] = [];
+
     let tetrisArrData: {
         anchor: number[],
         arr: number[][][],
@@ -161,8 +163,6 @@ export namespace tetrisData {
         ]
     }
 
-    export let cubeData: tetrisCube[] = [];
-
     tetrisArrData.forEach((arrData, index) => {
         let tetrisCube: tetrisCube = {
             spins: [],
@@ -185,7 +185,6 @@ export namespace tetrisData {
         })
         cubeData.push(tetrisCube);
     })
-
 }
 
 

@@ -25,7 +25,7 @@ export class tetrisBlock extends component {
         this._type = value;
         if (this._type >= tetrisData.cubeData.length || this._type < 0)
             this._type = 0;
-        this.draw();
+        this.Draw();
     }
 
     private _spinIndex: number = 0;
@@ -33,10 +33,10 @@ export class tetrisBlock extends component {
         return this._spinIndex;
     }
     public set spinIndex(value: number) {
-        value = this.checkSpinIndex(value);
+        value = this.CheckSpinIndex(value);
         if (value == null) return;
         this._spinIndex = value;
-        this.draw();
+        this.Draw();
     }
 
     get allData() {
@@ -67,7 +67,7 @@ export class tetrisBlock extends component {
         super.Start();
     }
 
-    draw() {
+    private Draw() {
         console.log('draw block');
         if (this.data == null) return;
         if (this.cubeList.length != this.data.length) {
@@ -91,13 +91,13 @@ export class tetrisBlock extends component {
         }
     }
 
-    checkSpinIndex(value: number) {
+    private CheckSpinIndex(value: number) {
         if (value >= this.allData.length || value < 0)
             value = 0;
         let spinedData = this.allData[value];
         for (let i in spinedData) {
             let boundPiece: tetrisData.tetrisPiece = { x: spinedData[i].x + this.transform.localPosition.x, y: spinedData[i].y + this.transform.localPosition.y };
-            if (this.tetrisLogic.checkExist(boundPiece.x, boundPiece.y) == true
+            if (this.tetrisLogic.CheckExist(boundPiece.x, boundPiece.y) == true
                 || boundPiece.x < - this.tetrisLogic.width / 2
                 || boundPiece.x > this.tetrisLogic.width / 2
                 || boundPiece.y < 0
@@ -108,7 +108,7 @@ export class tetrisBlock extends component {
         return value;
     }
 
-    checkBound(dir: DIR) {
+    private CheckBound(dir: DIR) {
         for (let i in this.data) {
             let piece = this.data[i];
             let boundPiece: tetrisData.tetrisPiece = null;
@@ -127,23 +127,23 @@ export class tetrisBlock extends component {
                     break;
             }
 
-            if (this.tetrisLogic.checkExist(boundPiece.x, boundPiece.y) == true) {
+            if (this.tetrisLogic.CheckExist(boundPiece.x, boundPiece.y) == true) {
                 return true;
             }
         }
     }
 
-    async move(dir: DIR) {
-        if (this.checkBound(dir)) {
+    async Move(dir: DIR) {
+        if (this.CheckBound(dir)) {
             if (dir == DIR.DOWN) {
                 if (this.isSettle == true) return;
                 this.isSettle = true;
                 await common.timePromise(250);
-                if (this.checkBound(dir) != true) {
+                if (this.CheckBound(dir) != true) {
                     this.isSettle = false;
                     return;
                 }
-                this.tetrisLogic.settle(this.cubeList, this.transform.localPosition);
+                this.tetrisLogic.Settle(this.cubeList, this.transform.localPosition);
             };
             return;
         }
@@ -222,17 +222,17 @@ export class tetris extends component {
         });
         this.btnLeft.onClick.AddListener(() => {
             if (this.curBlock)
-                this.curBlock.move(DIR.LEFT);
+                this.curBlock.Move(DIR.LEFT);
             this.audioSpin.PlayOneShot(this.audioSpin.clip);
         });
         this.btnRight.onClick.AddListener(() => {
             if (this.curBlock)
-                this.curBlock.move(DIR.RIGHT);
+                this.curBlock.Move(DIR.RIGHT);
             this.audioSpin.PlayOneShot(this.audioSpin.clip);
         });
         this.btnDown.onClick.AddListener(() => {
             if (this.curBlock)
-                this.curBlock.move(DIR.DOWN);
+                this.curBlock.Move(DIR.DOWN);
             this.audioSpin.PlayOneShot(this.audioSpin.clip);
         });
         this.btnStartGame.onClick.AddListener(() => {
@@ -250,7 +250,7 @@ export class tetris extends component {
             UnityEngine.GameObject.Destroy(pieceObj.trans.gameObject);
         })
         this.settlePieces = [];
-        this.genRandomBlock();
+        this.GenRandomBlock();
         this.btnStartGame.gameObject.SetActive(false);
     }
 
@@ -260,17 +260,17 @@ export class tetris extends component {
         this.gameTick = setInterval(() => {
             console.log('gameTick');
             if (this.curBlock)
-                this.curBlock.move(DIR.DOWN);
+                this.curBlock.Move(DIR.DOWN);
         }, 500);
     }
 
-    genRandomBlock() {
+    private GenRandomBlock() {
         let blockType = common.ranInt(0, tetrisData.cubeData.length - 1);
         let spinIndex = common.ranInt(0, tetrisData.cubeData[blockType].spins.length - 1);
-        this.genBlock(blockType, spinIndex);
+        this.GenBlock(blockType, spinIndex);
     }
 
-    genBlock(blockType: number, spinIndex: number = 0) {
+    private GenBlock(blockType: number, spinIndex: number = 0) {
         console.log(`genBlock Type:${blockType}, Spin:${spinIndex}`);
         if (this.curBlock != null) {
             UnityEngine.GameObject.Destroy(this.curBlock.gameObject);
@@ -283,11 +283,7 @@ export class tetris extends component {
         this.curBlock.spinIndex = spinIndex;
     }
 
-    checkExist(posx: number, posy: number) {
-        return this.settlePieces.filter(piece => piece != null && piece.pos.x == posx && piece.pos.y == posy).length > 0
-    }
-
-    addPiece(piece: pieceObj) {
+    private AddPiece(piece: pieceObj) {
         for (let i in this.settlePieces) {
             if (this.settlePieces[i] == null) {
                 this.settlePieces[i] = piece;
@@ -297,9 +293,13 @@ export class tetris extends component {
         this.settlePieces.push(piece);
     }
 
-    settle(cubeList: UnityEngine.Transform[], blockPos: UnityEngine.Vector3) {
+    CheckExist(posx: number, posy: number) {
+        return this.settlePieces.filter(piece => piece != null && piece.pos.x == posx && piece.pos.y == posy).length > 0
+    }
+
+    Settle(cubeList: UnityEngine.Transform[], blockPos: UnityEngine.Vector3) {
         cubeList.forEach(cube => {
-            this.addPiece({
+            this.AddPiece({
                 pos: {
                     x: cube.localPosition.x + blockPos.x,
                     y: cube.localPosition.y + blockPos.y,
@@ -328,7 +328,7 @@ export class tetris extends component {
                 i--;
             }
         }
-        this.genRandomBlock();
+        this.GenRandomBlock();
     }
 
     Update() {
