@@ -96,7 +96,7 @@ export class TetrisBlock extends Component {
             value = 0;
         let spinedData = this.allData[value];
         for (let i in spinedData) {
-            let boundPiece: TetrisData.tetrisPiece = { x: spinedData[i].x + this.transform.localPosition.x, y: spinedData[i].y + this.transform.localPosition.y };
+            let boundPiece: TetrisData.TetrisPiece = { x: spinedData[i].x + this.transform.localPosition.x, y: spinedData[i].y + this.transform.localPosition.y };
             if (this.tetrisLogic.CheckExist(boundPiece.x, boundPiece.y) == true
                 || boundPiece.x < - this.tetrisLogic.width / 2
                 || boundPiece.x > this.tetrisLogic.width / 2
@@ -111,7 +111,7 @@ export class TetrisBlock extends Component {
     private CheckBound(dir: DIR) {
         for (let i in this.data) {
             let piece = this.data[i];
-            let boundPiece: TetrisData.tetrisPiece = null;
+            let boundPiece: TetrisData.TetrisPiece = null;
             switch (dir) {
                 case DIR.DOWN: //下移碰撞
                     boundPiece = { x: this.transform.localPosition.x + piece.x, y: this.transform.localPosition.y + piece.y - 1 };

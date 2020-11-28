@@ -1,13 +1,14 @@
 export namespace TetrisData {
-    export interface tetrisPiece {
+    export interface TetrisPiece {
         x: number,
         y: number,
     }
 
-    export interface tetrisCube {
-        spins: tetrisPiece[][]
+    export interface TetrisCube {
+        spins: TetrisPiece[][]
     }
 
+    export let cubeData: TetrisCube[] = [];
     export const tetrisColor: { [key: number]: number[] } = {
         [0]: [0, 166, 255, 255],
         [1]: [255, 166, 0, 255],
@@ -17,8 +18,6 @@ export namespace TetrisData {
         [5]: [120, 255, 255, 255],
         [6]: [255, 255, 255, 255],
     }
-
-    export let cubeData: tetrisCube[] = [];
 
     let tetrisArrData: {
         anchor: number[],
@@ -164,16 +163,16 @@ export namespace TetrisData {
     }
 
     tetrisArrData.forEach((arrData, index) => {
-        let tetrisCube: tetrisCube = {
+        let tetrisCube: TetrisCube = {
             spins: [],
         }
         arrData.arr.forEach(spinArr => {
-            let spin: tetrisPiece[] = [];
+            let spin: TetrisPiece[] = [];
             for (let i in spinArr) {
                 for (let j in spinArr[i]) {
                     let result = spinArr[i][j];
                     if (result == 1) {
-                        let tetrisPiece: tetrisPiece = {
+                        let tetrisPiece: TetrisPiece = {
                             x: parseInt(i) - arrData.anchor[0],
                             y: parseInt(j) - arrData.anchor[1],
                         }
