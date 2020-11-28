@@ -170,7 +170,7 @@ export class TetrisBlock extends Component {
     }
 }
 
-interface pieceObj {
+interface PieceObj {
     pos: {
         x: number,
         y: number,
@@ -197,7 +197,7 @@ export class Tetris extends Component {
 
     //Data
     CurBlock: TetrisBlock = null;
-    SettlePieces: pieceObj[] = [];
+    SettlePieces: PieceObj[] = [];
     Width: number = 15;
     Height: number = 20;
 
@@ -283,7 +283,7 @@ export class Tetris extends Component {
         this.CurBlock.spinIndex = spinIndex;
     }
 
-    private AddPiece(piece: pieceObj) {
+    private AddPiece(piece: PieceObj) {
         for (let i in this.SettlePieces) {
             if (this.SettlePieces[i] == null) {
                 this.SettlePieces[i] = piece;
