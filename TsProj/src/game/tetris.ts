@@ -98,8 +98,8 @@ export class TetrisBlock extends Component {
         for (let i in spinedData) {
             let boundPiece: TetrisData.TetrisPiece = { x: spinedData[i].x + this.transform.localPosition.x, y: spinedData[i].y + this.transform.localPosition.y };
             if (this.tetrisLogic.CheckExist(boundPiece.x, boundPiece.y) == true
-                || boundPiece.x < - this.tetrisLogic.width / 2
-                || boundPiece.x > this.tetrisLogic.width / 2
+                || boundPiece.x < - this.tetrisLogic.Width / 2
+                || boundPiece.x > this.tetrisLogic.Width / 2
                 || boundPiece.y < 0
             ) {
                 return null;
@@ -119,11 +119,11 @@ export class TetrisBlock extends Component {
                     break;
                 case DIR.LEFT: //左移碰撞
                     boundPiece = { x: this.transform.localPosition.x + piece.x - 1, y: this.transform.localPosition.y + piece.y };
-                    if (boundPiece.x < -this.tetrisLogic.width / 2) return true;
+                    if (boundPiece.x < -this.tetrisLogic.Width / 2) return true;
                     break;
                 case DIR.RIGHT: //右移碰撞
                     boundPiece = { x: this.transform.localPosition.x + piece.x + 1, y: this.transform.localPosition.y + piece.y };
-                    if (boundPiece.x > this.tetrisLogic.width / 2) return true;
+                    if (boundPiece.x > this.tetrisLogic.Width / 2) return true;
                     break;
             }
 
@@ -181,86 +181,86 @@ interface pieceObj {
 @Common.GlobalObject
 export class Tetris extends Component {
     //GameObject
-    content: UnityEngine.Transform = null;
-    block: UnityEngine.Transform = null;
+    Content: UnityEngine.Transform = null;
+    Block: UnityEngine.Transform = null;
 
     //UI
-    btnSpin: UnityEngine.UI.Button = null;
-    btnLeft: UnityEngine.UI.Button = null;
-    btnRight: UnityEngine.UI.Button = null;
-    btnStartGame: UnityEngine.UI.Button = null;
-    btnDown: UnityEngine.UI.Button = null;
+    BtnSpin: UnityEngine.UI.Button = null;
+    BtnLeft: UnityEngine.UI.Button = null;
+    BtnRight: UnityEngine.UI.Button = null;
+    BtnStartGame: UnityEngine.UI.Button = null;
+    BtnDown: UnityEngine.UI.Button = null;
 
     //Audio
-    audioSpin: UnityEngine.AudioSource = null;
-    audioClear: UnityEngine.AudioSource = null;
+    AudioSpin: UnityEngine.AudioSource = null;
+    AudioClear: UnityEngine.AudioSource = null;
 
     //Data
-    curBlock: TetrisBlock = null;
-    settlePieces: pieceObj[] = [];
-    width: number = 15;
-    height: number = 20;
+    CurBlock: TetrisBlock = null;
+    SettlePieces: pieceObj[] = [];
+    Width: number = 15;
+    Height: number = 20;
 
-    gameTick: NodeJS.Timeout = null;
+    GameTick: NodeJS.Timeout = null;
 
     constructor(mono: JsBehaviour) {
         super(mono);
-        this.content = this.transform.Find('content');
-        this.block = this.transform.Find('block');
-        this.btnSpin = this.transform.Find('/Canvas/Spin').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
-        this.btnLeft = this.transform.Find('/Canvas/Left').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
-        this.btnRight = this.transform.Find('/Canvas/Right').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
-        this.btnStartGame = this.transform.Find('/Canvas/StartGame').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
-        this.btnDown = this.transform.Find('/Canvas/Down').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
-        this.audioSpin = this.transform.Find('/Audio/spin').GetComponent($typeof(UnityEngine.AudioSource)) as UnityEngine.AudioSource;
-        this.audioClear = this.transform.Find('/Audio/clear').GetComponent($typeof(UnityEngine.AudioSource)) as UnityEngine.AudioSource;
+        this.Content = this.transform.Find('content');
+        this.Block = this.transform.Find('block');
+        this.BtnSpin = this.transform.Find('/Canvas/Spin').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
+        this.BtnLeft = this.transform.Find('/Canvas/Left').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
+        this.BtnRight = this.transform.Find('/Canvas/Right').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
+        this.BtnStartGame = this.transform.Find('/Canvas/StartGame').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
+        this.BtnDown = this.transform.Find('/Canvas/Down').GetComponent($typeof(UnityEngine.UI.Button)) as UnityEngine.UI.Button;
+        this.AudioSpin = this.transform.Find('/Audio/spin').GetComponent($typeof(UnityEngine.AudioSource)) as UnityEngine.AudioSource;
+        this.AudioClear = this.transform.Find('/Audio/clear').GetComponent($typeof(UnityEngine.AudioSource)) as UnityEngine.AudioSource;
 
-        this.btnSpin.onClick.AddListener(() => {
-            if (this.curBlock)
-                this.curBlock.spinIndex++;
-            this.audioSpin.PlayOneShot(this.audioSpin.clip);
+        this.BtnSpin.onClick.AddListener(() => {
+            if (this.CurBlock)
+                this.CurBlock.spinIndex++;
+            this.AudioSpin.PlayOneShot(this.AudioSpin.clip);
         });
-        this.btnLeft.onClick.AddListener(() => {
-            if (this.curBlock)
-                this.curBlock.Move(DIR.LEFT);
-            this.audioSpin.PlayOneShot(this.audioSpin.clip);
+        this.BtnLeft.onClick.AddListener(() => {
+            if (this.CurBlock)
+                this.CurBlock.Move(DIR.LEFT);
+            this.AudioSpin.PlayOneShot(this.AudioSpin.clip);
         });
-        this.btnRight.onClick.AddListener(() => {
-            if (this.curBlock)
-                this.curBlock.Move(DIR.RIGHT);
-            this.audioSpin.PlayOneShot(this.audioSpin.clip);
+        this.BtnRight.onClick.AddListener(() => {
+            if (this.CurBlock)
+                this.CurBlock.Move(DIR.RIGHT);
+            this.AudioSpin.PlayOneShot(this.AudioSpin.clip);
         });
-        this.btnDown.onClick.AddListener(() => {
-            if (this.curBlock)
-                this.curBlock.Move(DIR.DOWN);
-            this.audioSpin.PlayOneShot(this.audioSpin.clip);
+        this.BtnDown.onClick.AddListener(() => {
+            if (this.CurBlock)
+                this.CurBlock.Move(DIR.DOWN);
+            this.AudioSpin.PlayOneShot(this.AudioSpin.clip);
         });
-        this.btnStartGame.onClick.AddListener(() => {
+        this.BtnStartGame.onClick.AddListener(() => {
             this.StartGame();
-            this.audioSpin.PlayOneShot(this.audioSpin.clip);
+            this.AudioSpin.PlayOneShot(this.AudioSpin.clip);
         });
     }
 
     StartGame() {
-        if (this.curBlock != null) {
-            UnityEngine.GameObject.Destroy(this.curBlock.gameObject);
-            this.curBlock = null;
+        if (this.CurBlock != null) {
+            UnityEngine.GameObject.Destroy(this.CurBlock.gameObject);
+            this.CurBlock = null;
         }
-        this.settlePieces.forEach(pieceObj => {
+        this.SettlePieces.forEach(pieceObj => {
             UnityEngine.GameObject.Destroy(pieceObj.trans.gameObject);
         })
-        this.settlePieces = [];
+        this.SettlePieces = [];
         this.GenRandomBlock();
-        this.btnStartGame.gameObject.SetActive(false);
+        this.BtnStartGame.gameObject.SetActive(false);
     }
 
     Start() {
         console.log('tetris gameLogic start.');
         super.Start();
-        this.gameTick = setInterval(() => {
+        this.GameTick = setInterval(() => {
             console.log('gameTick');
-            if (this.curBlock)
-                this.curBlock.Move(DIR.DOWN);
+            if (this.CurBlock)
+                this.CurBlock.Move(DIR.DOWN);
         }, 500);
     }
 
@@ -272,29 +272,29 @@ export class Tetris extends Component {
 
     private GenBlock(blockType: number, spinIndex: number = 0) {
         console.log(`genBlock Type:${blockType}, Spin:${spinIndex}`);
-        if (this.curBlock != null) {
-            UnityEngine.GameObject.Destroy(this.curBlock.gameObject);
-            this.curBlock = null;
+        if (this.CurBlock != null) {
+            UnityEngine.GameObject.Destroy(this.CurBlock.gameObject);
+            this.CurBlock = null;
         }
-        this.curBlock = ComponentMgr.ins.getComponent(<UnityEngine.GameObject>this.Instantiate(this.block), TetrisBlock);
-        this.curBlock.transform.SetParent(this.content);
-        this.curBlock.transform.localPosition = new UnityEngine.Vector3(0, this.height + 5, 0);
-        this.curBlock.type = blockType;
-        this.curBlock.spinIndex = spinIndex;
+        this.CurBlock = ComponentMgr.ins.getComponent(<UnityEngine.GameObject>this.Instantiate(this.Block), TetrisBlock);
+        this.CurBlock.transform.SetParent(this.Content);
+        this.CurBlock.transform.localPosition = new UnityEngine.Vector3(0, this.Height + 5, 0);
+        this.CurBlock.type = blockType;
+        this.CurBlock.spinIndex = spinIndex;
     }
 
     private AddPiece(piece: pieceObj) {
-        for (let i in this.settlePieces) {
-            if (this.settlePieces[i] == null) {
-                this.settlePieces[i] = piece;
+        for (let i in this.SettlePieces) {
+            if (this.SettlePieces[i] == null) {
+                this.SettlePieces[i] = piece;
                 return;
             }
         }
-        this.settlePieces.push(piece);
+        this.SettlePieces.push(piece);
     }
 
     CheckExist(posx: number, posy: number) {
-        return this.settlePieces.filter(piece => piece != null && piece.pos.x == posx && piece.pos.y == posy).length > 0
+        return this.SettlePieces.filter(piece => piece != null && piece.pos.x == posx && piece.pos.y == posy).length > 0
     }
 
     Settle(cubeList: UnityEngine.Transform[], blockPos: UnityEngine.Vector3) {
@@ -306,25 +306,25 @@ export class Tetris extends Component {
                 },
                 trans: cube,
             });
-            cube.SetParent(this.content);
+            cube.SetParent(this.Content);
         })
-        UnityEngine.GameObject.Destroy(this.curBlock.gameObject);
-        this.curBlock = null;
+        UnityEngine.GameObject.Destroy(this.CurBlock.gameObject);
+        this.CurBlock = null;
 
-        for (let i = 0; i < this.height; i++) {
-            let line = this.settlePieces.filter(piece => piece != null && piece.pos.y == i);
-            if (line.length >= this.width) {
+        for (let i = 0; i < this.Height; i++) {
+            let line = this.SettlePieces.filter(piece => piece != null && piece.pos.y == i);
+            if (line.length >= this.Width) {
                 line.forEach(linePiece => {
-                    this.settlePieces[this.settlePieces.indexOf(linePiece)] = null;
+                    this.SettlePieces[this.SettlePieces.indexOf(linePiece)] = null;
                     UnityEngine.GameObject.Destroy(linePiece.trans.gameObject);
                 });
-                this.settlePieces.filter(piece => piece != null && piece.pos.y > i)
+                this.SettlePieces.filter(piece => piece != null && piece.pos.y > i)
                     .forEach(piece => {
                         piece.trans.localPosition = new UnityEngine.Vector3(piece.trans.localPosition.x, piece.trans.localPosition.y - 1, piece.trans.localPosition.z);
                         piece.pos.y--;
                     }
                     );
-                this.audioClear.Play();
+                this.AudioClear.Play();
                 i--;
             }
         }
@@ -337,6 +337,6 @@ export class Tetris extends Component {
 
     OnDestory() {
         super.OnDestory();
-        clearInterval(this.gameTick);
+        clearInterval(this.GameTick);
     }
 }
